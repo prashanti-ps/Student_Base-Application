@@ -35,6 +35,11 @@ public class StudentDashboard extends javax.swing.JPanel {
         btnSellItems = new javax.swing.JButton();
 
         btnFindTemp.setText("Find Temporary Accomodation");
+        btnFindTemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindTempActionPerformed(evt);
+            }
+        });
 
         btnPostTemp.setText("Post a Temporary Accomodation");
 
@@ -56,15 +61,19 @@ public class StudentDashboard extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnPostPermanent, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnFindTemp)
-                    .addComponent(btnPostTemp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnFindPermanent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBuyItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSellItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(524, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSellItems, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPostPermanent, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFindPermanent, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(btnFindTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(77, 77, 77)
+                            .addComponent(btnPostTemp))))
+                .addContainerGap(730, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,13 +90,18 @@ public class StudentDashboard extends javax.swing.JPanel {
                 .addComponent(btnBuyItems)
                 .addGap(36, 36, 36)
                 .addComponent(btnSellItems)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(638, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSellItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellItemsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSellItemsActionPerformed
+
+    private void btnFindTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindTempActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnFindTempActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
