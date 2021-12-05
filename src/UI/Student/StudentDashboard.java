@@ -10,8 +10,8 @@ import UI.Accomodation.findTemporaryAccomodationJPanel;
 import UI.Accomodation.postPermanentAccomodation;
 import UI.Accomodation.postTemporaryAccomodationJPanel;
 import javax.swing.JSplitPane;
-import student.accomodation.PermanentDirectory;
-import student.accomodation.TemporaryDirectory;
+import business.student.accomodation.PermanentDirectory;
+import business.student.accomodation.TemporaryDirectory;
 
 /**
  *
