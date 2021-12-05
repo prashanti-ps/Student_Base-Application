@@ -5,6 +5,14 @@
  */
 package UI.Student;
 
+import UI.Accomodation.findPermanentAccomodation;
+import UI.Accomodation.findTemporaryAccomodationJPanel;
+import UI.Accomodation.postPermanentAccomodation;
+import UI.Accomodation.postTemporaryAccomodationJPanel;
+import javax.swing.JSplitPane;
+import student.accomodation.PermanentDirectory;
+import student.accomodation.TemporaryDirectory;
+
 /**
  *
  * @author prashantii_s
@@ -14,8 +22,15 @@ public class StudentDashboard extends javax.swing.JPanel {
     /**
      * Creates new form StudentDashboard
      */
-    public StudentDashboard() {
+    PermanentDirectory permanentDirectory;
+    TemporaryDirectory temporaryDirectory;
+   JSplitPane jSplitPane1;
+    
+    public StudentDashboard(PermanentDirectory permanentDirectory,TemporaryDirectory temporaryDirectory,JSplitPane jSplitPane1) {
         initComponents();
+        this.jSplitPane1= jSplitPane1;
+        this.permanentDirectory=permanentDirectory;
+        this.temporaryDirectory=temporaryDirectory;
     }
 
     /**
@@ -42,10 +57,25 @@ public class StudentDashboard extends javax.swing.JPanel {
         });
 
         btnPostTemp.setText("Post a Temporary Accomodation");
+        btnPostTemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostTempActionPerformed(evt);
+            }
+        });
 
         btnFindPermanent.setText("Find Permanent Accomodation");
+        btnFindPermanent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindPermanentActionPerformed(evt);
+            }
+        });
 
         btnPostPermanent.setText("Post a Permanent Accomodation");
+        btnPostPermanent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostPermanentActionPerformed(evt);
+            }
+        });
 
         btnBuyItems.setText("Buy items");
 
@@ -100,8 +130,28 @@ public class StudentDashboard extends javax.swing.JPanel {
 
     private void btnFindTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindTempActionPerformed
         // TODO add your handling code here:
-        
+       
+        findTemporaryAccomodationJPanel findTemporaryAccomodationPanel=new findTemporaryAccomodationJPanel(permanentDirectory,temporaryDirectory,jSplitPane1);
+        jSplitPane1.setRightComponent(findTemporaryAccomodationPanel);
     }//GEN-LAST:event_btnFindTempActionPerformed
+
+    private void btnPostTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostTempActionPerformed
+        // TODO add your handling code here:
+        postTemporaryAccomodationJPanel postTemporaryAccomodationPanel=new postTemporaryAccomodationJPanel(permanentDirectory,temporaryDirectory,jSplitPane1);
+        jSplitPane1.setRightComponent(postTemporaryAccomodationPanel);
+    }//GEN-LAST:event_btnPostTempActionPerformed
+
+    private void btnFindPermanentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindPermanentActionPerformed
+        // TODO add your handling code here:
+        findPermanentAccomodation findPermanentAccomodationPanel=new findPermanentAccomodation(permanentDirectory,temporaryDirectory,jSplitPane1);
+        jSplitPane1.setRightComponent(findPermanentAccomodationPanel);
+    }//GEN-LAST:event_btnFindPermanentActionPerformed
+
+    private void btnPostPermanentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostPermanentActionPerformed
+        // TODO add your handling code here:
+        postPermanentAccomodation postPermanentAccomodationPanel=new postPermanentAccomodation(permanentDirectory,temporaryDirectory,jSplitPane1);
+        jSplitPane1.setRightComponent(postPermanentAccomodationPanel);
+    }//GEN-LAST:event_btnPostPermanentActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
