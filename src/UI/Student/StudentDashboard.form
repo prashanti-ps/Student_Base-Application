@@ -70,16 +70,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Post a Temporary Accomodation"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPostTempActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnFindPermanent">
       <Properties>
         <Property name="text" type="java.lang.String" value="Find Permanent Accomodation"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFindPermanentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPostPermanent">
       <Properties>
         <Property name="text" type="java.lang.String" value="Post a Permanent Accomodation"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPostPermanentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBuyItems">
       <Properties>
