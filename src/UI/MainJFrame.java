@@ -6,8 +6,8 @@
 package UI;
 
 import UI.Student.StudentDashboard;
-import student.accomodation.PermanentDirectory;
-import student.accomodation.TemporaryDirectory;
+import business.student.accomodation.PermanentDirectory;
+import business.student.accomodation.TemporaryDirectory;
 
 /**
  *
