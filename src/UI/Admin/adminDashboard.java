@@ -4,6 +4,11 @@
  */
 package UI.Admin;
 
+import UI.Accomodation.postTemporaryAccomodationJPanel;
+import business.student.accomodation.PermanentDirectory;
+import business.student.accomodation.TemporaryDirectory;
+import javax.swing.JSplitPane;
+
 /**
  *
  * @author Pratik
@@ -13,8 +18,14 @@ public class adminDashboard extends javax.swing.JPanel {
     /**
      * Creates new form adminDashboard
      */
-    public adminDashboard() {
+     PermanentDirectory permanentDirectory;
+    TemporaryDirectory temporaryDirectory;
+   JSplitPane jSplitPane1;
+    public adminDashboard(PermanentDirectory permanentDirectory,TemporaryDirectory temporaryDirectory,JSplitPane jSplitPane1) {
         initComponents();
+        this.jSplitPane1= jSplitPane1;
+        this.permanentDirectory=permanentDirectory;
+        this.temporaryDirectory=temporaryDirectory;
     }
 
     /**
@@ -26,19 +37,108 @@ public class adminDashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnManageTemporaryAccomodation = new javax.swing.JButton();
+        btnManagePermanentAccomodation = new javax.swing.JButton();
+        btnManagePermanentAccomodation1 = new javax.swing.JButton();
+        btnManagePermanentAccomodation2 = new javax.swing.JButton();
+        btnManagePermanentAccomodation3 = new javax.swing.JButton();
+
+        btnManageTemporaryAccomodation.setText("Manage Temporary Accomodation");
+        btnManageTemporaryAccomodation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageTemporaryAccomodationActionPerformed(evt);
+            }
+        });
+
+        btnManagePermanentAccomodation.setText("Manage Permanent Accomodation");
+        btnManagePermanentAccomodation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagePermanentAccomodationActionPerformed(evt);
+            }
+        });
+
+        btnManagePermanentAccomodation1.setText("Manage Complaint Management ");
+        btnManagePermanentAccomodation1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagePermanentAccomodation1ActionPerformed(evt);
+            }
+        });
+
+        btnManagePermanentAccomodation2.setText("Manage Selling");
+        btnManagePermanentAccomodation2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagePermanentAccomodation2ActionPerformed(evt);
+            }
+        });
+
+        btnManagePermanentAccomodation3.setText("Manage Buying");
+        btnManagePermanentAccomodation3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagePermanentAccomodation3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManagePermanentAccomodation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageTemporaryAccomodation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManagePermanentAccomodation2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManagePermanentAccomodation1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManagePermanentAccomodation3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(747, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(btnManageTemporaryAccomodation)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManagePermanentAccomodation)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManagePermanentAccomodation1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManagePermanentAccomodation2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManagePermanentAccomodation3)
+                .addContainerGap(804, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnManageTemporaryAccomodationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTemporaryAccomodationActionPerformed
+        // TODO add your handling code here:
+        manageTemporaryAccomodation manageTemporaryAccomodationPanel=new manageTemporaryAccomodation(permanentDirectory,temporaryDirectory,jSplitPane1);
+        jSplitPane1.setRightComponent(manageTemporaryAccomodationPanel);
+    }//GEN-LAST:event_btnManageTemporaryAccomodationActionPerformed
+
+    private void btnManagePermanentAccomodationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePermanentAccomodationActionPerformed
+        // TODO add your handling code here:
+        managePermanentAccomodation managePermanentAccomodationPanel=new managePermanentAccomodation(permanentDirectory,temporaryDirectory,jSplitPane1);
+        jSplitPane1.setRightComponent(managePermanentAccomodationPanel);
+    }//GEN-LAST:event_btnManagePermanentAccomodationActionPerformed
+
+    private void btnManagePermanentAccomodation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePermanentAccomodation1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManagePermanentAccomodation1ActionPerformed
+
+    private void btnManagePermanentAccomodation2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePermanentAccomodation2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManagePermanentAccomodation2ActionPerformed
+
+    private void btnManagePermanentAccomodation3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePermanentAccomodation3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManagePermanentAccomodation3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManagePermanentAccomodation;
+    private javax.swing.JButton btnManagePermanentAccomodation1;
+    private javax.swing.JButton btnManagePermanentAccomodation2;
+    private javax.swing.JButton btnManagePermanentAccomodation3;
+    private javax.swing.JButton btnManageTemporaryAccomodation;
     // End of variables declaration//GEN-END:variables
 }
