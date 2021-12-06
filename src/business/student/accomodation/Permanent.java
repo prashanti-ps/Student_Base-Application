@@ -19,6 +19,32 @@ public class Permanent {
     private int rent;
     private int totalPeopleInHouse;
 
+    public String[] getAccomodationRequests() {
+        return accomodationRequests;
+    }
+
+    public void setAccomodationRequests(String[] accomodationRequests) {
+        this.accomodationRequests = accomodationRequests;
+    }
+    private String statusOfAccomodation;
+    private String statusOfPost;
+    private String[] accomodationRequests;
+    public String getStatusOfAccomodation() {
+        return statusOfAccomodation;
+    }
+
+    public void setStatusOfAccomodation(String statusOfAccomodation) {
+        this.statusOfAccomodation = statusOfAccomodation;
+    }
+
+    public String getStatusOfPost() {
+        return statusOfPost;
+    }
+
+    public void setStatusOfPost(String statusOfPost) {
+        this.statusOfPost = statusOfPost;
+    }
+
     public String getHostName() {
         return hostName;
     }
@@ -92,4 +118,9 @@ public class Permanent {
     }
     private String Status; 
     private double distance;
+    
+    @Override
+    public String toString(){
+        return String.valueOf(distance);
+    }
 }

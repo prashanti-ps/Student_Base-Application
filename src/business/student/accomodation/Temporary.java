@@ -19,7 +19,25 @@ public class Temporary {
     private String facilities;
     private int pricePerDay;
     private int occupancyFor;
-    private String Status;
+    private String statusOfAccomodation;
+    private String statusOfPost;
+    private String[] accomodationRequests;
+
+    public String[] getAccomodationRequests() {
+        return accomodationRequests;
+    }
+
+    public void setAccomodationRequests(String[] accomodationRequests) {
+        this.accomodationRequests = accomodationRequests;
+    }
+
+    public String getStatusOfPost() {
+        return statusOfPost;
+    }
+
+    public void setStatusOfPost(String statusOfPost) {
+        this.statusOfPost = statusOfPost;
+    }
     private double DistanceFromUniversity;
 
     public double getDistanceFromUniversity() {
@@ -94,11 +112,17 @@ public class Temporary {
         this.occupancyFor = occupancyFor;
     }
 
-    public String getStatus() {
-        return Status;
+    public String getStatusOfAccomodation() {
+        return statusOfAccomodation;
     }
 
-    public void setStatus(String Status) {
-        this.Status = Status;
+    public void setStatusOfAccomodation(String statusOfAccomodation) {
+        this.statusOfAccomodation = statusOfAccomodation;
     }
+
+    @Override
+    public String toString(){
+        return toDate.toString();
+    }
+   
 }
