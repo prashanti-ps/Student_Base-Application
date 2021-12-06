@@ -6,6 +6,8 @@
 package UI;
 
 import UI.Student.StudentDashboard;
+import business.DB4OUtil.DB4OUtil;
+import business.EcoSystem;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
 
@@ -18,11 +20,15 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    private EcoSystem system;
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
+    private DB4OUtil db4OUtil=DB4OUtil.getInstance();
+    
     public MainJFrame() {
         this.permanentDirectory=new PermanentDirectory();
         this.temporaryDirectory=new TemporaryDirectory();
+        system=db4OUtil.retrieveSystem();
         initComponents();
     }
 
