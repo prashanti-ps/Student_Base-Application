@@ -5,9 +5,14 @@
 package UI.Accomodation;
 
 import UI.Student.StudentDashboard;
+import business.student.accomodation.Permanent;
 import javax.swing.JSplitPane;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
+import java.util.ArrayList;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,12 +26,14 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
     JSplitPane jSplitPane1;
-    public findPermanentAccomodation(PermanentDirectory permanentDirectory,TemporaryDirectory temporaryDirectory,JSplitPane jSplitPane1) {
-  
-        this.permanentDirectory=permanentDirectory;
-        this.temporaryDirectory=temporaryDirectory;
-        this.jSplitPane1=jSplitPane1;
+
+    public findPermanentAccomodation(PermanentDirectory permanentDirectory, TemporaryDirectory temporaryDirectory, JSplitPane jSplitPane1) {
+
+        this.permanentDirectory = permanentDirectory;
+        this.temporaryDirectory = temporaryDirectory;
+        this.jSplitPane1 = jSplitPane1;
         initComponents();
+        populateTable();
     }
 
     /**
@@ -76,12 +83,14 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
 
         jLabel5.setText("Address");
 
+        txtAreaAddress.setEditable(false);
         txtAreaAddress.setColumns(20);
         txtAreaAddress.setRows(5);
         jScrollPane2.setViewportView(txtAreaAddress);
 
         jLabel6.setText("Facilities");
 
+        txtAreaFacilities.setEditable(false);
         txtAreaFacilities.setColumns(20);
         txtAreaFacilities.setRows(5);
         jScrollPane3.setViewportView(txtAreaFacilities);
@@ -108,17 +117,17 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
 
         tblPermanentAccomodationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Rent", "Distance From University"
+                "Distance From University", "Rent", "Contact"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -129,8 +138,18 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
         jScrollPane4.setViewportView(tblPermanentAccomodationTable);
 
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnConnectHost.setText("Connect to Host");
+        btnConnectHost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConnectHostActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -253,9 +272,55 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        StudentDashboard studentDashboardPanel = new StudentDashboard(permanentDirectory,temporaryDirectory, jSplitPane1);
+        StudentDashboard studentDashboardPanel = new StudentDashboard(permanentDirectory, temporaryDirectory, jSplitPane1);
         jSplitPane1.setRightComponent(studentDashboardPanel);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        int selectedRowIndex = tblPermanentAccomodationTable.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view!");
+            return;
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblPermanentAccomodationTable.getModel();
+            Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
+
+            lblMoveInDate.setText(p.getMoveInDate().toString());
+            txtAreaAddress.setText(p.getAddress());
+            txtAreaFacilities.setText(p.getFacilities());
+            lblRent.setText(String.valueOf(p.getRent()));
+            lblDistance.setText(String.valueOf(p.getDistance()));
+            lblTotalPeople.setText(String.valueOf(p.getTotalPeopleInHouse()));
+            lblContact.setText(p.getContact());
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnConnectHostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectHostActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblPermanentAccomodationTable.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row!");
+            return;
+        } else {
+            //fieldsEnableDisable(true);
+            DefaultTableModel model = (DefaultTableModel) tblPermanentAccomodationTable.getModel();
+            Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
+            Map<String, ArrayList<Permanent>> latestDirectory = permanentDirectory.getPermanentDirectory();
+            ArrayList<Permanent> perArr = latestDirectory.get(p.getContact());
+            for (Permanent obj : perArr) {
+                if (obj.equals(p)) {
+                    String str=obj.getAccomodationRequests();
+                    str+= "get object from student";
+                    obj.setAccomodationRequests(str);
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_btnConnectHostActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -287,4 +352,23 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
     private javax.swing.JTextArea txtAreaAddress;
     private javax.swing.JTextArea txtAreaFacilities;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblPermanentAccomodationTable.getModel();
+        model.setRowCount(0);
+        Map<String, ArrayList<Permanent>> directory = permanentDirectory.getPermanentDirectory();
+        ArrayList<Permanent> foundDirectory = new ArrayList<Permanent>();
+
+        for (ArrayList<Permanent> perArr : directory.values()) {
+            for (Permanent p : perArr) {
+                if (p.getStatusOfAccomodation() == "Available" && p.getStatusOfPost() == "Ok") {
+                    Object[] row = new Object[3];
+                    row[0] = p;
+                    row[1] = p.getRent();
+                    row[2] = p.getContact();
+                    model.addRow(row);
+                }
+            }
+        }
+    }
 }

@@ -114,17 +114,17 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
 
         tblTemporaryAccomodationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Price Per Day", "Distance From University"
+                "Contact", "Price Per Day", "Distance From University"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
