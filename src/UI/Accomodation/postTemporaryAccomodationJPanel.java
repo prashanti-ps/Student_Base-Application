@@ -12,6 +12,7 @@ import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,12 +29,15 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
     TemporaryDirectory temporaryDirectory;
     PermanentDirectory permanentDirectory;
     JSplitPane jSplitPane1;
-    public postTemporaryAccomodationJPanel(PermanentDirectory permanentDirectory,TemporaryDirectory temporaryDirectory,JSplitPane jSplitPane1) {
-        this.permanentDirectory=permanentDirectory;
-        this.temporaryDirectory=temporaryDirectory;
-        this.jSplitPane1=jSplitPane1;
+
+    public postTemporaryAccomodationJPanel(PermanentDirectory permanentDirectory, TemporaryDirectory temporaryDirectory, JSplitPane jSplitPane1) {
+        this.permanentDirectory = permanentDirectory;
+        this.temporaryDirectory = temporaryDirectory;
+        this.jSplitPane1 = jSplitPane1;
         initComponents();
         populateTable();
+        btnPost.setEnabled(false);
+        btnUpdate.setEnabled(false);
     }
 
     /**
@@ -49,7 +53,6 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
         tblAccomodation = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnPost = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -67,12 +70,18 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaAddress = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnPost = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtAreaRequests = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
+        lblContact = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        txtDistance = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
 
         tblAccomodation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,6 +97,11 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
         ScrollPanePermanentAccomodationList.setViewportView(tblAccomodation);
 
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -95,8 +109,6 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
-
-        btnPost.setText("Post");
 
         jLabel1.setText("From:");
 
@@ -125,7 +137,12 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Post Temporary Accomodation");
 
-        jButton1.setText("Save");
+        btnPost.setText("Post");
+        btnPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +159,19 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
         txtAreaRequests.setRows(5);
         jScrollPane4.setViewportView(txtAreaRequests);
 
+        jLabel11.setText("Contact");
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Distance From University");
+
+        jLabel13.setText("Miles");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,9 +181,7 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
                 .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEdit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(124, 124, 124))
+                .addGap(185, 185, 185))
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,26 +196,41 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
                     .addComponent(txtFromDate)
                     .addComponent(jScrollPane4))
                 .addGap(118, 118, 118)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(100, 100, 100)
-                        .addComponent(txtToDate))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboBoxStatus, 0, 96, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtOccupancyFor)
-                            .addComponent(txtPricePerDay))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addGap(0, 256, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(100, 100, 100)
+                                .addComponent(txtToDate))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5))
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtOccupancyFor)
+                                    .addComponent(txtPricePerDay)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(101, 101, 101)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboBoxStatus, 0, 96, Short.MAX_VALUE)
+                                    .addComponent(lblContact, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDistance, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel13)))
+                .addGap(0, 254, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -198,8 +241,10 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
                                 .addComponent(ScrollPanePermanentAccomodationList, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(404, 404, 404)
-                        .addComponent(btnPost, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(400, 400, 400)
+                        .addComponent(btnPost)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnUpdate)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -214,8 +259,7 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
-                    .addComponent(btnEdit)
-                    .addComponent(jButton1))
+                    .addComponent(btnEdit))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtFromDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,28 +300,41 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addComponent(btnPost)
-                .addContainerGap(308, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPost)
+                    .addComponent(btnUpdate))
+                .addGap(306, 306, 306))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        StudentDashboard studentDashboardPanel = new StudentDashboard(permanentDirectory,temporaryDirectory, jSplitPane1);
+        StudentDashboard studentDashboardPanel = new StudentDashboard(permanentDirectory, temporaryDirectory, jSplitPane1);
         jSplitPane1.setRightComponent(studentDashboardPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+
         int selectedRowIndex = tblAccomodation.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to edit!");
             return;
         } else {
-            //fieldsEnableDisable(true);
+            btnUpdate.setEnabled(true);
+            btnPost.setEnabled(false);
             DefaultTableModel model = (DefaultTableModel) tblAccomodation.getModel();
             Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
 
@@ -287,11 +344,73 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
             txtAreaFacilities.setText(t.getFacilities());
             txtPricePerDay.setText(String.valueOf(t.getPricePerDay()));
             txtOccupancyFor.setText(String.valueOf(t.getOccupancyFor()));
-            txtAreaRequests.setText(t.getAccomodationRequests().toString());
+            txtAreaRequests.setText(t.getAccomodationRequests());
             comboBoxStatus.addItem(t.getStatusOfAccomodation());
+            lblContact.setText(t.getContact());
+            txtDistance.setText(String.valueOf(t.getDistanceFromUniversity()));
 
         }
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
+        // TODO add your handling code here:
+        String email = "get from student object";
+        Temporary t = new Temporary();
+        t.setToDate(t.getToDate());
+        t.setFromDate(t.getFromDate());
+        t.setAddress(t.getAddress());
+        t.setFacilities(t.getFacilities());
+        t.setPricePerDay(t.getPricePerDay());
+        t.setOccupancyFor(t.getOccupancyFor());
+        t.setStatusOfAccomodation(t.getStatusOfAccomodation());
+        t.setContact(email);
+        t.setStatusOfPost("Pending");
+        t.setHostName(t.getHostName());
+        t.setDistanceFromUniversity(Double.parseDouble(txtDistance.getText()));
+
+        temporaryDirectory.addNewTemporaryAccomodation(email, t);
+        clearFields();
+        populateTable();
+
+    }//GEN-LAST:event_btnPostActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        btnPost.setEnabled(true);
+        clearFields();
+        txtAreaRequests.setText("");
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblAccomodation.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update!");
+            return;
+        } else {
+            //fieldsEnableDisable(true);
+            DefaultTableModel model = (DefaultTableModel) tblAccomodation.getModel();
+            Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
+            Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
+            ArrayList<Temporary> tempArr = latestDirectory.get(t.getContact());
+            for (Temporary obj : tempArr) {
+                if (obj.equals(t)) {
+                    obj.setFromDate(t.getFromDate());
+                    obj.setAddress(t.getAddress());
+                    obj.setFacilities(t.getFacilities());
+                    obj.setPricePerDay(t.getPricePerDay());
+                    obj.setOccupancyFor(t.getOccupancyFor());
+                    obj.setStatusOfAccomodation(t.getStatusOfAccomodation());
+                    obj.setContact(t.getContact());
+                    obj.setHostName(t.getHostName());
+                    obj.setDistanceFromUniversity(t.getDistanceFromUniversity());
+                }
+            }
+        }
+        clearFields();
+        populateTable();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -300,10 +419,13 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnPost;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> comboBoxStatus;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -315,10 +437,12 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblContact;
     private javax.swing.JTable tblAccomodation;
     private javax.swing.JTextArea txtAreaAddress;
     private javax.swing.JTextArea txtAreaFacilities;
     private javax.swing.JTextArea txtAreaRequests;
+    private javax.swing.JTextField txtDistance;
     private javax.swing.JTextField txtFromDate;
     private javax.swing.JTextField txtOccupancyFor;
     private javax.swing.JTextField txtPricePerDay;
@@ -330,17 +454,13 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblAccomodation.getModel();
         model.setRowCount(0);
         Map<String, ArrayList<Temporary>> directory = temporaryDirectory.getTemporaryDirectory();
-        ArrayList<Temporary> foundDirectory= new ArrayList<Temporary>();
-        try
-        {
-        foundDirectory=directory.get("randad.p@northeastern.edu");
+        ArrayList<Temporary> foundDirectory = new ArrayList<Temporary>();
+        try {
+            foundDirectory = directory.get("randad.p@northeastern.edu");
+        } catch (Exception e) {
+
         }
-        catch(Exception e)
-        {
-            
-        }
-        for(Temporary t: foundDirectory)
-        {
+        for (Temporary t : foundDirectory) {
             Object[] row = new Object[4];
 
             row[0] = t;
@@ -349,8 +469,19 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
             row[3] = t.getHostName();
             model.addRow(row);
         }
-       
-     
+
+    }
+
+    private void clearFields() {
+        txtFromDate.setText("");
+        txtToDate.setText("");
+        txtAreaAddress.setText("");
+        txtAreaFacilities.setText("");
+        txtPricePerDay.setText("");
+        txtOccupancyFor.setText("");
+        txtDistance.setText("");
+        lblContact.setText("value from student object");
+        
     }
 
 }

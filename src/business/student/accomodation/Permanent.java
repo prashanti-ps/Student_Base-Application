@@ -13,22 +13,22 @@ import java.util.Date;
 public class Permanent {
     private String hostName;
     private String email;
-    private Date moveInDate;
+    private String moveInDate;
     private String address;
     private String facilities;
     private int rent;
     private int totalPeopleInHouse;
 
-    public String[] getAccomodationRequests() {
+    public String getAccomodationRequests() {
         return accomodationRequests;
     }
 
-    public void setAccomodationRequests(String[] accomodationRequests) {
+    public void setAccomodationRequests(String accomodationRequests) {
         this.accomodationRequests = accomodationRequests;
     }
     private String statusOfAccomodation;
     private String statusOfPost;
-    private String[] accomodationRequests;
+    private String accomodationRequests;
     public String getStatusOfAccomodation() {
         return statusOfAccomodation;
     }
@@ -61,11 +61,11 @@ public class Permanent {
         this.email = email;
     }
 
-    public Date getMoveInDate() {
+    public String getMoveInDate() {
         return moveInDate;
     }
 
-    public void setMoveInDate(Date moveInDate) {
+    public void setMoveInDate(String moveInDate) {
         this.moveInDate = moveInDate;
     }
 
@@ -118,6 +118,15 @@ public class Permanent {
     }
     private String Status; 
     private double distance;
+    private String contact;
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
     
     @Override
     public String toString(){

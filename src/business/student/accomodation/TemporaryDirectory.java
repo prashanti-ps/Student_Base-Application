@@ -28,5 +28,11 @@ public class TemporaryDirectory {
         this.temporaryDirectory = temporaryDirectory;
     }
 
-   
+   public void addNewTemporaryAccomodation(String email, Temporary t)
+   {
+       ArrayList<Temporary> tempArr = new ArrayList<Temporary>();
+       tempArr.add(t);
+       this.temporaryDirectory.put(email,tempArr);
+       
+   }
 }

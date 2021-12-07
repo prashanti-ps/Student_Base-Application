@@ -12,6 +12,15 @@ import java.util.Date;
  */
 public class Temporary {
     private String hostName;
+    private String contact;
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
     private String email;
     private Date fromDate;
     private Date toDate;
@@ -21,13 +30,13 @@ public class Temporary {
     private int occupancyFor;
     private String statusOfAccomodation;
     private String statusOfPost;
-    private String[] accomodationRequests;
+    private String accomodationRequests;
 
-    public String[] getAccomodationRequests() {
+    public String getAccomodationRequests() {
         return accomodationRequests;
     }
 
-    public void setAccomodationRequests(String[] accomodationRequests) {
+    public void setAccomodationRequests(String accomodationRequests) {
         this.accomodationRequests = accomodationRequests;
     }
 
