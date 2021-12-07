@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business.user;
+package business.admin;
+
+import business.useraccount.UserAccount;
 
 /**
  *
  * @author prashantii_s
  */
-public class User {
-        private String name;
+public class Admin extends UserAccount{
+    private String name;
     private int id;
     private static int count = 1;
 
 
-    public User() {
-      id = count;
-        count++;
+    public Admin() {
+     
     }
 
     public int getId() {
