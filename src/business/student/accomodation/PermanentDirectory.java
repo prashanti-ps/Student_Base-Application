@@ -27,4 +27,12 @@ public class PermanentDirectory {
     public void setPermanentDirectory(Map<String, ArrayList<Permanent>> permanentDirectory) {
         this.permanentDirectory = permanentDirectory;
     }
+    
+    public void addNewPermanentAccomodation(String email, Permanent p)
+   {
+       ArrayList<Permanent> perArr = new ArrayList<Permanent>();
+       perArr.add(p);
+       this.permanentDirectory.put(email,perArr);
+       
+   }
 }
