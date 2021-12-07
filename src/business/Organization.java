@@ -8,8 +8,8 @@ package business;
 import business.useraccount.UserAccountDirectory;
 import java.util.ArrayList;
 import business.role.Role;
-import business.user.User;
-import business.user.UserDirectory;
+import business.admin.AdminDirectory;
+import business.complaintManagement.ComplaintManagerDirectory;
 
 /**
  *
@@ -20,7 +20,8 @@ public abstract class Organization {
 
     private String name;
     //private WorkQueue workQueue;
-    private UserDirectory userDirectory;
+    private AdminDirectory adminDirectory;
+    private ComplaintManagerDirectory complaintManagerDirectory;
     private UserAccountDirectory userAccountDirectory;
 //    private CustomerDirectory customerDirectory;
 //    private DeliveryManDirectory deliveryManDirectory;
@@ -46,7 +47,8 @@ public abstract class Organization {
     public Organization(String name) {
         this.name = name;
         //workQueue = new WorkQueue();
-        userDirectory = new UserDirectory();
+        adminDirectory = new AdminDirectory();
+        complaintManagerDirectory= new ComplaintManagerDirectory();
         userAccountDirectory = new UserAccountDirectory();
 //        customerDirectory = new CustomerDirectory();
 //        deliveryManDirectory = new DeliveryManDirectory();
@@ -108,8 +110,11 @@ public abstract class Organization {
         return organizationID;
     }
 
-    public UserDirectory getUserDirectory() {
-        return userDirectory;
+    public AdminDirectory getAdminDirectory() {
+        return adminDirectory;
+    }
+     public ComplaintManagerDirectory getcomplaintManagerDirectory() {
+        return complaintManagerDirectory;
     }
     
     public String getName() {

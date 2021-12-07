@@ -6,7 +6,7 @@
 package business;
 
 import business.role.AdminRole;
-import business.user.User;
+import business.admin.Admin;
 import business.useraccount.UserAccount;
 
 /**
@@ -19,9 +19,9 @@ public class ConfigureASystem {
         
        
         
-      User user = system.getUserDirectory().createUser("Prashanti");
+      Admin user = system.getAdminDirectory().createAdmin("Prashanti");
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", user, new AdminRole());
+      UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", user, new AdminRole());
         
         return system;
       }

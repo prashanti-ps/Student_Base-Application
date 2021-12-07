@@ -21,15 +21,15 @@ public class EcoSystem extends Organization{
 //    private CustomerDirectory customerDirectory;
 //    private DeliveryManDirectory deliveryManDirectory;
 //    private WorkQueue workQueue;
-    public EcoSystem(//RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory
-    ) 
-            {
-
-//        this.restaurantDirectory = restaurantDirectory;
-//        this.customerDirectory = customerDirectory;
-//        this.deliveryManDirectory = deliveryManDirectory;
-//        this.workQueue = workQueue;
-    }
+//    public EcoSystem(//RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory
+//    ) 
+//            {
+//
+////        this.restaurantDirectory = restaurantDirectory;
+////        this.customerDirectory = customerDirectory;
+////        this.deliveryManDirectory = deliveryManDirectory;
+////        this.workQueue = workQueue;
+//    }
     
     public static EcoSystem getInstance(){
         if(business==null){
@@ -44,10 +44,10 @@ public class EcoSystem extends Organization{
         roleList.add(new AdminRole());
         return roleList;
     }
-   // private EcoSystem(){
-        //super(null);
+   private EcoSystem(){
+        super(null);
        // networkList=new ArrayList<Network>();
-    //}
+    }
 
     
     public boolean checkIfUserIsUnique(String userName){

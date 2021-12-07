@@ -6,7 +6,7 @@
 package business.useraccount;
 
 import business.role.Role;
-import business.user.User;
+import business.admin.Admin;
 
 /**
  *
@@ -16,7 +16,7 @@ public class UserAccount {
         
     private String username;
     private String password;
-    private User user;
+    private Admin admin;
     private Role role;
     //private WorkQueue workQueue;
 
@@ -46,16 +46,16 @@ public class UserAccount {
         return role;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAdmin(Admin user) {
+        this.admin = user;
     }
 
     public void setRole(Role role) {
         this.role = role;
     }
 
-    public User getUser() {
-        return user;
+    public Admin getAdmin() {
+        return admin;
     }
 
 
