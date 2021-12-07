@@ -27,19 +27,122 @@ public class complaintsJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        sellingComplaintsJPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        buyingComplaintsJPanel = new javax.swing.JPanel();
+        tempAccomodationsComplaintsJPanel = new javax.swing.JPanel();
+        permAccomodationsComplaintsJPanel = new javax.swing.JPanel();
+
+        jLabel1.setText("Complaint Manager");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout sellingComplaintsJPanelLayout = new javax.swing.GroupLayout(sellingComplaintsJPanel);
+        sellingComplaintsJPanel.setLayout(sellingComplaintsJPanelLayout);
+        sellingComplaintsJPanelLayout.setHorizontalGroup(
+            sellingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sellingComplaintsJPanelLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        sellingComplaintsJPanelLayout.setVerticalGroup(
+            sellingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sellingComplaintsJPanelLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(201, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Selling ", sellingComplaintsJPanel);
+
+        javax.swing.GroupLayout buyingComplaintsJPanelLayout = new javax.swing.GroupLayout(buyingComplaintsJPanel);
+        buyingComplaintsJPanel.setLayout(buyingComplaintsJPanelLayout);
+        buyingComplaintsJPanelLayout.setHorizontalGroup(
+            buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 741, Short.MAX_VALUE)
+        );
+        buyingComplaintsJPanelLayout.setVerticalGroup(
+            buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 492, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Buying ", buyingComplaintsJPanel);
+
+        javax.swing.GroupLayout tempAccomodationsComplaintsJPanelLayout = new javax.swing.GroupLayout(tempAccomodationsComplaintsJPanel);
+        tempAccomodationsComplaintsJPanel.setLayout(tempAccomodationsComplaintsJPanelLayout);
+        tempAccomodationsComplaintsJPanelLayout.setHorizontalGroup(
+            tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 741, Short.MAX_VALUE)
+        );
+        tempAccomodationsComplaintsJPanelLayout.setVerticalGroup(
+            tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 492, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Temporary Accomodation ", tempAccomodationsComplaintsJPanel);
+
+        javax.swing.GroupLayout permAccomodationsComplaintsJPanelLayout = new javax.swing.GroupLayout(permAccomodationsComplaintsJPanel);
+        permAccomodationsComplaintsJPanel.setLayout(permAccomodationsComplaintsJPanelLayout);
+        permAccomodationsComplaintsJPanelLayout.setHorizontalGroup(
+            permAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 741, Short.MAX_VALUE)
+        );
+        permAccomodationsComplaintsJPanelLayout.setVerticalGroup(
+            permAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 492, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Permanent Accomodtion ", permAccomodationsComplaintsJPanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 903, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(350, 350, 350)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 593, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel buyingComplaintsJPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel permAccomodationsComplaintsJPanel;
+    private javax.swing.JPanel sellingComplaintsJPanel;
+    private javax.swing.JPanel tempAccomodationsComplaintsJPanel;
     // End of variables declaration//GEN-END:variables
 }
