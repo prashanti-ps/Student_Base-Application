@@ -31,6 +31,15 @@ public class Temporary {
     private String statusOfAccomodation;
     private String statusOfPost;
     private String accomodationRequests;
+    private String comment;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public String getAccomodationRequests() {
         return accomodationRequests;
@@ -131,7 +140,7 @@ public class Temporary {
 
     @Override
     public String toString(){
-        return toDate.toString();
+        return String.valueOf(pricePerDay);
     }
    
 }
