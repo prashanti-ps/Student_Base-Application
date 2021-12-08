@@ -7,6 +7,7 @@ package business.useraccount;
 
 import business.role.Role;
 import business.admin.Admin;
+import business.complaintManagement.ComplaintManager;
 
 /**
  *
@@ -17,6 +18,15 @@ public class UserAccount {
     private String username;
     private String password;
     private Admin admin;
+    private ComplaintManager cm;
+
+    public ComplaintManager getCm() {
+        return cm;
+    }
+
+    public void setCm(ComplaintManager cm) {
+        this.cm = cm;
+    }
     private Role role;
     //private WorkQueue workQueue;
 

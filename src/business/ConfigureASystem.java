@@ -7,6 +7,8 @@ package business;
 
 import business.role.AdminRole;
 import business.admin.Admin;
+import business.complaintManagement.ComplaintManager;
+import business.role.ComplaintManagerRole;
 import business.useraccount.UserAccount;
 
 /**
@@ -19,9 +21,10 @@ public class ConfigureASystem {
         
        
         
-      Admin user = system.getAdminDirectory().createAdmin("Prashanti");
-        
-      UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", user, new AdminRole());
+      Admin admin = system.getAdminDirectory().createAdmin("Prashanti");
+      ComplaintManager cm=system.getComplaintManagerDirectory().createComplaintManager("Pratik");
+      UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", admin,null, new AdminRole());
+      UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("complaint", "complaint", null,cm, new ComplaintManagerRole());
         
         return system;
       }

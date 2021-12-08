@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import business.role.Role;
 import business.admin.AdminDirectory;
 import business.complaintManagement.ComplaintManagerDirectory;
+import business.student.accomodation.PermanentDirectory;
+import business.student.accomodation.TemporaryDirectory;
 
 /**
  *
@@ -23,6 +25,8 @@ public abstract class Organization {
     private AdminDirectory adminDirectory;
     private ComplaintManagerDirectory complaintManagerDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private TemporaryDirectory temporaryDirectory;
+    private PermanentDirectory permanentDirectory;
 //    private CustomerDirectory customerDirectory;
 //    private DeliveryManDirectory deliveryManDirectory;
 //    private RestaurantDirectory restaurantDirectory;
@@ -50,12 +54,38 @@ public abstract class Organization {
         adminDirectory = new AdminDirectory();
         complaintManagerDirectory= new ComplaintManagerDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        temporaryDirectory = new TemporaryDirectory();
+        permanentDirectory = new PermanentDirectory();
 //        customerDirectory = new CustomerDirectory();
 //        deliveryManDirectory = new DeliveryManDirectory();
 //        restaurantDirectory = new RestaurantDirectory();
 //        itemList = new MenuDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public ComplaintManagerDirectory getComplaintManagerDirectory() {
+        return complaintManagerDirectory;
+    }
+
+    public void setComplaintManagerDirectory(ComplaintManagerDirectory complaintManagerDirectory) {
+        this.complaintManagerDirectory = complaintManagerDirectory;
+    }
+
+    public TemporaryDirectory getTemporaryDirectory() {
+        return temporaryDirectory;
+    }
+
+    public void setTemporaryDirectory(TemporaryDirectory temporaryDirectory) {
+        this.temporaryDirectory = temporaryDirectory;
+    }
+
+    public PermanentDirectory getPermanentDirectory() {
+        return permanentDirectory;
+    }
+
+    public void setPermanentDirectory(PermanentDirectory permanentDirectory) {
+        this.permanentDirectory = permanentDirectory;
     }
 
 //    public CustomerDirectory getCustomerDirectory() {
@@ -113,10 +143,7 @@ public abstract class Organization {
     public AdminDirectory getAdminDirectory() {
         return adminDirectory;
     }
-     public ComplaintManagerDirectory getcomplaintManagerDirectory() {
-        return complaintManagerDirectory;
-    }
-    
+ 
     public String getName() {
         return name;
     }
