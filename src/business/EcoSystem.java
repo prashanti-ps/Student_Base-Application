@@ -7,6 +7,8 @@ package business;
 
 import business.role.AdminRole;
 import business.role.Role;
+import business.student.accomodation.PermanentDirectory;
+import business.student.accomodation.TemporaryDirectory;
 import java.util.ArrayList;
 
 /**
@@ -17,19 +19,18 @@ public class EcoSystem extends Organization{
     
     
     private static EcoSystem business;
+    private TemporaryDirectory temporaryDirectory;
+    private PermanentDirectory permanentDirectory;
 //    private RestaurantDirectory restaurantDirectory;
 //    private CustomerDirectory customerDirectory;
 //    private DeliveryManDirectory deliveryManDirectory;
 //    private WorkQueue workQueue;
-//    public EcoSystem(//RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory
-//    ) 
-//            {
-//
-////        this.restaurantDirectory = restaurantDirectory;
-////        this.customerDirectory = customerDirectory;
-////        this.deliveryManDirectory = deliveryManDirectory;
-////        this.workQueue = workQueue;
-//    }
+    public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory)
+    {
+
+        this.temporaryDirectory = temporaryDirectory;
+        this.permanentDirectory = permanentDirectory;
+    }
     
     public static EcoSystem getInstance(){
         if(business==null){

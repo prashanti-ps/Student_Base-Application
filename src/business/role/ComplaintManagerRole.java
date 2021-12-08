@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 public class ComplaintManagerRole extends Role {
      
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new complaintsJPanel(//userProcessContainer, account,business
-        );
+        return new complaintsJPanel(userProcessContainer, account,business);
     }
 }

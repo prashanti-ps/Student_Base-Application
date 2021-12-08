@@ -191,8 +191,8 @@ public class MainJFrame extends javax.swing.JFrame {
                     ContainerPanel.add("workArea", userAccount.getRole().createWorkArea(ContainerPanel, userAccount, system));
             }
             else if((  "class "+userAccount.getRole().toString()).equals(ComplaintManagerRole.class.toString())){
-                     hello =   "Hello " + userAccount.getUsername();
-                    ContainerPanel.add("workArea", userAccount.getRole().createWorkArea(ContainerPanel, (ComplaintManager)userAccount, system));
+                     hello =   "Hello " + userAccount.getCm().getName();
+                    ContainerPanel.add("workArea", userAccount.getRole().createWorkArea(ContainerPanel, userAccount, system));
             }
 //            else if(userAccount instanceof DeliveryMan){
 //                     hello =   "Hello "  + ((DeliveryMan)userAccount).getDeliverManName();
