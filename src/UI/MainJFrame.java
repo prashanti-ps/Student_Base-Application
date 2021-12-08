@@ -5,6 +5,7 @@
  */
 package UI;
 
+import UI.Student.registrationJPanel;
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
 import business.student.accomodation.PermanentDirectory;
@@ -12,6 +13,8 @@ import business.student.accomodation.TemporaryDirectory;
 import business.complaintManagement.ComplaintManager;
 import business.role.AdminRole;
 import business.role.ComplaintManagerRole;
+import business.student.registration.StudentDirectory;
+import static business.student.registration.StudentDirectory.studentHistory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -30,6 +33,7 @@ public class MainJFrame extends javax.swing.JFrame {
     TemporaryDirectory temporaryDirectory;
     private DB4OUtil db4OUtil=DB4OUtil.getInstance();
     UserAccount userAccount;
+    StudentDirectory studentDirectory;
     
     public MainJFrame() {
         system=db4OUtil.retrieveSystem();
@@ -55,7 +59,7 @@ public class MainJFrame extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
         txtPasswordField = new javax.swing.JPasswordField();
         lblHello = new javax.swing.JLabel();
 
@@ -84,7 +88,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jButton2.setText("Logout");
 
-        jButton3.setText("Register");
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
@@ -93,7 +102,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(loginPanelLayout.createSequentialGroup()
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnRegister))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(loginPanelLayout.createSequentialGroup()
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +121,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        loginPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+        loginPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnRegister, jButton1, jButton2});
 
         loginPanelLayout.setVerticalGroup(
             loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,11 +141,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(77, 77, 77)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(btnRegister)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        loginPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jLabel1, jLabel2, txtUsername});
+        loginPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnRegister, jButton1, jButton2, jLabel1, jLabel2, txtUsername});
 
         jSplitPane1.setLeftComponent(loginPanel);
 
@@ -168,6 +177,12 @@ public class MainJFrame extends javax.swing.JFrame {
 //        StudentDashboard studentDashboardPanel=new StudentDashboard(permanentDirectory,temporaryDirectory, jSplitPane1);
 //        jSplitPane1.setRightComponent(studentDashboardPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+        registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
+        jSplitPane1.setBottomComponent(StudentRegistatationPanel);
+    }//GEN-LAST:event_btnRegisterActionPerformed
   private void switchPanels(UserAccount userAccount) {
         if (userAccount != null) {
             String hello = "";
@@ -230,9 +245,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ContainerPanel;
+    private javax.swing.JButton btnRegister;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane jSplitPane1;
