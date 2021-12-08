@@ -7,6 +7,14 @@ package UI.Student;
 
 import business.student.registration.Student;
 import business.student.registration.StudentDirectory;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class registrationJPanel extends javax.swing.JPanel {
     StudentDirectory studentHistory;
+    
     /**
      * Creates new form registrationJPanel
      */
@@ -43,8 +52,9 @@ public class registrationJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtFileUploadName = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnChooseFile = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        FileUpload = new javax.swing.JLabel();
 
         txtFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,11 +85,18 @@ public class registrationJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Proof :");
 
-        jButton2.setText("Choose File");
+        btnChooseFile.setText("Choose File");
+        btnChooseFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseFileActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Student Registration");
+
+        FileUpload.setText("File Upload");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,7 +104,7 @@ public class registrationJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(264, 264, 264)
+                .addGap(102, 102, 102)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
@@ -96,19 +113,18 @@ public class registrationJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegister)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtFileUploadName, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(FileUpload, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtFileUploadName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(293, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegister)
-                .addGap(433, 433, 433))
+                        .addComponent(btnChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtEmailAddress, txtFirstName, txtLastName, txtPassword});
@@ -118,7 +134,7 @@ public class registrationJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel6)
-                .addGap(48, 48, 48)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -138,10 +154,12 @@ public class registrationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtFileUploadName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(58, 58, 58)
+                    .addComponent(btnChooseFile))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FileUpload)
+                .addGap(36, 36, 36)
                 .addComponent(btnRegister)
-                .addContainerGap(518, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -155,6 +173,12 @@ public class registrationJPanel extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        if(txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() || txtPassword.getText().isEmpty())
+        
+        {
+        JOptionPane.showMessageDialog(this, "Enter all fields");
+        }
+        
         String firstName = txtFirstName.getText();
         String lastName  = txtLastName.getText();
         String emailAddress = txtEmailAddress.getText();
@@ -176,10 +200,39 @@ public class registrationJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnRegisterActionPerformed
 
+    private void btnChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseFileActionPerformed
+        // TODO add your handling code here:
+        JFileChooser filechooser = new JFileChooser();
+    filechooser.setDialogTitle("Choose Your File");
+    filechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    // below code selects the file 
+    int returnval = filechooser.showOpenDialog(this);
+    if (returnval == JFileChooser.APPROVE_OPTION)
+    {
+        File file = filechooser.getSelectedFile();
+        BufferedImage bi;
+        try {
+            // display the image in a Jlabel
+            bi =  ImageIO.read(file);
+    //ImageIcon icon = new ImageIcon(bi);
+    Image dimg = bi.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+    ImageIcon imageIcon = new ImageIcon(dimg);
+ // JLabel toBeSet = new JLabel(); 
+ // considering that you have a JLabel having name as what I've used here
+    FileUpload.setIcon(imageIcon);
+    }
+    catch(IOException ioe){
+    System.out.println("Exception occured while setting Image on the Label!");
+        }
+    }
+       
+    }//GEN-LAST:event_btnChooseFileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FileUpload;
+    private javax.swing.JButton btnChooseFile;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
