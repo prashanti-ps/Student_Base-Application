@@ -18,6 +18,15 @@ public class Permanent {
     private String facilities;
     private int rent;
     private int totalPeopleInHouse;
+    private String comment;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public String getAccomodationRequests() {
         return accomodationRequests;

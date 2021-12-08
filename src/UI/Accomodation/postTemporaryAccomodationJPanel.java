@@ -457,19 +457,19 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
         ArrayList<Temporary> foundDirectory = new ArrayList<Temporary>();
         try {
             foundDirectory = directory.get("randad.p@northeastern.edu");
-        } catch (Exception e) {
-
-        }
-        for (Temporary t : foundDirectory) {
+            for (Temporary t : foundDirectory) {
             Object[] row = new Object[4];
 
             row[0] = t;
-            row[1] = t.getPricePerDay();
+            row[1] = t.getFromDate();
             row[2] = t.getToDate();
             row[3] = t.getHostName();
             model.addRow(row);
         }
+        } catch (Exception e) {
 
+        }
+        
     }
 
     private void clearFields() {
