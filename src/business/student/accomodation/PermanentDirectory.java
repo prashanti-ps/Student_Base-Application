@@ -35,4 +35,10 @@ public class PermanentDirectory {
        this.permanentDirectory.put(email,perArr);
        
    }
+    public void deleteObject(Permanent p)
+   {
+        permanentDirectory.get(p.getContact()).remove(p);
+
+        
+   }
 }

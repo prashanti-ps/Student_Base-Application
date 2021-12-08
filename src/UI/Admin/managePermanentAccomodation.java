@@ -4,9 +4,15 @@
  */
 package UI.Admin;
 
+import business.student.accomodation.Permanent;
 import business.student.accomodation.PermanentDirectory;
+import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
+import java.util.ArrayList;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,12 +25,17 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
      */
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
-   JSplitPane jSplitPane1;
-    public managePermanentAccomodation(PermanentDirectory permanentDirectory,TemporaryDirectory temporaryDirectory,JSplitPane jSplitPane1) {
+    JSplitPane jSplitPane1;
+
+    public managePermanentAccomodation(PermanentDirectory permanentDirectory, TemporaryDirectory temporaryDirectory, JSplitPane jSplitPane1) {
         initComponents();
-        this.jSplitPane1= jSplitPane1;
-        this.permanentDirectory=permanentDirectory;
-        this.temporaryDirectory=temporaryDirectory;
+        this.jSplitPane1 = jSplitPane1;
+        this.permanentDirectory = permanentDirectory;
+        this.temporaryDirectory = temporaryDirectory;
+        populateTable();
+        btnDelete.setEnabled(false);
+        btnSave.setEnabled(false);
+        clearFields();
     }
 
     /**
@@ -37,59 +48,73 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        txtFromDate = new javax.swing.JTextField();
-        btnEdit = new javax.swing.JButton();
+        tblAccomodationPosts = new javax.swing.JTable();
+        txtMoveInDate = new javax.swing.JTextField();
+        btnView = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtToDate = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtPricePerDay = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        txtOccupancyFor = new javax.swing.JTextField();
+        txtRent = new javax.swing.JTextField();
+        btnDelete = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         comboBoxStatus = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaAddress = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAreaFacilities = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        lblRent = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lblTotalPeople = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         lblDistance = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        lblHostName = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        lblContact = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtAccomodationRequests = new javax.swing.JTextArea();
+        jLabel19 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtComments = new javax.swing.JTextArea();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAccomodationPosts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Distance from University", "Host Name", "Address", "Status", "Comment"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        txtFromDate.setEditable(false);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblAccomodationPosts);
 
-        btnEdit.setText("Edit");
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Permanent Accomodation");
-
-        txtToDate.setEditable(false);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -100,29 +125,28 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
 
         jLabel2.setText("All Postings:");
 
-        txtPricePerDay.setEditable(false);
-
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
-
-        txtOccupancyFor.setEditable(false);
 
         jLabel6.setText("Status of Post:");
 
         comboBoxStatus.setEditable(true);
         comboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rejected", "Ok" }));
 
-        jLabel3.setText("Price Per Day:");
+        jLabel3.setText("Rent");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setText("From:");
-
-        jLabel4.setText("To:");
+        jLabel7.setText("Move In Date:");
 
         jLabel8.setText("Facilities:");
 
@@ -138,10 +162,6 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
         txtAreaFacilities.setRows(5);
         jScrollPane2.setViewportView(txtAreaFacilities);
 
-        jLabel5.setText("Occupancy for:");
-
-        jLabel10.setText("Rent");
-
         jLabel11.setText("USD");
 
         jLabel12.setText("Total People in House");
@@ -150,6 +170,24 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
 
         jLabel14.setText("Miles");
 
+        jLabel15.setText("Host Name:");
+
+        jLabel16.setText("jLabel16");
+
+        jLabel17.setText("Contact:");
+
+        jLabel18.setText("Accomodation Requests:");
+
+        txtAccomodationRequests.setColumns(20);
+        txtAccomodationRequests.setRows(5);
+        jScrollPane4.setViewportView(txtAccomodationRequests);
+
+        jLabel19.setText("Comments:");
+
+        txtComments.setColumns(20);
+        txtComments.setRows(5);
+        jScrollPane5.setViewportView(txtComments);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,13 +195,15 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnEdit)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBack)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -173,52 +213,64 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
                                 .addGap(48, 48, 48))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
                                     .addComponent(jLabel8))
                                 .addGap(40, 40, 40)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane3)
                                 .addComponent(jScrollPane2)
-                                .addComponent(txtFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtMoveInDate, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblRent, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel11)))
-                        .addGap(118, 118, 118)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTotalPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(47, 47, 47)
-                                .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(100, 100, 100)
-                                .addComponent(txtToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtOccupancyFor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblDistance, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel14))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(94, 94, 94)
+                                        .addComponent(txtRent, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11)
+                                        .addGap(20, 20, 20))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblTotalPeople, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addGap(75, 75, 75)
+                                        .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(117, 117, 117)
+                                        .addComponent(lblHostName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblDistance, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel14)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(303, 303, 303)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(385, 385, 385)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(btnSave))
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,63 +283,66 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(btnEdit)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(btnView))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFromDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel4)
-                                .addComponent(txtToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtMoveInDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addComponent(jLabel9))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel3)
-                                            .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtOccupancyFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(17, 17, 17)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTotalPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDistance, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel13))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel9)))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtRent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblRent, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)))
-                    .addComponent(jLabel10))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTotalPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDistance, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel13))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(lblHostName, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE)
+                        .addComponent(jLabel18))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnDelete)
                     .addComponent(btnSave))
-                .addContainerGap(471, Short.MAX_VALUE))
+                .addContainerGap(390, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -295,27 +350,112 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int selectedRowIndex = tblAccomodationPosts.getSelectedRow();
 
+        DefaultTableModel model = (DefaultTableModel) tblAccomodationPosts.getModel();
+        Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
+
+        permanentDirectory.deleteObject(p);
+
+        clearFields();
+        populateTable();
+        btnSave.setEnabled(false);
+        btnDelete.setEnabled(false);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        btnDelete.setEnabled(true);
+        btnSave.setEnabled(true);
+        int selectedRowIndex = tblAccomodationPosts.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view!");
+            return;
+        } else {
+
+            btnSave.setEnabled(true);
+            btnDelete.setEnabled(true);
+            DefaultTableModel model = (DefaultTableModel) tblAccomodationPosts.getModel();
+            Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
+
+            lblHostName.setText(p.getHostName());
+            lblContact.setText(p.getContact());
+            txtMoveInDate.setText(p.getMoveInDate().toString());
+            txtAreaAddress.setText(p.getAddress());
+            txtAreaFacilities.setText(p.getFacilities());
+            txtRent.setText(String.valueOf(p.getRent()));
+            comboBoxStatus.addItem(p.getStatusOfAccomodation());
+            lblDistance.setText(String.valueOf(p.getDistance()));
+            txtComments.setText(p.getComment());
+            txtAccomodationRequests.setText(p.getAccomodationRequests());
+            lblTotalPeople.setText(String.valueOf(p.getTotalPeopleInHouse()));
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+
+        // TODO add your handling code here:
+        btnDelete.setEnabled(false);
+        int selectedRowIndex = tblAccomodationPosts.getSelectedRow();
+
+        DefaultTableModel model = (DefaultTableModel) tblAccomodationPosts.getModel();
+        Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
+        Map<String, ArrayList<Permanent>> latestDirectory = permanentDirectory.getPermanentDirectory();
+        ArrayList<Permanent> perArr = latestDirectory.get(p.getContact());
+        for (Permanent obj : perArr) {
+            if (obj.equals(p)) {
+                obj.setMoveInDate(txtMoveInDate.getText());
+                obj.setAddress(txtAreaAddress.getText());
+                obj.setFacilities(txtAreaFacilities.getText());
+                obj.setRent(Integer.parseInt(txtRent.getText()));
+                obj.setTotalPeopleInHouse(Integer.parseInt(lblTotalPeople.getText()));
+                obj.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
+                obj.setContact(lblContact.getText());
+                obj.setHostName(lblHostName.getText());
+                obj.setComment(txtComments.getText());
+                obj.setDistance(Double.parseDouble(lblDistance.getText()));
+            }
+        }
+
+        clearFields();
+        populateTable();
+        btnSave.setEnabled(false);
+    }//GEN-LAST:event_btnSaveActionPerformed
+    private void clearFields() {
+        lblHostName.setText("get from student object");
+        txtMoveInDate.setText("");
+        lblContact.setText("get from student object");
+        txtAreaFacilities.setText("");
+        txtAreaAddress.setText("");
+        txtRent.setText("");
+        lblTotalPeople.setText("");
+        lblDistance.setText("");
+        txtComments.setText("");
+        txtAccomodationRequests.setText("");
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnView;
     private javax.swing.JComboBox<String> comboBoxStatus;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -323,15 +463,36 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel lblContact;
     private javax.swing.JLabel lblDistance;
-    private javax.swing.JLabel lblRent;
+    private javax.swing.JLabel lblHostName;
     private javax.swing.JLabel lblTotalPeople;
+    private javax.swing.JTable tblAccomodationPosts;
+    private javax.swing.JTextArea txtAccomodationRequests;
     private javax.swing.JTextArea txtAreaAddress;
     private javax.swing.JTextArea txtAreaFacilities;
-    private javax.swing.JTextField txtFromDate;
-    private javax.swing.JTextField txtOccupancyFor;
-    private javax.swing.JTextField txtPricePerDay;
-    private javax.swing.JTextField txtToDate;
+    private javax.swing.JTextArea txtComments;
+    private javax.swing.JTextField txtMoveInDate;
+    private javax.swing.JTextField txtRent;
     // End of variables declaration//GEN-END:variables
+private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblAccomodationPosts.getModel();
+        model.setRowCount(0);
+        Map<String, ArrayList<Permanent>> directory = permanentDirectory.getPermanentDirectory();
+
+        for (ArrayList<Permanent> perArr : directory.values()) {
+            for (Permanent p : perArr) {
+                Object[] row = new Object[3];
+                row[0] = p;
+                row[1] = p.getHostName();
+                row[2] = p.getAddress();
+                row[3] = p.getStatusOfPost();
+                row[4] = p.getComment();
+                model.addRow(row);
+            }
+        }
+    }
+
 }
