@@ -9,6 +9,7 @@ import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,6 +32,9 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
         this.permanentDirectory = permanentDirectory;
         this.temporaryDirectory = temporaryDirectory;
         populateTable();
+        btnDelete.setEnabled(false);
+        btnSave.setEnabled(false);
+        clearFields();
     }
 
     /**
@@ -64,8 +68,17 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
         txtAreaFacilities = new javax.swing.JTextArea();
         btnView = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        lblHostName = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtComments = new javax.swing.JTextArea();
+        jLabel12 = new javax.swing.JLabel();
+        lblContact = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtDistance = new javax.swing.JTextField();
 
         tblTemporaryPosts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,14 +117,6 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
 
         jLabel5.setText("Occupancy for:");
 
-        txtFromDate.setEditable(false);
-
-        txtToDate.setEditable(false);
-
-        txtPricePerDay.setEditable(false);
-
-        txtOccupancyFor.setEditable(false);
-
         jLabel6.setText("Status of Post:");
 
         comboBoxStatus.setEditable(true);
@@ -129,6 +134,11 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
         jScrollPane2.setViewportView(txtAreaFacilities);
 
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -137,10 +147,10 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -148,6 +158,24 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Host Name:");
+
+        jLabel11.setText("Comment:");
+
+        txtComments.setColumns(20);
+        txtComments.setRows(5);
+        jScrollPane4.setViewportView(txtComments);
+
+        jLabel12.setText("Contact:");
+
+        jLabel13.setText("Distance from University:");
+
+        txtDistance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDistanceActionPerformed(evt);
             }
         });
 
@@ -160,51 +188,64 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnView)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(btnBack)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8)
-                                            .addGap(40, 40, 40))
-                                        .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel9)
-                                                .addComponent(jLabel7))
-                                            .addGap(48, 48, 48)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane3)
-                                        .addComponent(jScrollPane2)
-                                        .addComponent(txtFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(118, 118, 118)
+                                                .addComponent(jLabel7)
+                                                .addComponent(jLabel10)
+                                                .addComponent(jLabel8))
+                                            .addGap(80, 80, 80))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel13)
+                                            .addGap(14, 14, 14)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addGap(47, 47, 47)
-                                            .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addGap(100, 100, 100)
-                                            .addComponent(txtToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(txtDistance, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                            .addComponent(jScrollPane2)
+                                            .addComponent(txtFromDate)
+                                            .addComponent(lblHostName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGap(89, 89, 89)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(47, 47, 47)
+                                                .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addGap(100, 100, 100)
+                                                .addComponent(txtToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(jLabel6))
+                                                .addGap(43, 43, 43)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(comboBoxStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtOccupancyFor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel5)
-                                                .addComponent(jLabel6))
-                                            .addGap(43, 43, 43)
+                                                .addComponent(jLabel11)
+                                                .addComponent(jLabel12))
+                                            .addGap(66, 66, 66)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(comboBoxStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(txtOccupancyFor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(342, 342, 342)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(295, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,42 +262,68 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                 .addComponent(btnView)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFromDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel4)
-                        .addComponent(txtToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel9))
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jLabel9))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(txtOccupancyFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(jLabel6)
+                                                    .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel11)
+                                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(82, 82, 82)
+                                                .addComponent(jLabel8)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtOccupancyFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnDelete)
+                                    .addComponent(btnSave))
+                                .addContainerGap(432, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblHostName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnSave))
-                .addContainerGap(524, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -264,22 +331,109 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        int selectedRowIndex = tblTemporaryPosts.getSelectedRow();
+        
+        DefaultTableModel model = (DefaultTableModel) tblTemporaryPosts.getModel();
+        Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
+        
+        temporaryDirectory.deleteObject(t);
+
+        clearFields();
+        populateTable();
+        btnSave.setEnabled(false);
+        btnDelete.setEnabled(false);
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        btnDelete.setEnabled(false);
+        int selectedRowIndex = tblTemporaryPosts.getSelectedRow();
+
+        DefaultTableModel model = (DefaultTableModel) tblTemporaryPosts.getModel();
+        Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
+        Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
+        ArrayList<Temporary> tempArr = latestDirectory.get(t.getContact());
+        for (Temporary obj : tempArr) {
+            if (obj.equals(t)) {
+                obj.setFromDate(txtFromDate.getText());
+                obj.setToDate(txtToDate.getText());
+                obj.setAddress(txtAreaAddress.getText());
+                obj.setFacilities(txtAreaFacilities.getText());
+                obj.setPricePerDay(Integer.parseInt(txtPricePerDay.getText()));
+                obj.setOccupancyFor(Integer.parseInt(txtOccupancyFor.getText()));
+                obj.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
+                obj.setContact(lblContact.getText());
+                obj.setHostName(lblHostName.getText());
+                obj.setComment(txtComments.getText());
+                obj.setDistanceFromUniversity(Double.parseDouble(txtDistance.getText()));
+            }
+        }
+
+        clearFields();
+        populateTable();
+        btnSave.setEnabled(false);
     }//GEN-LAST:event_btnSaveActionPerformed
+    private void clearFields() {
+        txtFromDate.setText("");
+        txtToDate.setText("");
+        txtAreaAddress.setText("");
+        txtAreaFacilities.setText("");
+        txtPricePerDay.setText("");
+        txtOccupancyFor.setText("");
+        txtDistance.setText("");
+        lblContact.setText("value from student object");
+        lblHostName.setText("");
+        txtComments.setText("");
+
+    }
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        btnDelete.setEnabled(true);
+        btnSave.setEnabled(true);
+        int selectedRowIndex = tblTemporaryPosts.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view!");
+            return;
+        } else {
+
+            btnSave.setEnabled(true);
+            btnDelete.setEnabled(true);
+            DefaultTableModel model = (DefaultTableModel) tblTemporaryPosts.getModel();
+            Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
+
+            lblHostName.setText(t.getHostName());
+            lblContact.setText(t.getContact());
+            txtFromDate.setText(t.getFromDate().toString());
+            txtToDate.setText(t.getToDate().toString());
+            txtAreaAddress.setText(t.getAddress());
+            txtAreaFacilities.setText(t.getFacilities());
+            txtPricePerDay.setText(String.valueOf(t.getPricePerDay()));
+            comboBoxStatus.addItem(t.getStatusOfAccomodation());
+            txtDistance.setText(String.valueOf(t.getDistanceFromUniversity()));
+            txtComments.setText(t.getComment());
+
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void txtDistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDistanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDistanceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnView;
     private javax.swing.JComboBox<String> comboBoxStatus;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -291,9 +445,14 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblContact;
+    private javax.swing.JLabel lblHostName;
     private javax.swing.JTable tblTemporaryPosts;
     private javax.swing.JTextArea txtAreaAddress;
     private javax.swing.JTextArea txtAreaFacilities;
+    private javax.swing.JTextArea txtComments;
+    private javax.swing.JTextField txtDistance;
     private javax.swing.JTextField txtFromDate;
     private javax.swing.JTextField txtOccupancyFor;
     private javax.swing.JTextField txtPricePerDay;
@@ -311,12 +470,10 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                 row[0] = t;
                 row[1] = t.getHostName();
                 row[2] = t.getAddress();
-                row[3]=t.getStatusOfPost();
-                row[4]=t.getComment();
+                row[3] = t.getStatusOfPost();
+                row[4] = t.getComment();
                 model.addRow(row);
             }
         }
-
     }
-
 }

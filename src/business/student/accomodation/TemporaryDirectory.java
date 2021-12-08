@@ -35,4 +35,10 @@ public class TemporaryDirectory {
        this.temporaryDirectory.put(email,tempArr);
        
    }
+   public void deleteObject(Temporary t)
+   {
+        temporaryDirectory.get(t.getContact()).remove(t);
+
+        
+   }
 }

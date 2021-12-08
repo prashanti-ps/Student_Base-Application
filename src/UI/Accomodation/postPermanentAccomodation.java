@@ -167,6 +167,7 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
 
         comboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Taken" }));
 
+        txtAreaRequests.setEditable(false);
         txtAreaRequests.setColumns(20);
         txtAreaRequests.setRows(5);
         jScrollPane4.setViewportView(txtAreaRequests);
@@ -323,8 +324,10 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
 
     private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
         // TODO add your handling code here:
+        btnUpdate.setEnabled(false);
         String email = "get from student object";
         Permanent p = new Permanent();
+        p.setHostName(lblHostName.getText());
         p.setMoveInDate(txtMoveInDate.getText());
         p.setContact(email);
         p.setAddress(txtAreaAddress.getText());
@@ -334,10 +337,11 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
         p.setDistance(Double.parseDouble(txtDistanceFromUniversity.getText()));
         p.setTotalPeopleInHouse(Integer.parseInt(txtTotalPeople.getText()));
         p.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
-        
+
         permanentDirectory.addNewPermanentAccomodation(email, p);
         clearFields();
         populateTable();
+        btnPost.setEnabled(false);
     }//GEN-LAST:event_btnPostActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -359,7 +363,7 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
             btnPost.setEnabled(false);
             DefaultTableModel model = (DefaultTableModel) tblAccomodationList.getModel();
             Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
-
+            lblHostName.setText("get from student obj");
             txtMoveInDate.setText(p.getMoveInDate().toString());
             txtAreaAddress.setText(p.getAddress());
             txtAreaFacilities.setText(p.getFacilities());
@@ -390,13 +394,14 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
             ArrayList<Permanent> perArr = latestDirectory.get(p.getContact());
             for (Permanent obj : perArr) {
                 if (obj.equals(p)) {
-                    obj.setMoveInDate(p.getMoveInDate());
-                    obj.setAddress(p.getAddress());
-                    obj.setFacilities(p.getFacilities());
-                    obj.setRent(p.getRent());
-                    obj.setTotalPeopleInHouse(p.getTotalPeopleInHouse());
-                    obj.setDistance(p.getDistance());
-                    obj.setStatusOfAccomodation(p.getStatusOfAccomodation());
+                    obj.setHostName(lblHostName.getText());
+                    obj.setMoveInDate(txtMoveInDate.getText());
+                    obj.setAddress(txtAreaAddress.getText());
+                    obj.setFacilities(txtAreaFacilities.getText());
+                    obj.setRent(Integer.parseInt(txtRent.getText()));
+                    obj.setTotalPeopleInHouse(Integer.parseInt(txtTotalPeople.getText()));
+                    obj.setDistance(Double.parseDouble(txtDistanceFromUniversity.getText()));
+                    obj.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
                 }
             }
         }
@@ -413,7 +418,8 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
         clearFields();
         txtAreaRequests.setText("");
         btnPost.setEnabled(true);
-        
+        lblHostName.setText("get from student obj");
+
     }//GEN-LAST:event_btnAddActionPerformed
 
 
@@ -458,17 +464,13 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblAccomodationList.getModel();
         model.setRowCount(0);
         Map<String, ArrayList<Permanent>> directory = permanentDirectory.getPermanentDirectory();
-        ArrayList<Permanent> foundDirectory= new ArrayList<Permanent>();
-        try
-        {
-        foundDirectory=directory.get("randad.p@northeastern.edu");
+        ArrayList<Permanent> foundDirectory = new ArrayList<Permanent>();
+        try {
+            foundDirectory = directory.get("randad.p@northeastern.edu");
+        } catch (Exception e) {
+
         }
-        catch(Exception e)
-        {
-            
-        }
-        for(Permanent p: foundDirectory)
-        {
+        for (Permanent p : foundDirectory) {
             Object[] row = new Object[4];
 
             row[0] = p;
@@ -477,10 +479,9 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
             row[3] = p.getRent();
             model.addRow(row);
         }
-       
-     
+
     }
-    
+
     private void clearFields() {
         lblHostName.setText("get from student object");
         txtMoveInDate.setText("");
@@ -490,6 +491,6 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
         txtRent.setText("");
         txtTotalPeople.setText("");
         txtDistanceFromUniversity.setText("");
-       
+
     }
 }
