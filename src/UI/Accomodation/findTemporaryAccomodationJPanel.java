@@ -35,16 +35,19 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     UserAccount userAccount;
     JPanel userProcessContainer;
+
     public findTemporaryAccomodationJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
-        this.ecosystem=ecosystem;
-        this.userAccount=userAccount;
-        this.userProcessContainer=userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.userAccount = userAccount;
+        this.userProcessContainer = userProcessContainer;
         this.permanentDirectory = ecosystem.getPermanentDirectory();
         this.temporaryDirectory = ecosystem.getTemporaryDirectory();
         initComponents();
         populateTable();
         btnConnectHost.setEnabled(false);
         btnReport.setEnabled(false);
+        txtAreaComment.setEnabled(false);
+        clearFields();
     }
 
     /**
@@ -336,7 +339,7 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        StudentDashboard studentDashboardPanel = new StudentDashboard(userProcessContainer,  userAccount,  ecosystem);
+        StudentDashboard studentDashboardPanel = new StudentDashboard(userProcessContainer, userAccount, ecosystem);
         jSplitPane1.setRightComponent(studentDashboardPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -348,7 +351,7 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a row to view!");
             return;
         } else {
-
+            txtAreaComment.setEnabled(true);
             btnConnectHost.setEnabled(true);
             btnReport.setEnabled(true);
             DefaultTableModel model = (DefaultTableModel) tblTemporaryAccomodationTable.getModel();
@@ -371,7 +374,6 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRowIndex = tblTemporaryAccomodationTable.getSelectedRow();
 
-        //fieldsEnableDisable(true);
         DefaultTableModel model = (DefaultTableModel) tblTemporaryAccomodationTable.getModel();
         Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
         Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
@@ -386,28 +388,35 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
         }
         btnConnectHost.setEnabled(false);
         btnReport.setEnabled(false);
-
+        clearFields();
     }//GEN-LAST:event_btnConnectHostActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tblTemporaryAccomodationTable.getSelectedRow();
 
-        //fieldsEnableDisable(true);
-        DefaultTableModel model = (DefaultTableModel) tblTemporaryAccomodationTable.getModel();
-        Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
-        Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
-        ArrayList<Temporary> tempArr = latestDirectory.get(t.getContact());
-        for (Temporary obj : tempArr) {
-            if (obj.equals(t)) {
-                String str = txtAreaComment.getText();
-                obj.setComment(str);
-                obj.setStatusOfPost("Reported");
-                JOptionPane.showMessageDialog(this, "Post reported and sent to complaint department!");
+        if (txtAreaComment.getText().length() > 5) {
+            //fieldsEnableDisable(true);
+            DefaultTableModel model = (DefaultTableModel) tblTemporaryAccomodationTable.getModel();
+            Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
+            Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
+            ArrayList<Temporary> tempArr = latestDirectory.get(t.getContact());
+            for (Temporary obj : tempArr) {
+                if (obj.equals(t)) {
+                    String str = txtAreaComment.getText();
+                    obj.setComment(str);
+                    obj.setStatusOfPost("Reported");
+                    JOptionPane.showMessageDialog(this, "Post reported and sent to complaint department!");
+                    txtAreaComment.setEnabled(false);
+                    btnConnectHost.setEnabled(false);
+                    btnReport.setEnabled(false);
+                    clearFields();
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please provide reason for reporting in comment section!");
         }
-        btnConnectHost.setEnabled(false);
-        btnReport.setEnabled(false);
+
     }//GEN-LAST:event_btnReportActionPerformed
 
 
@@ -464,6 +473,19 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
             }
         }
 
+    }
+
+    private void clearFields() {
+        lblHostName.setText("");
+        lblFromDate.setText("");
+        lblToDate.setText("");
+        lblContact.setText("");
+        txtAreaAddress.setText("");
+        txtAreaFacilities.setText("");
+        lblPricePerDay.setText("");
+        lblOccupancyFor.setText("");
+        lblDistanceFromUniversity.setText("");
+        txtAreaComment.setText("");
     }
 
 }
