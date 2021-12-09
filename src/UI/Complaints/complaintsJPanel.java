@@ -11,9 +11,9 @@ import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
 import business.useraccount.UserAccount;
-import static java.awt.SystemColor.menu;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -33,6 +33,8 @@ public class complaintsJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     TemporaryDirectory temporaryDirectory;
     PermanentDirectory permanentDirectory;
+    Temporary temp;
+    Permanent per;
     public complaintsJPanel() {
         
     }
@@ -71,7 +73,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        tempSendToAdmin = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         permAccomodationsComplaintsJPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -80,7 +82,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        PermSendToAdminbtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         jLabel1.setText("Complaint Manager");
@@ -188,7 +190,12 @@ public class complaintsJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("jLabel7");
 
-        jButton1.setText("Send to Admin for Deletion");
+        tempSendToAdmin.setText("Send to Admin for Deletion");
+        tempSendToAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tempSendToAdminActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Mark as OK");
 
@@ -199,7 +206,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
                     .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                         .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -209,15 +216,14 @@ public class complaintsJPanel extends javax.swing.JPanel {
                         .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jButton2))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jButton1)
-                .addGap(122, 122, 122)
-                .addComponent(jButton2)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(tempSendToAdmin)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tempAccomodationsComplaintsJPanelLayout.setVerticalGroup(
             tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +244,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(tempSendToAdmin)
                     .addComponent(jButton2))
                 .addGap(21, 21, 21))
         );
@@ -274,7 +280,12 @@ public class complaintsJPanel extends javax.swing.JPanel {
 
         jLabel11.setText("jLabel11");
 
-        jButton3.setText("Send to Admin for Deletion");
+        PermSendToAdminbtn.setText("Send to Admin for Deletion");
+        PermSendToAdminbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PermSendToAdminbtnActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Mark as OK");
 
@@ -300,7 +311,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                         .addGap(233, 233, 233))))
             .addGroup(permAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addComponent(jButton3)
+                .addComponent(PermSendToAdminbtn)
                 .addGap(103, 103, 103)
                 .addComponent(jButton4)
                 .addGap(0, 199, Short.MAX_VALUE))
@@ -320,7 +331,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(permAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(PermSendToAdminbtn)
                     .addComponent(jButton4))
                 .addGap(26, 26, 26))
         );
@@ -363,7 +374,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
              if(value.getStatusOfPost().equals("reported")){
                     contact=key;
                     row[0] = value.getHostName();
-                    row[1] = value.getStatusOfPost();
+                    row[1] = value.getComment();
                     row[2] = value.getStatusOfPost();
                     model.addRow(row);
              }
@@ -384,7 +395,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                     row[1] = value.getStatusOfPost();
                     row[2] = value.getStatusOfPost();
                     model.addRow(row);
-             }
+            }
          }
         }
     }
@@ -398,13 +409,39 @@ public class complaintsJPanel extends javax.swing.JPanel {
          initPermListerners();
         }
     }//GEN-LAST:event_ComplaintManagerTabStateChanged
+
+    private void PermSendToAdminbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PermSendToAdminbtnActionPerformed
+      int selectedRow = PermanentComplaintsTable.getSelectedRow();
+         if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a post to send");
+            return;
+        }else{
+              per = (Permanent) PermanentComplaintsTable.getValueAt(selectedRow, 0);
+              per.setStatusOfPost("Delete");
+              JOptionPane.showMessageDialog(null, "Admin will delete the post!");
+              populateTemporaryAccomodtionComplaintsTable();
+             }
+    }//GEN-LAST:event_PermSendToAdminbtnActionPerformed
+
+    private void tempSendToAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempSendToAdminActionPerformed
+       int selectedRow = TempComplaintsTable.getSelectedRow();
+         if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a post to send");
+            return;
+        }else{
+              temp = (Temporary) TempComplaintsTable.getValueAt(selectedRow, 0);
+              temp.setStatusOfPost("To be Deleted");
+              JOptionPane.showMessageDialog(null, "Admin will delete the post!");
+              populateTemporaryAccomodtionComplaintsTable();
+             }
+    }//GEN-LAST:event_tempSendToAdminActionPerformed
    private void initTempListerners() {
         TempComplaintsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
                 int selectedRow = TempComplaintsTable.getSelectedRow();
                 if (selectedRow >= 0) {
                     Temporary temp = (Temporary) TempComplaintsTable.getValueAt(selectedRow, 0);                      
-                           
+                          
                  
                 }
             }
@@ -424,12 +461,11 @@ public class complaintsJPanel extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane ComplaintManagerTab;
+    private javax.swing.JButton PermSendToAdminbtn;
     private javax.swing.JTable PermanentComplaintsTable;
     private javax.swing.JTable TempComplaintsTable;
     private javax.swing.JPanel buyingComplaintsJPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -451,5 +487,6 @@ public class complaintsJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel permAccomodationsComplaintsJPanel;
     private javax.swing.JPanel sellingComplaintsJPanel;
     private javax.swing.JPanel tempAccomodationsComplaintsJPanel;
+    private javax.swing.JButton tempSendToAdmin;
     // End of variables declaration//GEN-END:variables
 }

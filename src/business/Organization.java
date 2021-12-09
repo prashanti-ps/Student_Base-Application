@@ -56,10 +56,7 @@ public abstract class Organization {
         userAccountDirectory = new UserAccountDirectory();
         temporaryDirectory = new TemporaryDirectory();
         permanentDirectory = new PermanentDirectory();
-//        customerDirectory = new CustomerDirectory();
-//        deliveryManDirectory = new DeliveryManDirectory();
-//        restaurantDirectory = new RestaurantDirectory();
-//        itemList = new MenuDirectory();
+
         organizationID = counter;
         ++counter;
     }
@@ -88,37 +85,7 @@ public abstract class Organization {
         this.permanentDirectory = permanentDirectory;
     }
 
-//    public CustomerDirectory getCustomerDirectory() {
-//        return customerDirectory;
-//    }
-//
-//    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
-//        this.customerDirectory = customerDirectory;
-//    }
-//
-//    public DeliveryManDirectory getDeliveryManDirectory() {
-//        return deliveryManDirectory;
-//    }
-//
-//    public void setDeliveryManDirectory(DeliveryManDirectory deliveryManDirectory) {
-//        this.deliveryManDirectory = deliveryManDirectory;
-//    }
-//
-//    public RestaurantDirectory getRestaurantDirectory() {
-//        return restaurantDirectory;
-//    }
-//
-//    public void setRestaurantDirectory(RestaurantDirectory restaurantDirectory) {
-//        this.restaurantDirectory = restaurantDirectory;
-//    }
-//
-//    public MenuDirectory getItemList() {
-//        return itemList;
-//    }
-//
-//    public void setItemList(MenuDirectory itemList) {
-//        this.itemList = itemList;
-   // }
+
 
     public static int getCounter() {
         return counter;
@@ -155,10 +122,6 @@ public abstract class Organization {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public void setWorkQueue(WorkQueue workQueue) {
-//        this.workQueue = workQueue;
-//    }
 
     @Override
     public String toString() {
