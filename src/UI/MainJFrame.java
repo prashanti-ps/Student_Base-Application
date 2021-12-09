@@ -5,7 +5,7 @@
  */
 package UI;
 
-import UI.Student.registrationJPanel;
+
 import UI.Student.studentRegistrationJPanel;
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
@@ -193,8 +193,7 @@ public class MainJFrame extends javax.swing.JFrame {
                          // layout.next(userProcessContainer);
         // jSplitPane1.setRightComponent(StudentRegistrationJPanel);
 
-        registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
-        jSplitPane1.setBottomComponent(StudentRegistatationPanel);
+        
 
     }//GEN-LAST:event_btnRegisterActionPerformed
   private void switchPanels(UserAccount userAccount) {
