@@ -7,6 +7,7 @@ package UI.Admin;
 import UI.Accomodation.postTemporaryAccomodationJPanel;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
+import business.student.registration.StudentDirectory;
 import javax.swing.JSplitPane;
 
 /**
@@ -21,6 +22,7 @@ public class adminDashboard extends javax.swing.JPanel {
      PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
    JSplitPane jSplitPane1;
+   StudentDirectory studentHistory;
     public adminDashboard(PermanentDirectory permanentDirectory,TemporaryDirectory temporaryDirectory,JSplitPane jSplitPane1) {
         initComponents();
         this.jSplitPane1= jSplitPane1;
@@ -42,6 +44,7 @@ public class adminDashboard extends javax.swing.JPanel {
         btnManagePermanentAccomodation1 = new javax.swing.JButton();
         btnManagePermanentAccomodation2 = new javax.swing.JButton();
         btnManagePermanentAccomodation3 = new javax.swing.JButton();
+        btnStudentRegistration = new javax.swing.JButton();
 
         btnManageTemporaryAccomodation.setText("Manage Temporary Accomodation");
         btnManageTemporaryAccomodation.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +81,13 @@ public class adminDashboard extends javax.swing.JPanel {
             }
         });
 
+        btnStudentRegistration.setText("Manage Student Registration");
+        btnStudentRegistration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudentRegistrationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,7 +99,8 @@ public class adminDashboard extends javax.swing.JPanel {
                     .addComponent(btnManageTemporaryAccomodation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManagePermanentAccomodation2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManagePermanentAccomodation1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManagePermanentAccomodation3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnManagePermanentAccomodation3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnStudentRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(747, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,7 +116,9 @@ public class adminDashboard extends javax.swing.JPanel {
                 .addComponent(btnManagePermanentAccomodation2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnManagePermanentAccomodation3)
-                .addContainerGap(804, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnStudentRegistration)
+                .addContainerGap(757, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -133,6 +146,14 @@ public class adminDashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnManagePermanentAccomodation3ActionPerformed
 
+    private void btnStudentRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentRegistrationActionPerformed
+        // TODO add your handling code here:
+        manageStudentRegistration ManageStudentRegistration= new manageStudentRegistration(jSplitPane1, studentHistory);
+        jSplitPane1.setRightComponent(ManageStudentRegistration);
+        
+        
+    }//GEN-LAST:event_btnStudentRegistrationActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManagePermanentAccomodation;
@@ -140,5 +161,6 @@ public class adminDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnManagePermanentAccomodation2;
     private javax.swing.JButton btnManagePermanentAccomodation3;
     private javax.swing.JButton btnManageTemporaryAccomodation;
+    private javax.swing.JButton btnStudentRegistration;
     // End of variables declaration//GEN-END:variables
 }

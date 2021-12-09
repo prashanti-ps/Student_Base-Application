@@ -5,6 +5,9 @@
  */
 package business.student.registration;
 
+import static business.student.registration.StudentDirectory.studentHistory;
+import java.util.ArrayList;
+
 /**
  *
  * @author mayurimore
@@ -46,6 +49,14 @@ public class Student {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public ArrayList<StudentDirectory> getOrderDirectoryList() {
+        return studentHistory;
+    }
+
+    public void setOrderDirectoryList(ArrayList<OrderDirectory> orderDirectoryList) {
+        this.orderDirectoryList = orderDirectoryList;
     }
     
     
