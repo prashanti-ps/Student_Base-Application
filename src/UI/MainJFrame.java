@@ -188,7 +188,7 @@ public class MainJFrame extends javax.swing.JFrame {
        // registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
       //  jSplitPane1.setBottomComponent(StudentRegistatationPanel);
       studentRegistrationJPanel registrationPanel=new studentRegistrationJPanel(studentHistory, ContainerPanel,  userAccount, system);
-         ContainerPanel.add(registrationPanel);
+         ContainerPanel.add(registrationPanel) ;
                         //  CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                          // layout.next(userProcessContainer);
         // jSplitPane1.setRightComponent(StudentRegistrationJPanel);
