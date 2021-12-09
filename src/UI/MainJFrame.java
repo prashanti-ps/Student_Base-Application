@@ -42,8 +42,7 @@ public class MainJFrame extends javax.swing.JFrame {
         system=db4OUtil.retrieveSystem();
         initComponents();
         studentHistory = new StudentDirectory();
-        
-        
+   
 
     }
 
@@ -185,6 +184,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
+
        // registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
       //  jSplitPane1.setBottomComponent(StudentRegistatationPanel);
       studentRegistrationJPanel registrationPanel=new studentRegistrationJPanel(studentHistory, ContainerPanel,  userAccount, system);
@@ -192,6 +192,10 @@ public class MainJFrame extends javax.swing.JFrame {
                         //  CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                          // layout.next(userProcessContainer);
         // jSplitPane1.setRightComponent(StudentRegistrationJPanel);
+
+        registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
+        jSplitPane1.setBottomComponent(StudentRegistatationPanel);
+
     }//GEN-LAST:event_btnRegisterActionPerformed
   private void switchPanels(UserAccount userAccount) {
         if (userAccount != null) {
