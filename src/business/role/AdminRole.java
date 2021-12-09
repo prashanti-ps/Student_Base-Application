@@ -5,10 +5,12 @@
  */
 package business.role;
 
+import UI.Admin.adminDashboard;
 import UI.Complaints.complaintsJPanel;
 import business.EcoSystem;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -16,7 +18,6 @@ import javax.swing.JPanel;
  */
 public class AdminRole extends Role {
      public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new complaintsJPanel(//userProcessContainer, account,business
-        );
+        return new adminDashboard(userProcessContainer, account,business);
 }
 }
