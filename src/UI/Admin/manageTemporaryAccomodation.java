@@ -29,14 +29,15 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
     JSplitPane jSplitPane1;
-   JPanel userProcessContainer;
-   EcoSystem ecosystem;
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
     UserAccount userAccount;
+
     public manageTemporaryAccomodation(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
-        this.ecosystem=business;
-        this.userAccount=account;
-        this.userProcessContainer=userProcessContainer;
+        this.ecosystem = business;
+        this.userAccount = account;
+        this.userProcessContainer = userProcessContainer;
         this.permanentDirectory = business.getPermanentDirectory();
         this.temporaryDirectory = business.getTemporaryDirectory();
         populateTable();
@@ -194,65 +195,65 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnView)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnBack)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel9)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jLabel10)
-                                                .addComponent(jLabel8))
-                                            .addGap(80, 80, 80))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel13)
-                                            .addGap(14, 14, 14)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtDistance, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                            .addComponent(jScrollPane2)
-                                            .addComponent(txtFromDate)
-                                            .addComponent(lblHostName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGap(89, 89, 89)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addGap(47, 47, 47)
-                                                .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(100, 100, 100)
-                                                .addComponent(txtToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jLabel6))
-                                                .addGap(43, 43, 43)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(comboBoxStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(txtOccupancyFor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel11)
-                                                .addComponent(jLabel12))
-                                            .addGap(66, 66, 66)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(342, 342, 342)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBack)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnView)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel9)
+                                                    .addComponent(jLabel7)
+                                                    .addComponent(jLabel10)
+                                                    .addComponent(jLabel8))
+                                                .addGap(80, 80, 80))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel13)
+                                                .addGap(14, 14, 14)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtDistance)
+                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtFromDate, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblHostName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(89, 89, 89)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(jLabel3)
+                                                    .addGap(47, 47, 47)
+                                                    .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel4)
+                                                    .addGap(100, 100, 100)
+                                                    .addComponent(txtToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel5)
+                                                        .addComponent(jLabel6))
+                                                    .addGap(43, 43, 43)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(comboBoxStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(txtOccupancyFor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel11)
+                                                    .addComponent(jLabel12))
+                                                .addGap(66, 66, 66)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))))))))
                 .addContainerGap(257, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -297,8 +298,7 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(82, 82, 82)
-                                                .addComponent(jLabel8)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE))
+                                                .addComponent(jLabel8))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
@@ -307,6 +307,7 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(82, 82, 82)
@@ -336,21 +337,21 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-    adminDashboard adminDashboardPanel=new adminDashboard( userProcessContainer,  userAccount,  ecosystem);
+        adminDashboard adminDashboardPanel = new adminDashboard(userProcessContainer, userAccount, ecosystem);
         userProcessContainer.add("adminDashboardPanel", adminDashboardPanel);
-                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-                           layout.next(userProcessContainer);      
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
         int selectedRowIndex = tblTemporaryPosts.getSelectedRow();
-        
+
         DefaultTableModel model = (DefaultTableModel) tblTemporaryPosts.getModel();
         Temporary t = (Temporary) model.getValueAt(selectedRowIndex, 0);
-        
-        temporaryDirectory.deleteObject(t);
 
+        temporaryDirectory.deleteObject(t);
+        JOptionPane.showMessageDialog(this, "Post deleted!");
         clearFields();
         populateTable();
         btnSave.setEnabled(false);
@@ -381,7 +382,7 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                 obj.setDistanceFromUniversity(Double.parseDouble(txtDistance.getText()));
             }
         }
-
+        JOptionPane.showMessageDialog(this, "Record saved!");
         clearFields();
         populateTable();
         btnSave.setEnabled(false);
@@ -394,15 +395,14 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
         txtPricePerDay.setText("");
         txtOccupancyFor.setText("");
         txtDistance.setText("");
-        lblContact.setText("value from student object");
+        lblContact.setText("");
         lblHostName.setText("");
         txtComments.setText("");
 
     }
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-        btnDelete.setEnabled(true);
-        btnSave.setEnabled(true);
+
         int selectedRowIndex = tblTemporaryPosts.getSelectedRow();
 
         if (selectedRowIndex < 0) {
