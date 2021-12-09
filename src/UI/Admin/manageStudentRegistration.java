@@ -33,7 +33,9 @@ public class manageStudentRegistration extends javax.swing.JPanel {
         this.jSplitPane1 = jSplitPane1;
         this.studentHistory = studentHistory;
         
-        model = new DefaultTableModel();
+        ArrayList<Student> studentList = studentHistory.getHistory();
+        
+      
        
         tblRegistrationRequest.setModel(model);
         
@@ -42,9 +44,9 @@ public class manageStudentRegistration extends javax.swing.JPanel {
         model.addColumn("Email ID");
         model.addColumn("Proof");
         model.addColumn("Status");
-        studentHistory = new StudentDirectory();
         
-        viewRequestList();
+        
+        viewRequestList(studentList);
     }
     
     
@@ -130,14 +132,14 @@ public class manageStudentRegistration extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 
-public void viewRequestList() {
+public void viewRequestList(ArrayList<Student> studentList) {
     
         DefaultTableModel model = (DefaultTableModel) tblRegistrationRequest.getModel();
         model.setRowCount(0);
-        ArrayList<Student> studentList = studentHistory.getHistory() ;
+        
         for (Student student : studentList) {
             
-                Object[] row = new Object[3];
+                Object[] row = new Object[4];
                 row[0] = student;
                 row[1] = student.getFirstName();
                 row[2] = student.getLastName();

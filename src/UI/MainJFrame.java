@@ -5,7 +5,7 @@
  */
 package UI;
 
-import UI.Student.registrationJPanel;
+
 import UI.Student.studentRegistrationJPanel;
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
