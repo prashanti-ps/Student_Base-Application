@@ -6,14 +6,17 @@
 package UI.Accomodation;
 
 import UI.Student.StudentDashboard;
+import business.EcoSystem;
 import business.student.accomodation.Permanent;
 import javax.swing.JSplitPane;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
+import business.useraccount.UserAccount;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,11 +32,15 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
     TemporaryDirectory temporaryDirectory;
     PermanentDirectory permanentDirectory;
     JSplitPane jSplitPane1;
-
-    public findTemporaryAccomodationJPanel(PermanentDirectory permanentDirectory, TemporaryDirectory temporaryDirectory, JSplitPane jSplitPane1) {
-        this.permanentDirectory = permanentDirectory;
-        this.temporaryDirectory = temporaryDirectory;
-        this.jSplitPane1 = jSplitPane1;
+    EcoSystem ecosystem;
+    UserAccount userAccount;
+    JPanel userProcessContainer;
+    public findTemporaryAccomodationJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
+        this.ecosystem=ecosystem;
+        this.userAccount=userAccount;
+        this.userProcessContainer=userProcessContainer;
+        this.permanentDirectory = ecosystem.getPermanentDirectory();
+        this.temporaryDirectory = ecosystem.getTemporaryDirectory();
         initComponents();
         populateTable();
         btnConnectHost.setEnabled(false);
@@ -329,7 +336,7 @@ public class findTemporaryAccomodationJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        StudentDashboard studentDashboardPanel = new StudentDashboard(permanentDirectory, temporaryDirectory, jSplitPane1);
+        StudentDashboard studentDashboardPanel = new StudentDashboard(userProcessContainer,  userAccount,  ecosystem);
         jSplitPane1.setRightComponent(studentDashboardPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 

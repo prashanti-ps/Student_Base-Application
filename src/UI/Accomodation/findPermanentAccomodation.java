@@ -4,14 +4,19 @@
  */
 package UI.Accomodation;
 
+import UI.Admin.adminDashboard;
 import UI.Student.StudentDashboard;
+import business.EcoSystem;
 import business.student.accomodation.Permanent;
 import javax.swing.JSplitPane;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
+import business.useraccount.UserAccount;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,12 +31,16 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
     JSplitPane jSplitPane1;
-
-    public findPermanentAccomodation(PermanentDirectory permanentDirectory, TemporaryDirectory temporaryDirectory, JSplitPane jSplitPane1) {
-
-        this.permanentDirectory = permanentDirectory;
-        this.temporaryDirectory = temporaryDirectory;
-        this.jSplitPane1 = jSplitPane1;
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount userAccount;
+    public findPermanentAccomodation(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
+        this.userProcessContainer=userProcessContainer;
+        this.ecosystem=ecosystem;
+        this.userAccount = userAccount;
+        this.permanentDirectory = ecosystem.getPermanentDirectory();
+        this.temporaryDirectory = ecosystem.getTemporaryDirectory();
+        //this.jSplitPane1 = jSplitPane1;
         initComponents();
         populateTable();
     }
@@ -256,9 +265,9 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
                                 .addComponent(jLabel2)
                                 .addComponent(lblHostName, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(26, 26, 26)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(lblMoveInDate, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblMoveInDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -297,8 +306,10 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        StudentDashboard studentDashboardPanel = new StudentDashboard(permanentDirectory, temporaryDirectory, jSplitPane1);
-        jSplitPane1.setRightComponent(studentDashboardPanel);
+       StudentDashboard studentDashboardPanel=new StudentDashboard( userProcessContainer,  userAccount,  ecosystem);
+        userProcessContainer.add("studentDashboardPanel", studentDashboardPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);     
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed

@@ -5,9 +5,13 @@
 package UI.Admin;
 
 import UI.Accomodation.postTemporaryAccomodationJPanel;
+import business.EcoSystem;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
 import business.student.registration.StudentDirectory;
+import business.useraccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 /**
@@ -21,13 +25,19 @@ public class adminDashboard extends javax.swing.JPanel {
      */
      PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
-   JSplitPane jSplitPane1;
-   StudentDirectory studentHistory;
-    public adminDashboard(PermanentDirectory permanentDirectory,TemporaryDirectory temporaryDirectory,JSplitPane jSplitPane1) {
+    JPanel userProcessContainer;
+    JSplitPane jSplitPane1;
+    EcoSystem ecosystem;
+    UserAccount userAccount;
+    StudentDirectory studentHistory;
+    public adminDashboard(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
-        this.jSplitPane1= jSplitPane1;
-        this.permanentDirectory=permanentDirectory;
-        this.temporaryDirectory=temporaryDirectory;
+        this.ecosystem=business;
+        this.userAccount=account;
+         this.userProcessContainer=userProcessContainer;
+        //this.jSplitPane1= jSplitPane1;
+        this.permanentDirectory=business.getPermanentDirectory();
+        this.temporaryDirectory=business.getTemporaryDirectory();
     }
 
     /**
@@ -123,15 +133,19 @@ public class adminDashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageTemporaryAccomodationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageTemporaryAccomodationActionPerformed
-        // TODO add your handling code here:
-        manageTemporaryAccomodation manageTemporaryAccomodationPanel=new manageTemporaryAccomodation(permanentDirectory,temporaryDirectory,jSplitPane1);
-        jSplitPane1.setRightComponent(manageTemporaryAccomodationPanel);
+
+        manageTemporaryAccomodation manageTemporaryAccomodationPanel=new manageTemporaryAccomodation( userProcessContainer,  userAccount,  ecosystem);
+         userProcessContainer.add("manageTemporaryAccomodationPanel", manageTemporaryAccomodationPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
+      
     }//GEN-LAST:event_btnManageTemporaryAccomodationActionPerformed
 
     private void btnManagePermanentAccomodationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePermanentAccomodationActionPerformed
-        // TODO add your handling code here:
-        managePermanentAccomodation managePermanentAccomodationPanel=new managePermanentAccomodation(permanentDirectory,temporaryDirectory,jSplitPane1);
-        jSplitPane1.setRightComponent(managePermanentAccomodationPanel);
+        managePermanentAccomodation managePermanentAccomodationPanel=new managePermanentAccomodation( userProcessContainer,  userAccount,  ecosystem);
+         userProcessContainer.add("managePermanentAccomodationPanel", managePermanentAccomodationPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManagePermanentAccomodationActionPerformed
 
     private void btnManagePermanentAccomodation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePermanentAccomodation1ActionPerformed

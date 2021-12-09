@@ -5,17 +5,21 @@
 package UI.Accomodation;
 
 import UI.Student.StudentDashboard;
+import business.EcoSystem;
 import business.student.accomodation.Permanent;
 import javax.swing.JSplitPane;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
+import business.useraccount.UserAccount;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,12 +34,16 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
     JSplitPane jSplitPane1;
-
-    public postPermanentAccomodation(PermanentDirectory permanentDirectory, TemporaryDirectory temporaryDirectory, JSplitPane jSplitPane1) {
-        this.permanentDirectory = permanentDirectory;
-        this.temporaryDirectory = temporaryDirectory;
-        this.jSplitPane1 = jSplitPane1;
+    EcoSystem ecosystem;
+    UserAccount userAccount;
+    JPanel userProcessContainer;
+    public postPermanentAccomodation(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
+        this.ecosystem=ecosystem;
+        this.userAccount=userAccount;
+        this.userProcessContainer=userProcessContainer;
+        this.permanentDirectory=ecosystem.getPermanentDirectory();
+        this.temporaryDirectory=ecosystem.getTemporaryDirectory();
         populateTable();
         btnPost.setEnabled(false);
         btnUpdate.setEnabled(false);
@@ -345,14 +353,14 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPostActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        StudentDashboard studentDashboardPanel = new StudentDashboard(permanentDirectory, temporaryDirectory, jSplitPane1);
-        jSplitPane1.setRightComponent(studentDashboardPanel);
+        StudentDashboard  studentDashboardPanel=new StudentDashboard( userProcessContainer,  userAccount,  ecosystem);
+        userProcessContainer.add("studentDashboardPanel", studentDashboardPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);  
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
+
         int selectedRowIndex = tblAccomodationList.getSelectedRow();
 
         if (selectedRowIndex < 0) {

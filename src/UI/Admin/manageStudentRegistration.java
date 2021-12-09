@@ -6,9 +6,11 @@
 package UI.Admin;
 
 import static business.role.Role.RoleType.Student;
+import business.student.accomodation.Permanent;
 import business.student.registration.Student;
 import business.student.registration.StudentDirectory;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +31,7 @@ public class manageStudentRegistration extends javax.swing.JPanel {
     public manageStudentRegistration(JSplitPane jSplitPane1, StudentDirectory studentHistory) {
         initComponents();
         this.jSplitPane1 = jSplitPane1;
+        this.studentHistory = studentHistory;
         
         model = new DefaultTableModel();
        
@@ -39,6 +42,7 @@ public class manageStudentRegistration extends javax.swing.JPanel {
         model.addColumn("Email ID");
         model.addColumn("Proof");
         model.addColumn("Status");
+        studentHistory = new StudentDirectory();
         
         viewRequestList();
     }
@@ -127,27 +131,28 @@ public class manageStudentRegistration extends javax.swing.JPanel {
 
 
 public void viewRequestList() {
-    ArrayList<Student> studentList = new StudentDirectory().getHistory();
+    
         DefaultTableModel model = (DefaultTableModel) tblRegistrationRequest.getModel();
         model.setRowCount(0);
-        if(studentList.isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "No Persons found. Please add Persons",
-                    "Warning", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+        ArrayList<Student> studentList = studentHistory.getHistory() ;
         for (Student student : studentList) {
-            Object[] row = new Object[6];
-            row[0] = student.getFirstName();
-            row[1]= student.getLastName();
-            row[2] = student.getEmailAddress();
-           
+            
+                Object[] row = new Object[3];
+                row[0] = student;
+                row[1] = student.getFirstName();
+                row[2] = student.getLastName();
+                row[3] = student.getEmailAddress();
+                
+                model.addRow(row);
+            }
+        
             
              
             
-            model.addRow(row);
+           
         }
     }
 
 
-}
+
+

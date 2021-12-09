@@ -16,6 +16,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,13 +24,15 @@ import javax.swing.JOptionPane;
  */
 public class registrationJPanel extends javax.swing.JPanel {
     StudentDirectory studentHistory;
+    JPanel userProcessContainer;
     
     /**
      * Creates new form registrationJPanel
      */
-    public registrationJPanel(StudentDirectory studentHistory) {
+    public registrationJPanel(StudentDirectory studentHistory, JPanel userProcessContainer) {
         initComponents();
         this.studentHistory = studentHistory;
+        this.userProcessContainer = userProcessContainer;
     }
 
     /**
@@ -55,6 +58,7 @@ public class registrationJPanel extends javax.swing.JPanel {
         btnChooseFile = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         FileUpload = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         txtFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +102,13 @@ public class registrationJPanel extends javax.swing.JPanel {
 
         FileUpload.setText("File Upload");
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,7 +124,10 @@ public class registrationJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegister)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegister)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,7 +172,9 @@ public class registrationJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FileUpload)
                 .addGap(36, 36, 36)
-                .addComponent(btnRegister)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegister)
+                    .addComponent(jButton1))
                 .addContainerGap(282, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -228,11 +244,16 @@ public class registrationJPanel extends javax.swing.JPanel {
        
     }//GEN-LAST:event_btnChooseFileActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FileUpload;
     private javax.swing.JButton btnChooseFile;
     private javax.swing.JButton btnRegister;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -21,10 +21,7 @@ public class EcoSystem extends Organization{
     private static EcoSystem business;
     private TemporaryDirectory temporaryDirectory;
     private PermanentDirectory permanentDirectory;
-//    private RestaurantDirectory restaurantDirectory;
-//    private CustomerDirectory customerDirectory;
-//    private DeliveryManDirectory deliveryManDirectory;
-//    private WorkQueue workQueue;
+
     public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory)
     {
 

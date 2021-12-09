@@ -6,6 +6,7 @@
 package UI;
 
 import UI.Student.registrationJPanel;
+import UI.Student.studentRegistrationJPanel;
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
 import business.student.accomodation.PermanentDirectory;
@@ -14,10 +15,11 @@ import business.complaintManagement.ComplaintManager;
 import business.role.AdminRole;
 import business.role.ComplaintManagerRole;
 import business.student.registration.StudentDirectory;
-import static business.student.registration.StudentDirectory.studentHistory;
+
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -29,17 +31,20 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private EcoSystem system;
-    PermanentDirectory permanentDirectory;
-    TemporaryDirectory temporaryDirectory;
+
     private DB4OUtil db4OUtil=DB4OUtil.getInstance();
     UserAccount userAccount;
-    StudentDirectory studentDirectory;
+    StudentDirectory studentHistory;
+    
+    JPanel userProcessContainer;
     
     public MainJFrame() {
         system=db4OUtil.retrieveSystem();
         initComponents();
-        this.permanentDirectory=new PermanentDirectory();
-        this.temporaryDirectory=new TemporaryDirectory();
+        studentHistory = new StudentDirectory();
+        
+        
+
     }
 
     /**
@@ -117,8 +122,9 @@ public class MainJFrame extends javax.swing.JFrame {
                                 .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))))
                     .addGroup(loginPanelLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(lblHello, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(lblHello, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)))
+                .addGap(17, 17, 17))
         );
 
         loginPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnRegister, jButton1, jButton2});
@@ -174,14 +180,18 @@ public class MainJFrame extends javax.swing.JFrame {
             txtPasswordField.setText(null);
             switchPanels(userAccount);
         }
-//        StudentDashboard studentDashboardPanel=new StudentDashboard(permanentDirectory,temporaryDirectory, jSplitPane1);
-//        jSplitPane1.setRightComponent(studentDashboardPanel);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
-        registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
-        jSplitPane1.setBottomComponent(StudentRegistatationPanel);
+
+       // registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
+      //  jSplitPane1.setBottomComponent(StudentRegistatationPanel);
+      studentRegistrationJPanel registrationPanel=new studentRegistrationJPanel(studentHistory, ContainerPanel,  userAccount, system);
+         ContainerPanel.add(registrationPanel);
+                        //  CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                         // layout.next(userProcessContainer);
+        // jSplitPane1.setRightComponent(StudentRegistrationJPanel);
     }//GEN-LAST:event_btnRegisterActionPerformed
   private void switchPanels(UserAccount userAccount) {
         if (userAccount != null) {
@@ -193,15 +203,7 @@ public class MainJFrame extends javax.swing.JFrame {
             else if((  "class "+userAccount.getRole().toString()).equals(ComplaintManagerRole.class.toString())){
                      hello =   "Hello " + userAccount.getCm().getName();
                     ContainerPanel.add("workArea", userAccount.getRole().createWorkArea(ContainerPanel, userAccount, system));
-            }
-//            else if(userAccount instanceof DeliveryMan){
-//                     hello =   "Hello "  + ((DeliveryMan)userAccount).getDeliverManName();
-//                    WorkAreaJPanel.add("workArea", userAccount.getRole().createWorkArea(WorkAreaJPanel, (DeliveryMan)userAccount, system));
-//            }
-//            else{
-//                 hello =   "Hello Admin";
-//                 WorkAreaJPanel.add("workArea", userAccount.getRole().createWorkArea(WorkAreaJPanel, userAccount, system));
-//            }
+            }          
             lblHello.setText(hello + " !");
             CardLayout layout = (CardLayout) ContainerPanel.getLayout();
             layout.next(ContainerPanel);

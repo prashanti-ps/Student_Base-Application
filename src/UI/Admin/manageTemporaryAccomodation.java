@@ -4,12 +4,16 @@
  */
 package UI.Admin;
 
+import business.EcoSystem;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
+import business.useraccount.UserAccount;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,12 +29,16 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
     JSplitPane jSplitPane1;
-
-    public manageTemporaryAccomodation(PermanentDirectory permanentDirectory, TemporaryDirectory temporaryDirectory, JSplitPane jSplitPane1) {
+   JPanel userProcessContainer;
+   EcoSystem ecosystem;
+    UserAccount userAccount;
+    public manageTemporaryAccomodation(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
-        this.jSplitPane1 = jSplitPane1;
-        this.permanentDirectory = permanentDirectory;
-        this.temporaryDirectory = temporaryDirectory;
+        this.ecosystem=business;
+        this.userAccount=account;
+        this.userProcessContainer=userProcessContainer;
+        this.permanentDirectory = business.getPermanentDirectory();
+        this.temporaryDirectory = business.getTemporaryDirectory();
         populateTable();
         btnDelete.setEnabled(false);
         btnSave.setEnabled(false);
@@ -328,7 +336,10 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+    adminDashboard adminDashboardPanel=new adminDashboard( userProcessContainer,  userAccount,  ecosystem);
+        userProcessContainer.add("adminDashboardPanel", adminDashboardPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);      
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

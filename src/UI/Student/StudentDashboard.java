@@ -9,9 +9,14 @@ import UI.Accomodation.findPermanentAccomodation;
 import UI.Accomodation.findTemporaryAccomodationJPanel;
 import UI.Accomodation.postPermanentAccomodation;
 import UI.Accomodation.postTemporaryAccomodationJPanel;
+import UI.Admin.adminDashboard;
+import business.EcoSystem;
 import javax.swing.JSplitPane;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
+import business.useraccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,12 +30,16 @@ public class StudentDashboard extends javax.swing.JPanel {
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
    JSplitPane jSplitPane1;
-    
-    public StudentDashboard(PermanentDirectory permanentDirectory,TemporaryDirectory temporaryDirectory,JSplitPane jSplitPane1) {
+    EcoSystem ecosystem;
+    UserAccount userAccount;
+    JPanel userProcessContainer;
+    public StudentDashboard(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
-        this.jSplitPane1= jSplitPane1;
-        this.permanentDirectory=permanentDirectory;
-        this.temporaryDirectory=temporaryDirectory;
+        this.ecosystem=ecosystem;
+        this.userAccount=userAccount;
+        this.userProcessContainer=userProcessContainer;
+        this.permanentDirectory=ecosystem.getPermanentDirectory();
+        this.temporaryDirectory=ecosystem.getTemporaryDirectory();
     }
 
     /**
@@ -129,28 +138,31 @@ public class StudentDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSellItemsActionPerformed
 
     private void btnFindTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindTempActionPerformed
-        // TODO add your handling code here:
-       
-        findTemporaryAccomodationJPanel findTemporaryAccomodationPanel=new findTemporaryAccomodationJPanel(permanentDirectory,temporaryDirectory,jSplitPane1);
-        jSplitPane1.setRightComponent(findTemporaryAccomodationPanel);
+        findTemporaryAccomodationJPanel FindTemporaryAccomodationPanel=new findTemporaryAccomodationJPanel( userProcessContainer,  userAccount,  ecosystem);
+        userProcessContainer.add("FindTemporaryAccomodationPanel", FindTemporaryAccomodationPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);  
     }//GEN-LAST:event_btnFindTempActionPerformed
 
     private void btnPostTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostTempActionPerformed
-        // TODO add your handling code here:
-        postTemporaryAccomodationJPanel postTemporaryAccomodationPanel=new postTemporaryAccomodationJPanel(permanentDirectory,temporaryDirectory,jSplitPane1);
-        jSplitPane1.setRightComponent(postTemporaryAccomodationPanel);
+        postTemporaryAccomodationJPanel postTemporaryAccomodationPanel=new postTemporaryAccomodationJPanel( userProcessContainer,  userAccount,  ecosystem);
+        userProcessContainer.add("postTemporaryAccomodationPanel", postTemporaryAccomodationPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);  
     }//GEN-LAST:event_btnPostTempActionPerformed
 
     private void btnFindPermanentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindPermanentActionPerformed
-        // TODO add your handling code here:
-        findPermanentAccomodation findPermanentAccomodationPanel=new findPermanentAccomodation(permanentDirectory,temporaryDirectory,jSplitPane1);
-        jSplitPane1.setRightComponent(findPermanentAccomodationPanel);
+       findPermanentAccomodation findPermanentAccomodationPanel=new findPermanentAccomodation( userProcessContainer,  userAccount,  ecosystem);
+        userProcessContainer.add("findPermanentAccomodationPanel", findPermanentAccomodationPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);  
     }//GEN-LAST:event_btnFindPermanentActionPerformed
 
     private void btnPostPermanentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostPermanentActionPerformed
-        // TODO add your handling code here:
-        postPermanentAccomodation postPermanentAccomodationPanel=new postPermanentAccomodation(permanentDirectory,temporaryDirectory,jSplitPane1);
-        jSplitPane1.setRightComponent(postPermanentAccomodationPanel);
+       postPermanentAccomodation postPermanentAccomodationPanel=new postPermanentAccomodation( userProcessContainer,  userAccount,  ecosystem);
+        userProcessContainer.add("postPermanentAccomodationPanel", postPermanentAccomodationPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);  
     }//GEN-LAST:event_btnPostPermanentActionPerformed
 
 

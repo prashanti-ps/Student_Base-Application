@@ -5,7 +5,7 @@
  */
 package business.student.registration;
 
-import static business.student.registration.StudentDirectory.studentHistory;
+
 import java.util.ArrayList;
 
 /**
@@ -51,13 +51,7 @@ public class Student {
         this.password = password;
     }
     
-    public ArrayList<StudentDirectory> getOrderDirectoryList() {
-        return studentHistory;
-    }
-
-    public void setOrderDirectoryList(ArrayList<OrderDirectory> orderDirectoryList) {
-        this.orderDirectoryList = orderDirectoryList;
-    }
+    
     
     
     

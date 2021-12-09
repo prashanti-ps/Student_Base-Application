@@ -12,18 +12,18 @@ import java.util.ArrayList;
  * @author mayurimore
  */
 public class StudentDirectory {
-    public static ArrayList<Student> studentHistory = new ArrayList<Student>();
+    public ArrayList<Student> studentHistory;
     
     public StudentDirectory(){
-       
+        this.studentHistory = new ArrayList<Student>();
     }
 
     public ArrayList<Student> getHistory() {
         return studentHistory;
     }
 
-    public void setHistory(ArrayList<Student> history) {
-        this.studentHistory = history;
+    public void setHistory(ArrayList<Student> studentHistory) {
+        this.studentHistory = studentHistory;
     }
     
     public Student addNewStudent(){
@@ -33,14 +33,13 @@ public class StudentDirectory {
         return student;
     }
     
-    public void  deletePerson(Student sd){
-    
-        studentHistory.remove(sd);
+    public void deleteStudent(Student ci){
+        studentHistory.remove(ci);
+        
         
     }
     
-    public  Student getPerson(int index){
-    return studentHistory.get(index);
+    public ArrayList<Student> getStudentList() {
+        return studentHistory;
     }
-    
 }
