@@ -24,6 +24,7 @@
                   <Component id="btnManagePermanentAccomodation2" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnManagePermanentAccomodation1" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnManagePermanentAccomodation3" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnStudentRegistration" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="747" max="32767" attributes="0"/>
           </Group>
@@ -42,7 +43,9 @@
               <Component id="btnManagePermanentAccomodation2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnManagePermanentAccomodation3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="804" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnStudentRegistration" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="757" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,6 +89,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManagePermanentAccomodation3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnStudentRegistration">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Manage Student Registration"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStudentRegistrationActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

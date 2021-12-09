@@ -6,6 +6,7 @@
 package UI;
 
 import UI.Student.registrationJPanel;
+import UI.Student.studentRegistrationJPanel;
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
 import business.student.accomodation.PermanentDirectory;
@@ -14,10 +15,11 @@ import business.complaintManagement.ComplaintManager;
 import business.role.AdminRole;
 import business.role.ComplaintManagerRole;
 import business.student.registration.StudentDirectory;
-import static business.student.registration.StudentDirectory.studentHistory;
+
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -32,11 +34,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private DB4OUtil db4OUtil=DB4OUtil.getInstance();
     UserAccount userAccount;
-    StudentDirectory studentDirectory;
+    StudentDirectory studentHistory;
+    
+    JPanel userProcessContainer;
     
     public MainJFrame() {
         system=db4OUtil.retrieveSystem();
         initComponents();
+        studentHistory = new StudentDirectory();
+   
 
     }
 
@@ -178,8 +184,18 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 
+
+       // registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
+      //  jSplitPane1.setBottomComponent(StudentRegistatationPanel);
+      studentRegistrationJPanel registrationPanel=new studentRegistrationJPanel(studentHistory, ContainerPanel,  userAccount, system);
+         ContainerPanel.add(registrationPanel);
+                        //  CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                         // layout.next(userProcessContainer);
+        // jSplitPane1.setRightComponent(StudentRegistrationJPanel);
+
         registrationJPanel StudentRegistatationPanel = new registrationJPanel(studentDirectory);
         jSplitPane1.setBottomComponent(StudentRegistatationPanel);
+
     }//GEN-LAST:event_btnRegisterActionPerformed
   private void switchPanels(UserAccount userAccount) {
         if (userAccount != null) {

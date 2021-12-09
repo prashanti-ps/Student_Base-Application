@@ -5,6 +5,9 @@
  */
 package business.student.registration;
 
+
+import java.util.ArrayList;
+
 /**
  *
  * @author mayurimore
@@ -47,6 +50,8 @@ public class Student {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    
     
     
     
