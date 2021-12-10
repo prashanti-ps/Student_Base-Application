@@ -7,7 +7,10 @@ package UI.Student;
 
 import UI.Admin.adminDashboard;
 import UI.MainJFrame;
+import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
+import business.complaintManagement.ComplaintManager;
+import business.role.StudentRole;
 import business.student.registration.Student;
 import business.student.registration.StudentDirectory;
 import business.useraccount.UserAccount;
@@ -28,21 +31,24 @@ import javax.swing.JPanel;
  * @author mayurimore
  */
 public class studentRegistrationJPanel extends javax.swing.JPanel {
- StudentDirectory studentHistory;
- JPanel userProcessContainer;
- EcoSystem ecosystem;
+
+    StudentDirectory studentDirectory;
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
     UserAccount userAccount;
+    
 
     /**
      * Creates new form studentRegistrationJPanel
      */
-    public studentRegistrationJPanel( StudentDirectory studentHistory, JPanel ContainerPanel, UserAccount account, EcoSystem ecosystem ) {
+    public studentRegistrationJPanel(JPanel ContainerPanel, UserAccount account, EcoSystem ecosystem) {
         initComponents();
-        this.studentHistory = studentHistory;
+
         this.userProcessContainer = ContainerPanel;
-        this.ecosystem=ecosystem;
-        this.userAccount=account;
-        
+        this.ecosystem = ecosystem;
+        //this.userAccount = account;
+        this.studentDirectory = ecosystem.getStudentDirectory();
+
     }
 
     /**
@@ -126,7 +132,7 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
         registrationPanel.setLayout(registrationPanelLayout);
         registrationPanelLayout.setHorizontalGroup(
             registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
             .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(registrationPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -164,11 +170,11 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
                                 .addComponent(txtFileUploadName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(157, Short.MAX_VALUE)))
+                    .addContainerGap(467, Short.MAX_VALUE)))
         );
         registrationPanelLayout.setVerticalGroup(
             registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
             .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(registrationPanelLayout.createSequentialGroup()
                     .addGap(9, 9, 9)
@@ -189,7 +195,7 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
                     .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4))
-                    .addContainerGap(459, Short.MAX_VALUE)))
+                    .addContainerGap(731, Short.MAX_VALUE)))
             .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(registrationPanelLayout.createSequentialGroup()
                     .addGap(317, 317, 317)
@@ -203,7 +209,7 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
                     .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnRegister)
                         .addComponent(btnBack))
-                    .addContainerGap(317, Short.MAX_VALUE)))
+                    .addContainerGap(581, Short.MAX_VALUE)))
         );
 
         add(registrationPanel, "card2");
@@ -217,6 +223,46 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLastNameActionPerformed
 
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+        if (txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter all fields");
+        }
+
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String emailAddress = txtEmailAddress.getText();
+        String Password = txtPassword.getText();
+
+        Student sd = new Student(firstName,lastName,Password,emailAddress);
+//        sd.setFirstName(firstName);
+//        sd.setLastName(lastName);
+//        sd.setEmailAddress(emailAddress);
+//        sd.setPassword(Password);
+        ecosystem.getStudentDirectory().addNewStudent(sd);
+        //ecosystem.getUserAccountDirectory().createUserAccount(emailAddress, Password, null, null,sd, new StudentRole());
+        ecosystem.getUserAccountDirectory().addUserAccount(sd);
+
+        JOptionPane.showMessageDialog(this, "Student registered. ");
+
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtEmailAddress.setText("");
+        txtPassword.setText("");
+
+
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        JPanel blankJP = new JPanel();
+        userProcessContainer.add("blank", blankJP);
+        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+        crdLyt.next(userProcessContainer);
+
+
+    }//GEN-LAST:event_btnBackActionPerformed
+
     private void btnChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseFileActionPerformed
         // TODO add your handling code here:
         JFileChooser filechooser = new JFileChooser();
@@ -224,75 +270,21 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
         filechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         // below code selects the file
         int returnval = filechooser.showOpenDialog(this);
-        if (returnval == JFileChooser.APPROVE_OPTION)
-        {
+        if (returnval == JFileChooser.APPROVE_OPTION) {
             File file = filechooser.getSelectedFile();
             BufferedImage bi;
             try {
-                // display the image in a Jlabel
-                bi =  ImageIO.read(file);
-                //ImageIcon icon = new ImageIcon(bi);
+                bi = ImageIO.read(file);
+
                 Image dimg = bi.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
                 ImageIcon imageIcon = new ImageIcon(dimg);
-                // JLabel toBeSet = new JLabel();
-                // considering that you have a JLabel having name as what I've used here
+
                 FileUpload.setIcon(imageIcon);
-            }
-            catch(IOException ioe){
+            } catch (IOException ioe) {
                 System.out.println("Exception occured while setting Image on the Label!");
             }
         }
-
     }//GEN-LAST:event_btnChooseFileActionPerformed
-
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
-        if(txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() || txtPassword.getText().isEmpty())
-
-        {
-            JOptionPane.showMessageDialog(this, "Enter all fields");
-        }
-
-        String firstName = txtFirstName.getText();
-        String lastName  = txtLastName.getText();
-        String emailAddress = txtEmailAddress.getText();
-        String Password = txtPassword.getText();
-
-        Student sd = studentHistory.addNewStudent();
-        sd.setFirstName(firstName);
-        sd.setLastName(lastName);
-        sd.setEmailAddress(emailAddress);
-        sd.setPassword(Password);
-
-        JOptionPane.showMessageDialog(this, "Request registered. ");
-
-        txtFirstName.setText("");
-        txtLastName.setText("");
-        txtEmailAddress.setText("");
-        txtPassword.setText("");
-        
-       
-         
-         
-
-    }//GEN-LAST:event_btnRegisterActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-   //     adminDashboard adminDashboardPanel=new adminDashboard( userProcessContainer,  userAccount,  ecosystem);
-    //    userProcessContainer.add("adminDashboardPanel", adminDashboardPanel);
-     //                      CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-     //                      layout.next(userProcessContainer);   
-     
-     JPanel blankJP = new JPanel();
-        userProcessContainer.add("blank", blankJP);
-        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
-        crdLyt.next(userProcessContainer);
-           
-         
-         
-       
-    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
