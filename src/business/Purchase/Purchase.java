@@ -112,9 +112,6 @@ public class Purchase {
         this.report = report;
     }
     
-    @Override
-    public String toString(){
-        return productName;
-    }
+    
     
 }
