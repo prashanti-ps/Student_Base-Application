@@ -13,15 +13,24 @@ import java.awt.image.BufferedImage;
  */
 public class Purchase {
     private String productName;
-    private String price;
+    private int price;
     private String Category;
-    private String quantity;
+    private int quantity;
     private String contidion;
     private String contactEmail;
     private String status;
     private String comment;
     private String report;
     private BufferedImage productImage;
+    private String Address;
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String Address) {
+        this.Address = Address;
+    }
 
     public BufferedImage getProductImage() {
         return productImage;
@@ -39,11 +48,11 @@ public class Purchase {
         this.productName = productName;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -55,11 +64,11 @@ public class Purchase {
         this.Category = Category;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

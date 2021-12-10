@@ -36,7 +36,7 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     UserAccount userAccount;
     int otp;
-    boolean isemailVerified=false;
+    boolean isemailVerified = false;
 
     /**
      * Creates new form studentRegistrationJPanel
@@ -233,127 +233,128 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        boolean isExists=false;
+        boolean isExists = false;
         if (txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Enter all fields");
             return;
         }
         isExists = ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(txtEmailAddress.getText().trim());
-        if(isemailVerified && !isExists){
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        String emailAddress = txtEmailAddress.getText();
-        String Password = txtPassword.getText();
-        Student sd = new Student(firstName,lastName,Password,emailAddress);
+        if (isemailVerified && !isExists) {
+            String firstName = txtFirstName.getText();
+            String lastName = txtLastName.getText();
+            String emailAddress = txtEmailAddress.getText();
+            String Password = txtPassword.getText();
+            Student sd = new Student(firstName, lastName, Password, emailAddress);
 
-        ecosystem.getStudentDirectory().addNewStudent(sd);
-        ecosystem.getUserAccountDirectory().createUserAccount(emailAddress, Password, null, null,sd, new StudentRole());
-        //ecosystem.getUserAccountDirectory().addUserAccount(sd);
+            ecosystem.getStudentDirectory().addNewStudent(sd);
+            ecosystem.getUserAccountDirectory().createUserAccount(emailAddress, Password, null, null, sd, new StudentRole());
+            //ecosystem.getUserAccountDirectory().addUserAccount(sd);
 
-        JOptionPane.showMessageDialog(this, "Student registered. ");
+            JOptionPane.showMessageDialog(this, "Student registered. ");
 
-        txtFirstName.setText("");
-        txtLastName.setText("");
-        txtEmailAddress.setText("");
-        txtPassword.setText("");
+            txtFirstName.setText("");
+            txtLastName.setText("");
+            txtEmailAddress.setText("");
+            txtPassword.setText("");
 
-        }
-        else{
-            if(!isemailVerified)
-             JOptionPane.showMessageDialog(this, "Verify your email adress first!");
-            if(isExists)
-              JOptionPane.showMessageDialog(this, "This Email address is already registered with us!");
+        } else {
+            if (!isemailVerified) {
+                JOptionPane.showMessageDialog(this, "Verify your email adress first!");
+            }
+            if (isExists) {
+                JOptionPane.showMessageDialog(this, "This Email address is already registered with us!");
+            }
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        
-       HomeJPanel HomeJPanel1 = new HomeJPanel();
+
+        HomeJPanel HomeJPanel1 = new HomeJPanel();
         userProcessContainer.add(HomeJPanel1);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
 
 
-
     }//GEN-LAST:event_btnBackActionPerformed
-                           
+
 
     private void btnVerifyEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyEmailActionPerformed
-        boolean isEmailCorrect=false;
-        if(null != txtEmailAddress.getText() && txtEmailAddress.getText() !=""){
-              String pattern = "^([A-Za-z0-9_.]+)@([a-z]+)(\\.)([a-z]+).?([a-z]{2,3})?$";
-              Pattern pat = Pattern.compile(pattern);
-                Matcher mat = pat.matcher(txtEmailAddress.getText().trim());
-        if (!mat.matches()){
-             JOptionPane.showMessageDialog(this, "Enter Valid University Email Address");
-             return;
-        }else if(!txtEmailAddress.getText().trim().endsWith("@northeastern.edu")){
-             JOptionPane.showMessageDialog(this, "Enter Valid University Email Address");
+        boolean isEmailCorrect = false;
+        if (null != txtEmailAddress.getText() && txtEmailAddress.getText() != "") {
+            String pattern = "^([A-Za-z0-9_.]+)@([a-z]+)(\\.)([a-z]+).?([a-z]{2,3})?$";
+            Pattern pat = Pattern.compile(pattern);
+            Matcher mat = pat.matcher(txtEmailAddress.getText().trim());
+            if (!mat.matches()) {
+                JOptionPane.showMessageDialog(this, "Enter Valid University Email Address");
+                return;
+            } else if (!txtEmailAddress.getText().trim().endsWith("@northeastern.edu")) {
+                JOptionPane.showMessageDialog(this, "Enter Valid University Email Address");
+                return;
+            } else {
+                isEmailCorrect = true;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Enter Email Address First");
             return;
-        }else{
-            isEmailCorrect=true;
-        }
-        }else{
-             JOptionPane.showMessageDialog(this, "Enter Email Address First");
-             return;
 
         }
-        if(isEmailCorrect){ 
-        Random rand = new Random();
-        otp = rand.nextInt(999999);
-        String toEmail = txtEmailAddress.getText().trim();
-        String fromEmail = "randadpratik789@gmail.com";
-        String pass = "pratik@3848";
-        String subject = "Verify Your OTP- AED Final Project Test";
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "25");
-        props.put("mail.debug", "true");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.EnableSSL.enable", "true");
-        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");
-        props.setProperty("mail.smtp.port", "465");
-        props.setProperty("mail.smtp.socketFactory.port", "465");
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(fromEmail, pass);
+        if (isEmailCorrect) {
+            Random rand = new Random();
+            otp = rand.nextInt(999999);
+            String toEmail = txtEmailAddress.getText().trim();
+            String fromEmail = "randadpratik789@gmail.com";
+            String pass = "pratik@3848";
+            String subject = "Verify Your OTP- AED Final Project Test";
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "25");
+            props.put("mail.debug", "true");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.EnableSSL.enable", "true");
+            props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            props.setProperty("mail.smtp.socketFactory.fallback", "false");
+            props.setProperty("mail.smtp.port", "465");
+            props.setProperty("mail.smtp.socketFactory.port", "465");
+            Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(fromEmail, pass);
+                }
+            });
+            try {
+                MimeMessage message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(fromEmail));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+                message.setSubject(subject);
+                message.setText("Hello " + txtFirstName.getText() + "\n" + " Your OTP is : " + String.valueOf(otp));
+                Transport.send(message);
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                JOptionPane.showMessageDialog(this, "Enter the OTP sent on your Email address");
+
+                btnCheckOTP.setEnabled(true);
+                txtOTP.setEnabled(true);
             }
-        });
-        try {
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(fromEmail));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-            message.setSubject(subject);
-            message.setText("Hello " + txtFirstName.getText() + "\n"+ " Your OTP is : " + String.valueOf(otp));
-            Transport.send(message);
-        } catch (Exception e) {
-            System.out.println(e);
-        }finally{
-             JOptionPane.showMessageDialog(this, "Enter the OTP sent on your Email address");
-             
-             btnCheckOTP.setEnabled(true);
-             txtOTP.setEnabled(true);
-        }
         }
     }//GEN-LAST:event_btnVerifyEmailActionPerformed
 
     private void btnCheckOTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOTPActionPerformed
-       if(null != txtOTP.getText() && txtOTP.getText() !=""){                                            
-        String userInput = txtOTP.getText();
-        if (Integer.parseInt(userInput) == otp) {
-            JOptionPane.showMessageDialog(this, "Verified succesfully");
-            isemailVerified=true;
-            btnCheckOTP.setEnabled(false);
-            txtOTP.setText(null);
-            txtOTP.setEnabled(false);
-        } else
-            JOptionPane.showMessageDialog(this, "Incorrect OTP");   
-       }else{
-           JOptionPane.showMessageDialog(this, "Enter OTP First");
-             return;
-    }
+        if (null != txtOTP.getText() && txtOTP.getText() != "") {
+            String userInput = txtOTP.getText();
+            if (Integer.parseInt(userInput) == otp) {
+                JOptionPane.showMessageDialog(this, "Verified succesfully");
+                isemailVerified = true;
+                btnCheckOTP.setEnabled(false);
+                txtOTP.setText(null);
+                txtOTP.setEnabled(false);
+            } else {
+                JOptionPane.showMessageDialog(this, "Incorrect OTP");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Enter OTP First");
+            return;
+        }
     }//GEN-LAST:event_btnCheckOTPActionPerformed
 
 

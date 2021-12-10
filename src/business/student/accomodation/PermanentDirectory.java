@@ -30,9 +30,21 @@ public class PermanentDirectory {
     
     public void addNewPermanentAccomodation(String email, Permanent p)
    {
-       ArrayList<Permanent> perArr = new ArrayList<Permanent>();
-       perArr.add(p);
+       
+       ArrayList<Permanent> perArr = permanentDirectory.get(email);
+       
+       if(null != perArr)
+       {
+           perArr.add(p);
        this.permanentDirectory.put(email,perArr);
+       }
+       else
+       {
+           ArrayList<Permanent> per =new ArrayList<Permanent>();
+           per.add(p);
+           this.permanentDirectory.put(email,per);
+       }
+       
        
    }
     public void deleteObject(Permanent p)
