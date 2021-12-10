@@ -30,9 +30,19 @@ public class TemporaryDirectory {
 
    public void addNewTemporaryAccomodation(String email, Temporary t)
    {
-       ArrayList<Temporary> tempArr = new ArrayList<Temporary>();
-       tempArr.add(t);
-       this.temporaryDirectory.put(email,tempArr);
+      ArrayList<Temporary> perArr = temporaryDirectory.get(email);
+       
+       if(null != perArr)
+       {
+           perArr.add(t);
+       this.temporaryDirectory.put(email,perArr);
+       }
+       else
+       {
+           ArrayList<Temporary> per =new ArrayList<Temporary>();
+           per.add(t);
+           this.temporaryDirectory.put(email,per);
+       }
        
    }
    public void deleteObject(Temporary t)
