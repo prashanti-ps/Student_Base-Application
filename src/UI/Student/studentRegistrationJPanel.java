@@ -240,8 +240,8 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
 //        sd.setEmailAddress(emailAddress);
 //        sd.setPassword(Password);
         ecosystem.getStudentDirectory().addNewStudent(sd);
-        //ecosystem.getUserAccountDirectory().createUserAccount(emailAddress, Password, null, null,sd, new StudentRole());
-        ecosystem.getUserAccountDirectory().addUserAccount(sd);
+        ecosystem.getUserAccountDirectory().createUserAccount(emailAddress, Password, null, null,sd, new StudentRole());
+        //ecosystem.getUserAccountDirectory().addUserAccount(sd);
 
         JOptionPane.showMessageDialog(this, "Student registered. ");
 
