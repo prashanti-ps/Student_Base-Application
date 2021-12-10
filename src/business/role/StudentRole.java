@@ -5,7 +5,7 @@
  */
 package business.role;
 
-import UI.Complaints.complaintsJPanel;
+import UI.Student.StudentDashboard;
 import business.EcoSystem;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
@@ -15,8 +15,8 @@ import javax.swing.JPanel;
  * @author prashantii_s
  */
 public class StudentRole extends Role{
+    @Override
      public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new complaintsJPanel(//userProcessContainer, account,business
-        );
+        return new StudentDashboard(userProcessContainer, account,business );
      }
 }

@@ -12,37 +12,35 @@ import business.admin.AdminDirectory;
 import business.complaintManagement.ComplaintManagerDirectory;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
+import business.student.registration.StudentDirectory;
 
 /**
  *
  * @author prashantii_s
  */
 public abstract class Organization {
-    
 
     private String name;
-    //private WorkQueue workQueue;
     private AdminDirectory adminDirectory;
     private ComplaintManagerDirectory complaintManagerDirectory;
     private UserAccountDirectory userAccountDirectory;
     private TemporaryDirectory temporaryDirectory;
     private PermanentDirectory permanentDirectory;
-//    private CustomerDirectory customerDirectory;
-//    private DeliveryManDirectory deliveryManDirectory;
-//    private RestaurantDirectory restaurantDirectory;
-//    private MenuDirectory itemList;
+    private StudentDirectory studentDirectory;
     private int organizationID;
-    private static int counter=0;
-    
-    public enum Type{
-         Student("Student"),
+    private static int counter = 0;
+
+    public enum Type {
+        Student("Student"),
         ComplaintManager("ComplaintManager"),
         SysAdmin("Sysadmin");
-        
+
         private String value;
+
         private Type(String value) {
             this.value = value;
         }
+
         public String getValue() {
             return value;
         }
@@ -50,15 +48,22 @@ public abstract class Organization {
 
     public Organization(String name) {
         this.name = name;
-        //workQueue = new WorkQueue();
         adminDirectory = new AdminDirectory();
-        complaintManagerDirectory= new ComplaintManagerDirectory();
+        complaintManagerDirectory = new ComplaintManagerDirectory();
         userAccountDirectory = new UserAccountDirectory();
         temporaryDirectory = new TemporaryDirectory();
         permanentDirectory = new PermanentDirectory();
-
+        studentDirectory = new StudentDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public StudentDirectory getStudentDirectory() {
+        return studentDirectory;
+    }
+
+    public void setStudentDirectory(StudentDirectory studentDirectory) {
+        this.studentDirectory = studentDirectory;
     }
 
     public ComplaintManagerDirectory getComplaintManagerDirectory() {
@@ -85,8 +90,6 @@ public abstract class Organization {
         this.permanentDirectory = permanentDirectory;
     }
 
-
-
     public static int getCounter() {
         return counter;
     }
@@ -94,11 +97,13 @@ public abstract class Organization {
     public static void setCounter(int counter) {
         Organization.counter = counter;
     }
-    public Organization(){
-        
+
+    public Organization() {
+
     }
+
     public abstract ArrayList<Role> getSupportedRole();
-    
+
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
     }
@@ -110,7 +115,7 @@ public abstract class Organization {
     public AdminDirectory getAdminDirectory() {
         return adminDirectory;
     }
- 
+
     public String getName() {
         return name;
     }
@@ -118,7 +123,6 @@ public abstract class Organization {
 //    public WorkQueue getWorkQueue() {
 //        return workQueue;
 //    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -127,7 +131,5 @@ public abstract class Organization {
     public String toString() {
         return name;
     }
-    
-    
-    
+
 }

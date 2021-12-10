@@ -9,6 +9,7 @@ import business.role.AdminRole;
 import business.role.Role;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
+import business.student.registration.StudentDirectory;
 import java.util.ArrayList;
 
 /**
@@ -21,12 +22,14 @@ public class EcoSystem extends Organization{
     private static EcoSystem business;
     private TemporaryDirectory temporaryDirectory;
     private PermanentDirectory permanentDirectory;
+    private StudentDirectory studentDirectory;
 
-    public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory)
+    public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory, StudentDirectory studentDirectory)
     {
 
         this.temporaryDirectory = temporaryDirectory;
         this.permanentDirectory = permanentDirectory;
+        this.studentDirectory=studentDirectory;
     }
     
     public static EcoSystem getInstance(){
