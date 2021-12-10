@@ -11,6 +11,7 @@ import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
 import business.useraccount.UserAccount;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -95,6 +96,7 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         lblPermRent = new javax.swing.JLabel();
         lblPermContact = new javax.swing.JLabel();
         lblPermTotalPpl = new javax.swing.JLabel();
+        btnBackComplaintManagementAdmin = new javax.swing.JButton();
 
         jLabel1.setText("Delete Requests From Complaint Manager");
 
@@ -404,26 +406,38 @@ public class manageComplaintManagement extends javax.swing.JPanel {
 
         adminComplaintManagementTab.addTab("Permanent Accomodation", jPanel4);
 
+        btnBackComplaintManagementAdmin.setText("Back");
+        btnBackComplaintManagementAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackComplaintManagementAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(225, 225, 225))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(adminComplaintManagementTab)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBackComplaintManagementAdmin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(225, 225, 225))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(adminComplaintManagementTab)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnBackComplaintManagementAdmin))
                 .addGap(18, 18, 18)
-                .addComponent(adminComplaintManagementTab)
+                .addComponent(adminComplaintManagementTab, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -466,6 +480,13 @@ public class manageComplaintManagement extends javax.swing.JPanel {
 
              }
     }//GEN-LAST:event_btnAdminComplaintPermDeleteActionPerformed
+
+    private void btnBackComplaintManagementAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackComplaintManagementAdminActionPerformed
+         adminDashboard adminDashboardPanel = new adminDashboard(userProcessContainer, userAccount, ecosystem);
+        userProcessContainer.add("adminDashboardPanel", adminDashboardPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnBackComplaintManagementAdminActionPerformed
  private void populateTemporaryAccomodtionComplaintsTable() {
         DefaultTableModel model = (DefaultTableModel) tblAdminComplaintTemp.getModel();
         model.setRowCount(0);
@@ -546,6 +567,7 @@ private void initTempListerners() {
     private javax.swing.JTabbedPane adminComplaintManagementTab;
     private javax.swing.JButton btnAdminComplaintPermDelete;
     private javax.swing.JButton btnAdminComplaintTempDelete;
+    private javax.swing.JButton btnBackComplaintManagementAdmin;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
