@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author mayurimore
  */
 public class manageStudentRegistration extends javax.swing.JPanel {
-
+//kugiygygyigi
     /**
      * Creates new form manageStudentRegistration
      */
