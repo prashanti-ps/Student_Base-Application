@@ -43,7 +43,10 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
         this.temporaryDirectory = ecosystem.getTemporaryDirectory();
         //this.jSplitPane1 = jSplitPane1;
         //txtAreaComment.setEnabled(false);
+
         initComponents();
+        btnConnectHost.setEnabled(false);
+        btnReport.setEnabled(false);
         populateTable();
         clearFields();
     }
@@ -266,7 +269,7 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnView)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -310,7 +313,7 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnConnectHost)
                             .addComponent(btnReport))))
-                .addGap(183, 183, 183))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -344,6 +347,7 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
             lblDistance.setText(String.valueOf(p.getDistance()));
             lblTotalPeople.setText(String.valueOf(p.getTotalPeopleInHouse()));
             lblContact.setText(p.getContact());
+
         }
     }//GEN-LAST:event_btnViewActionPerformed
 
@@ -359,8 +363,16 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
         for (Permanent obj : perArr) {
             if (obj.equals(p)) {
                 String str = obj.getAccomodationRequests();
-                str= str + ","+ userAccount.getStudent().getEmailAddress();
-                obj.setAccomodationRequests(str);
+                if (str.isEmpty()) {
+                    str = userAccount.getStudent().getEmailAddress() + ",";
+                    obj.setAccomodationRequests(str);
+                }
+                else
+                {
+                    str= userAccount.getStudent().getEmailAddress()+ ","+ str;
+                    obj.setAccomodationRequests(str);
+                }
+
                 JOptionPane.showMessageDialog(this, "Host Notified!");
             }
         }
@@ -438,12 +450,12 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tblPermanentAccomodationTable.getModel();
         model.setRowCount(0);
-        Map<String, ArrayList<Permanent>> directory = permanentDirectory.getPermanentDirectory();
+        Map<String, ArrayList<Permanent>> directory = ecosystem.getPermanentDirectory().getPermanentDirectory();
         ArrayList<Permanent> foundDirectory = new ArrayList<Permanent>();
 
         for (ArrayList<Permanent> perArr : directory.values()) {
             for (Permanent p : perArr) {
-                if (p.getStatusOfAccomodation() == "Available" && p.getStatusOfPost() == "Ok") {
+                if (p.getStatusOfAccomodation().equals("Available") && p.getStatusOfPost().equals("Ok")) {
                     Object[] row = new Object[3];
                     row[0] = p;
                     row[1] = p.getRent();
