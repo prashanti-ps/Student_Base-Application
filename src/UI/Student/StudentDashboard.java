@@ -10,6 +10,7 @@ import UI.Accomodation.findTemporaryAccomodationJPanel;
 import UI.Accomodation.postPermanentAccomodation;
 import UI.Accomodation.postTemporaryAccomodationJPanel;
 import UI.Admin.adminDashboard;
+import UI.Purchase.postSellingProduct;
 import business.EcoSystem;
 import javax.swing.JSplitPane;
 import business.student.accomodation.PermanentDirectory;
@@ -88,7 +89,7 @@ public class StudentDashboard extends javax.swing.JPanel {
 
         btnBuyItems.setText("Buy items");
 
-        btnSellItems.setText("Sell items");
+        btnSellItems.setText("Post Products for Sale");
         btnSellItems.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSellItemsActionPerformed(evt);
@@ -135,6 +136,11 @@ public class StudentDashboard extends javax.swing.JPanel {
 
     private void btnSellItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellItemsActionPerformed
         // TODO add your handling code here:
+        
+        postSellingProduct postPermanentAccomodationPanel=new postSellingProduct( userProcessContainer);
+        userProcessContainer.add("postPermanentAccomodationPanel", postPermanentAccomodationPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);  
     }//GEN-LAST:event_btnSellItemsActionPerformed
 
     private void btnFindTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindTempActionPerformed

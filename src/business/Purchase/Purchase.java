@@ -112,4 +112,6 @@ public class Purchase {
         this.report = report;
     }
     
+    
+    
 }
