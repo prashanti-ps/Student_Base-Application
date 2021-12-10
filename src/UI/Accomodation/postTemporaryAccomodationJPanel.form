@@ -102,8 +102,8 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblContact" min="-2" pref="96" max="-2" attributes="0"/>
                                               <Component id="comboBoxStatus" min="-2" pref="96" max="-2" attributes="0"/>
+                                              <Component id="lblContact" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">

@@ -314,8 +314,8 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
                                                 .addComponent(jLabel6))
                                             .addGap(18, 18, 18)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblContact, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
@@ -472,11 +472,11 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
             t.setOccupancyFor(Integer.parseInt(txtOccupancyFor.getText()));
             t.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
             t.setContact(email);
-            t.setStatusOfPost("ok");
+            t.setStatusOfPost("Ok");
             t.setHostName(lblHostName.getText());
             t.setDistanceFromUniversity(Double.parseDouble(txtDistance.getText()));
 
-            temporaryDirectory.addNewTemporaryAccomodation(email, t);
+            ecosystem.getTemporaryDirectory().addNewTemporaryAccomodation(email, t);
             JOptionPane.showMessageDialog(this, "Accomodation Posted!");
             clearFields();
             populateTable();
@@ -557,7 +557,7 @@ public class postTemporaryAccomodationJPanel extends javax.swing.JPanel {
         } else {
             lblFromDateCheck.setVisible(true);
             lblFromDateCheck.setForeground(Color.orange);
-            lblFromDateCheck.setText("Date format:dd/MM/yyyy");
+            lblFromDateCheck.setText("Date format:MM/dd/yyyy");
         }
     }//GEN-LAST:event_txtFromDateKeyReleased
 

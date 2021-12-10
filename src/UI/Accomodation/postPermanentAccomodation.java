@@ -413,7 +413,7 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
             p.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
             p.setStatusOfPost("Ok");
 
-            permanentDirectory.addNewPermanentAccomodation(email, p);
+            ecosystem.getPermanentDirectory().addNewPermanentAccomodation(email, p);
             JOptionPane.showMessageDialog(this, "Accomodation Posted!");
             clearFields();
             populateTable();
@@ -449,8 +449,8 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
             btnPost.setEnabled(false);
             DefaultTableModel model = (DefaultTableModel) tblAccomodationList.getModel();
             Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
-            lblHostName.setText("get from student obj");
-            lblContact.setText("from student obj");
+            lblHostName.setText(userAccount.getStudent().getFirstName()+" "+ userAccount.getStudent().getLastName());
+            lblContact.setText(userAccount.getStudent().getEmailAddress());
             txtMoveInDate.setText(p.getMoveInDate().toString());
             txtAreaAddress.setText(p.getAddress());
             txtAreaFacilities.setText(p.getFacilities());
@@ -528,7 +528,7 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
         } else {
             lblMoveInDateCheck.setVisible(true);
             lblMoveInDateCheck.setForeground(Color.orange);
-            lblMoveInDateCheck.setText("Date format:dd/MM/yyyy");
+            lblMoveInDateCheck.setText("Date format:MM/dd/yyyy");
         }
     }//GEN-LAST:event_txtMoveInDateKeyReleased
 
