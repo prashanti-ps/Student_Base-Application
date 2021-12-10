@@ -22,27 +22,37 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.util.Random;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.PasswordAuthentication;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Transport;
 
 /**
  *
  * @author mayurimore
  */
 public class studentRegistrationJPanel extends javax.swing.JPanel {
- StudentDirectory studentHistory;
- JPanel userProcessContainer;
- EcoSystem ecosystem;
+
+    StudentDirectory studentHistory;
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
     UserAccount userAccount;
+    int otp;
 
     /**
      * Creates new form studentRegistrationJPanel
      */
-    public studentRegistrationJPanel( StudentDirectory studentHistory, JPanel ContainerPanel, UserAccount account, EcoSystem ecosystem ) {
+    public studentRegistrationJPanel(StudentDirectory studentHistory, JPanel ContainerPanel, UserAccount account, EcoSystem ecosystem) {
         initComponents();
         this.studentHistory = studentHistory;
         this.userProcessContainer = ContainerPanel;
-        this.ecosystem=ecosystem;
-        this.userAccount=account;
-        
+        this.ecosystem = ecosystem;
+        this.userAccount = account;
+
     }
 
     /**
@@ -70,6 +80,9 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
         btnChooseFile = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        otpInput = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -122,11 +135,38 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Send OTP");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        otpInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otpInputActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Verify OTP");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout registrationPanelLayout = new javax.swing.GroupLayout(registrationPanel);
         registrationPanel.setLayout(registrationPanelLayout);
         registrationPanelLayout.setHorizontalGroup(
             registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(registrationPanelLayout.createSequentialGroup()
+                .addGap(305, 305, 305)
+                .addComponent(otpInput, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(registrationPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -168,7 +208,14 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
         );
         registrationPanelLayout.setVerticalGroup(
             registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(registrationPanelLayout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(otpInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap(483, Short.MAX_VALUE))
             .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(registrationPanelLayout.createSequentialGroup()
                     .addGap(9, 9, 9)
@@ -224,21 +271,19 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
         filechooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         // below code selects the file
         int returnval = filechooser.showOpenDialog(this);
-        if (returnval == JFileChooser.APPROVE_OPTION)
-        {
+        if (returnval == JFileChooser.APPROVE_OPTION) {
             File file = filechooser.getSelectedFile();
             BufferedImage bi;
             try {
                 // display the image in a Jlabel
-                bi =  ImageIO.read(file);
+                bi = ImageIO.read(file);
                 //ImageIcon icon = new ImageIcon(bi);
                 Image dimg = bi.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
                 ImageIcon imageIcon = new ImageIcon(dimg);
                 // JLabel toBeSet = new JLabel();
                 // considering that you have a JLabel having name as what I've used here
                 FileUpload.setIcon(imageIcon);
-            }
-            catch(IOException ioe){
+            } catch (IOException ioe) {
                 System.out.println("Exception occured while setting Image on the Label!");
             }
         }
@@ -247,14 +292,12 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        if(txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() || txtPassword.getText().isEmpty())
-
-        {
+        if (txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Enter all fields");
         }
 
         String firstName = txtFirstName.getText();
-        String lastName  = txtLastName.getText();
+        String lastName = txtLastName.getText();
         String emailAddress = txtEmailAddress.getText();
         String Password = txtPassword.getText();
 
@@ -270,29 +313,71 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
         txtLastName.setText("");
         txtEmailAddress.setText("");
         txtPassword.setText("");
-        
-       
-         
-         
+
 
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-   //     adminDashboard adminDashboardPanel=new adminDashboard( userProcessContainer,  userAccount,  ecosystem);
-    //    userProcessContainer.add("adminDashboardPanel", adminDashboardPanel);
-     //                      CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-     //                      layout.next(userProcessContainer);   
-     
-     JPanel blankJP = new JPanel();
+        //     adminDashboard adminDashboardPanel=new adminDashboard( userProcessContainer,  userAccount,  ecosystem);
+        //    userProcessContainer.add("adminDashboardPanel", adminDashboardPanel);
+        //                      CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        //                      layout.next(userProcessContainer);   
+
+        JPanel blankJP = new JPanel();
         userProcessContainer.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-           
-         
-         
-       
+
+
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Random rand = new Random();
+        otp = rand.nextInt(999999);
+        String toEmail = txtEmailAddress.getText().trim();
+        String fromEmail = "randadpratik789@gmail.com";
+        String pass = "pratik@3848";
+        String subject = "Verify Your OTP- AED Final Project Test";
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "25");
+        props.put("mail.debug", "true");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.EnableSSL.enable", "true");
+        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+        props.setProperty("mail.smtp.port", "465");
+        props.setProperty("mail.smtp.socketFactory.port", "465");
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, pass);
+            }
+        });
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+            message.setSubject(subject);
+            message.setText(String.valueOf(otp));
+            Transport.send(message);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void otpInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otpInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_otpInputActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String userInput = otpInput.getText();
+        if (Integer.parseInt(userInput) == otp) {
+            JOptionPane.showMessageDialog(this, "Verified succesfully");
+        } else
+            JOptionPane.showMessageDialog(this, "Incorrect OTP");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -300,12 +385,15 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnChooseFile;
     private javax.swing.JButton btnRegister;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField otpInput;
     private javax.swing.JPanel registrationPanel;
     private javax.swing.JTextField txtEmailAddress;
     private javax.swing.JTextField txtFileUploadName;

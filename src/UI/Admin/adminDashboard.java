@@ -149,7 +149,10 @@ public class adminDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManagePermanentAccomodationActionPerformed
 
     private void btnManagePermanentAccomodation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePermanentAccomodation1ActionPerformed
-        // TODO add your handling code here:
+        manageComplaintManagement managecomplaintManagement=new manageComplaintManagement( userProcessContainer,  userAccount,  ecosystem);
+         userProcessContainer.add("managecomplaintManagement", managecomplaintManagement);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManagePermanentAccomodation1ActionPerformed
 
     private void btnManagePermanentAccomodation2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePermanentAccomodation2ActionPerformed
