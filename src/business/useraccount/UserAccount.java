@@ -8,6 +8,7 @@ package business.useraccount;
 import business.role.Role;
 import business.admin.Admin;
 import business.complaintManagement.ComplaintManager;
+import business.student.registration.Student;
 
 /**
  *
@@ -19,6 +20,16 @@ public class UserAccount {
     private String password;
     private Admin admin;
     private ComplaintManager cm;
+    private Student student;
+   
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public ComplaintManager getCm() {
         return cm;

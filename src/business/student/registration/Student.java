@@ -6,19 +6,30 @@
 package business.student.registration;
 
 
-import java.util.ArrayList;
+import business.role.StudentRole;
+import business.useraccount.UserAccount;
 
 /**
  *
  * @author mayurimore
  */
-public class Student {
+public class Student extends UserAccount{
     private String firstName;
     private String lastName;
 
     private String emailAddress;
     private String password;
 
+    public Student(String FirstName,String lastname, String password,String email){
+        setUsername(email);
+        setPassword(password);
+        setRole(new StudentRole());
+        this.emailAddress=email;
+        this.firstName=FirstName;
+        this.lastName=lastname;
+        this.emailAddress=email;
+        this.password=password;
+    }
     public String getFirstName() {
         return firstName;
     }

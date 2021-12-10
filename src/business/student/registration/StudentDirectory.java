@@ -12,34 +12,34 @@ import java.util.ArrayList;
  * @author mayurimore
  */
 public class StudentDirectory {
-    public ArrayList<Student> studentHistory;
-    
+    public ArrayList<Student> studentDirectory;
+     
+
     public StudentDirectory(){
-        this.studentHistory = new ArrayList<Student>();
+        this.studentDirectory = new ArrayList<Student>();
     }
 
     public ArrayList<Student> getHistory() {
-        return studentHistory;
+        return studentDirectory;
     }
 
     public void setHistory(ArrayList<Student> studentHistory) {
-        this.studentHistory = studentHistory;
+        this.studentDirectory = studentHistory;
     }
     
-    public Student addNewStudent(){
+    public void addNewStudent(Student s){
     
-        Student student = new Student();
-        studentHistory.add(student);
-        return student;
+        studentDirectory.add(s);
+     
     }
     
     public void deleteStudent(Student ci){
-        studentHistory.remove(ci);
+        studentDirectory.remove(ci);
         
         
     }
     
     public ArrayList<Student> getStudentList() {
-        return studentHistory;
+        return studentDirectory;
     }
 }
