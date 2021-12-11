@@ -7,8 +7,11 @@ package UI.Purchase;
 
 import business.Purchase.Purchase;
 import business.Purchase.PurchaseDirectory;
+import business.student.accomodation.Permanent;
 import business.student.registration.Student;
 import business.student.registration.StudentDirectory;
+import business.useraccount.UserAccount;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -27,10 +30,14 @@ public class postSellingProduct extends javax.swing.JPanel {
     PurchaseDirectory purchaseDirectory = new PurchaseDirectory();
     JPanel userProcessContainer;
     StudentDirectory studentDirectory;
-    public postSellingProduct(JPanel userProcessContainer) {
+    UserAccount userAccount;
+    public postSellingProduct(JPanel userProcessContainer, UserAccount userAccount) {
         initComponents();
         this.purchaseDirectory = purchaseDirectory;
         this.studentDirectory = studentDirectory;
+        this.userAccount = userAccount;
+        
+        txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
     }
 
     /**
@@ -56,14 +63,18 @@ public class postSellingProduct extends javax.swing.JPanel {
         txtAreaAddress = new javax.swing.JTextArea();
         txtProductName = new javax.swing.JTextField();
         txtPrice = new javax.swing.JTextField();
-        txtCategory = new javax.swing.JTextField();
         txtQuantity = new javax.swing.JTextField();
-        txtCondition = new javax.swing.JTextField();
         txtContactEmail = new javax.swing.JTextField();
         btnPost = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtComment = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
+        lblPriceCheck = new javax.swing.JLabel();
+        comboCategory = new javax.swing.JComboBox<>();
+        comboCondition = new javax.swing.JComboBox<>();
+        lblQuantityCheck = new javax.swing.JLabel();
+        Edit = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -104,6 +115,25 @@ public class postSellingProduct extends javax.swing.JPanel {
             }
         });
 
+        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPriceActionPerformed(evt);
+            }
+        });
+        txtPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPriceKeyReleased(evt);
+            }
+        });
+
+        txtQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtQuantityKeyReleased(evt);
+            }
+        });
+
+        txtContactEmail.setEditable(false);
+
         btnPost.setText("Post");
         btnPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +146,30 @@ public class postSellingProduct extends javax.swing.JPanel {
         jLabel8.setText("Post Porducts for sale");
 
         jLabel9.setText("Comment :");
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        lblPriceCheck.setForeground(new java.awt.Color(204, 204, 204));
+        lblPriceCheck.setText("PriceCheck");
+
+        comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Electronics", "Furniture", "Home Decor", "Mattresses" }));
+
+        comboCondition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "New", "upto 3 months old", "upto 6 months old", "older than 6 months" }));
+
+        lblQuantityCheck.setForeground(new java.awt.Color(204, 204, 204));
+        lblQuantityCheck.setText("Quantity Check");
+
+        Edit.setText("jButton1");
+        Edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,16 +195,28 @@ public class postSellingProduct extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtProductName)
                                     .addComponent(txtPrice)
-                                    .addComponent(txtCategory)
                                     .addComponent(txtQuantity)
-                                    .addComponent(txtCondition)
                                     .addComponent(txtContactEmail)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                                    .addComponent(txtComment)))))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(txtComment)
+                                    .addComponent(comboCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboCondition, 0, 217, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblPriceCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(308, 308, 308)
-                        .addComponent(btnPost)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                        .addComponent(btnPost)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnUpdate)
+                        .addGap(18, 18, 18)
+                        .addComponent(Edit)
+                        .addGap(0, 1, Short.MAX_VALUE)))
+                .addGap(138, 138, 138))
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -165,25 +231,29 @@ public class postSellingProduct extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(60, 60, 60)
-                                                .addComponent(jLabel1))
-                                            .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel2))
-                                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabel1))
+                                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3))
-                            .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblPriceCheck)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4))
-                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblQuantityCheck))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboCondition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
@@ -197,8 +267,11 @@ public class postSellingProduct extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(btnPost)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPost)
+                    .addComponent(btnUpdate)
+                    .addComponent(Edit))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
@@ -212,29 +285,136 @@ public class postSellingProduct extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         Purchase p = new Purchase();
+        String email = userAccount.getStudent().getEmailAddress();
         p.setProductName(txtProductName.getText());
-        p.setCategory(txtCategory.getText());
+        p.setCategory(comboCategory.getItemAt(0));
         p.setQuantity(Integer.parseInt(txtQuantity.getText()));
         p.setPrice(Integer.parseInt(txtPrice.getText()));
         p.setComment(txtComment.getText());
         p.setAddress(txtAreaAddress.getText());
-        p.setContactEmail(txtContactEmail.getText());
+        p.setContactEmail(email);
+        p.setContidion(comboCondition.getItemAt(0));
         
         
-        String email = txtContactEmail.getText();
+       
         
         
          purchaseDirectory.addNewPurchaseProduct(email, p);
        // p.setProductImage(productImage);
        JOptionPane.showMessageDialog(this, "Product Posted!");
-        clearFields();
+        
         populateTable();
         btnPost.setEnabled(false);
+        clearFields();
     }//GEN-LAST:event_btnPostActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRowIndex = tblProductList.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update!");
+            return;
+        } else if (validityCheck()) {
+            //fieldsEnableDisable(true);
+            DefaultTableModel model = (DefaultTableModel) tblProductList.getModel();
+            Purchase p = (Purchase) model.getValueAt(selectedRowIndex, 0);
+            Map<String, ArrayList<Purchase>> latestDirectory = purchaseDirectory.getPurchaseDirectory();
+            ArrayList<Purchase> perArr = latestDirectory.get(p.getContactEmail());
+            for (Purchase obj : perArr) {
+                if (obj.equals(p)) {
+                    obj.setProductName(txtProductName.getText());
+                    obj.setPrice(Integer.parseInt(txtPrice.getText()));
+                    obj.setAddress(txtAreaAddress.getText());
+                    obj.setQuantity(Integer.parseInt(txtQuantity.getText()));
+                    obj.setContidion(comboCondition.getItemAt(0));
+                    obj.setComment(txtComment.getText());
+                    
+                    obj.setCategory(comboCategory.getItemAt(0));
+                    JOptionPane.showMessageDialog(this, "Record Updated!");
+                   // enableFields(false);
+                    lblPriceCheck.setEnabled(false);
+                    lblQuantityCheck.setEnabled(false);
+                    
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "All fields must be filled and valid!");
+        }
+        btnUpdate.setEnabled(false);
+        clearFields();
+        populateTable();
+        
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
+
+    private void txtPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyReleased
+        // TODO add your handling code here:
+        
+        String enteredText = txtPrice.getText();
+        if (enteredText.matches("^[0-9]+$")) {
+            lblPriceCheck.setVisible(true);
+            lblPriceCheck.setForeground(Color.WHITE);
+            lblPriceCheck.setText("Valid Entry");
+        } else {
+            lblPriceCheck.setVisible(true);
+            lblPriceCheck.setForeground(Color.orange);
+            lblPriceCheck.setText("Enter numbers only");
+        }
+    }//GEN-LAST:event_txtPriceKeyReleased
+
+    private void txtQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyReleased
+        // TODO add your handling code here:
+        String enteredText = txtPrice.getText();
+        if (enteredText.matches("^[0-9]+$")) {
+            lblQuantityCheck.setVisible(true);
+            lblQuantityCheck.setForeground(Color.WHITE);
+            lblQuantityCheck.setText("Valid Entry");
+        } else {
+            lblQuantityCheck.setVisible(true);
+            lblQuantityCheck.setForeground(Color.orange);
+            lblQuantityCheck.setText("Enter numbers only");
+        }
+    }//GEN-LAST:event_txtQuantityKeyReleased
+
+    private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRowIndex = tblProductList.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to edit!");
+            return;
+        } else {
+            enableFields(true);
+            btnUpdate.setEnabled(true);
+            btnPost.setEnabled(false);
+            DefaultTableModel model = (DefaultTableModel) tblProductList.getModel();
+            Purchase p = (Purchase) model.getValueAt(selectedRowIndex, 0);
+            txtProductName.setText(p.getProductName());
+            txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
+            txtPrice.setText(String.valueOf(p.getPrice()));
+            txtAreaAddress.setText(p.getAddress());
+           // txtQuantity.setText(String.valueOf(p.getQuantity()));
+            txtComment.setText(p.getComment());
+            
+          //  comboCategory.addItem(p.getCategory().toString());
+            comboCondition.addItem(p.getContidion().toString());
+        }
+    }//GEN-LAST:event_EditActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Edit;
     private javax.swing.JButton btnPost;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> comboCategory;
+    private javax.swing.JComboBox<String> comboCondition;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -247,11 +427,11 @@ public class postSellingProduct extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblPriceCheck;
+    private javax.swing.JLabel lblQuantityCheck;
     private javax.swing.JTable tblProductList;
     private javax.swing.JTextArea txtAreaAddress;
-    private javax.swing.JTextField txtCategory;
     private javax.swing.JTextField txtComment;
-    private javax.swing.JTextField txtCondition;
     private javax.swing.JTextField txtContactEmail;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtProductName;
@@ -260,9 +440,9 @@ public class postSellingProduct extends javax.swing.JPanel {
 
     private void clearFields() {
         txtAreaAddress.setText("");
-        txtCategory.setText("");
+        
         txtComment.setText("");
-        txtCondition.setText("");
+        
         txtContactEmail.setText("");
         txtPrice.setText("");
         txtProductName.setText("");
@@ -278,20 +458,48 @@ public class postSellingProduct extends javax.swing.JPanel {
         Map<String, ArrayList<Purchase>> directory = purchaseDirectory.getPurchaseDirectory();
         ArrayList<Purchase> foundDirectory = new ArrayList<Purchase>();
         try {
-            foundDirectory = directory.get("more.m@northeastern.edu");
-        } catch (Exception e) {
+            System.out.print(userAccount.getStudent().getEmailAddress());
+            foundDirectory = directory.get(userAccount.getStudent().getEmailAddress());
+            for (Purchase p : foundDirectory) {
+                Object[] row = new Object[5];
+
+                row[0] = p.getProductName();
+                row[1] = p.getAddress();
+                row[2] = p.getPrice();
+                row[3] = p.getContidion();
+                row[4] = p.getComment();
+                model.addRow(row);
+        }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
 
         }
-        for (Purchase p : foundDirectory) {
-            Object[] row = new Object[5];
+        
+        
+        
 
-            row[0] = p;
-            row[1] = p.getAddress();
-            row[2] = p.getPrice();
-            row[3] = p.getContidion();
-            row[4] = p.getComment();
-            model.addRow(row);
+    }
+    
+    private boolean validityCheck() {
+
+        if (lblPriceCheck.getForeground() == Color.WHITE && lblQuantityCheck.getForeground() == Color.WHITE) {
+            return true;
+        } else {
+            return false;
         }
+    }
+    
+    private void enableFields(boolean b) {
+        txtProductName.setEnabled(b);
+        txtPrice.setEnabled(b);
+        txtContactEmail.setEnabled(b);
+        txtAreaAddress.setEnabled(b);
+        
+        txtComment.setEnabled(b);
+        txtQuantity.setEnabled(b);
+        comboCondition.setEnabled(b);
+        comboCategory.setEnabled(b);
 
     }
     

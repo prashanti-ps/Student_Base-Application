@@ -49,6 +49,7 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
         enableFields(false);
         btnPost.setEnabled(false);
         btnUpdate.setEnabled(false);
+        
     }
 
     /**
@@ -189,8 +190,12 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
         jLabel12.setText("Status of Accomodation:");
 
         comboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Taken" }));
+        comboBoxStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxStatusActionPerformed(evt);
+            }
+        });
 
-        txtAreaRequests.setEditable(false);
         txtAreaRequests.setColumns(20);
         txtAreaRequests.setRows(5);
         jScrollPane4.setViewportView(txtAreaRequests);
@@ -333,7 +338,6 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
                     .addComponent(btnAdd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -574,6 +578,10 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtTotalPeopleKeyReleased
 
+    private void comboBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxStatusActionPerformed
+
     private boolean validityCheck() {
 
         if (lblMoveInDateCheck.getForeground() == Color.WHITE && lblDistanceCheck.getForeground() == Color.WHITE && lblRentCheck.getForeground() == Color.WHITE && lblTotalPeopleInHouseCheck1.getForeground() == Color.WHITE && txtAreaAddress.getText().length() > 10 && txtAreaFacilities.getText().length() > 10) {
@@ -643,7 +651,7 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
                 model.addRow(row);
             }
         } catch (Exception e) {
-
+          e.printStackTrace();
         }
 
     }
