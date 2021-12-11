@@ -25,8 +25,8 @@ public class PurchaseDirectory {
         return purchaseDirectory;
     }
 
-    public void setPurchaseDirectory(Map<String, ArrayList<Purchase>> permanentDirectory) {
-        this.purchaseDirectory = permanentDirectory;
+    public void setPurchaseDirectory(Map<String, ArrayList<Purchase>> purchaseDirectory) {
+        this.purchaseDirectory = purchaseDirectory;
     }
     
     public void addNewPurchaseProduct(String email, Purchase p)
