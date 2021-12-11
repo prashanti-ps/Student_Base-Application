@@ -626,7 +626,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                         lblTempFacilities.setText(temp.getFacilities().trim());
                         lblTempOccupancy.setText(String.valueOf(temp.getOccupancyFor()));
                         lblTempPrice.setText(String.valueOf(temp.getPricePerDay()));
-
+                        
                     }
 
                 }

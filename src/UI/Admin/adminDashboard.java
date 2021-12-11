@@ -23,7 +23,7 @@ public class adminDashboard extends javax.swing.JPanel {
     /**
      * Creates new form adminDashboard
      */
-     PermanentDirectory permanentDirectory;
+    PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
     JPanel userProcessContainer;
     JSplitPane jSplitPane1;
@@ -91,7 +91,7 @@ public class adminDashboard extends javax.swing.JPanel {
             }
         });
 
-        btnStudentRegistration.setText("Manage Student Registration");
+        btnStudentRegistration.setText("Manage Students");
         btnStudentRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStudentRegistrationActionPerformed(evt);
@@ -164,10 +164,10 @@ public class adminDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManagePermanentAccomodation3ActionPerformed
 
     private void btnStudentRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentRegistrationActionPerformed
-        // TODO add your handling code here:
-        manageStudentRegistration ManageStudentRegistration= new manageStudentRegistration(jSplitPane1, studentHistory);
-        jSplitPane1.setRightComponent(ManageStudentRegistration);
-        
+        manageStudentRegistration ManageStudentRegistration=new manageStudentRegistration( userProcessContainer,  userAccount,  ecosystem);
+         userProcessContainer.add("ManageStudentRegistration", ManageStudentRegistration);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
         
     }//GEN-LAST:event_btnStudentRegistrationActionPerformed
 
