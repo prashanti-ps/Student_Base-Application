@@ -12,10 +12,22 @@ import business.student.registration.Student;
 import business.student.registration.StudentDirectory;
 import business.useraccount.UserAccount;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -75,18 +87,21 @@ public class postSellingProduct extends javax.swing.JPanel {
         comboCondition = new javax.swing.JComboBox<>();
         lblQuantityCheck = new javax.swing.JLabel();
         Edit = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        lblUploadImage = new javax.swing.JLabel();
+        btnUploadImage = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
         tblProductList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Product Name", "Address", "price", "Condition", "Comment"
+                "Product Name", "Address", "price", "Condition", "Category", "Comment"
             }
         ));
         jScrollPane1.setViewportView(tblProductList);
@@ -164,10 +179,21 @@ public class postSellingProduct extends javax.swing.JPanel {
         lblQuantityCheck.setForeground(new java.awt.Color(204, 204, 204));
         lblQuantityCheck.setText("Quantity Check");
 
-        Edit.setText("jButton1");
+        Edit.setText("edit");
         Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Upload Image");
+
+        lblUploadImage.setText("upload Image");
+
+        btnUploadImage.setText("Choose Image");
+        btnUploadImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUploadImageActionPerformed(evt);
             }
         });
 
@@ -176,46 +202,51 @@ public class postSellingProduct extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(122, 122, 122)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addGap(54, 54, 54)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9))
-                                .addGap(54, 54, 54)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtProductName)
-                                    .addComponent(txtPrice)
-                                    .addComponent(txtQuantity)
-                                    .addComponent(txtContactEmail)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(txtComment)
-                                    .addComponent(comboCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboCondition, 0, 217, Short.MAX_VALUE))
+                                .addComponent(btnPost)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnUpdate)
+                                .addGap(18, 18, 18)
+                                .addComponent(Edit)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtContactEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(txtComment, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboCategory, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboCondition, javax.swing.GroupLayout.Alignment.LEADING, 0, 217, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblUploadImage)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(lblPriceCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
-                                        .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(308, 308, 308)
-                        .addComponent(btnPost)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnUpdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(Edit)
-                        .addGap(0, 1, Short.MAX_VALUE)))
+                                        .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                 .addGap(138, 138, 138))
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -266,12 +297,17 @@ public class postSellingProduct extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(lblUploadImage)
+                    .addComponent(btnUploadImage))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPost)
                     .addComponent(btnUpdate)
                     .addComponent(Edit))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
@@ -294,6 +330,10 @@ public class postSellingProduct extends javax.swing.JPanel {
         p.setAddress(txtAreaAddress.getText());
         p.setContactEmail(email);
         p.setContidion(comboCondition.getItemAt(0));
+        
+        
+        
+    
         
         
        
@@ -408,14 +448,63 @@ public class postSellingProduct extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_EditActionPerformed
 
+    private void btnUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadImageActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser filechooser = new JFileChooser();
+    filechooser.setDialogTitle("Choose Your File");
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("4 extentions supported", "jpg", "png", "jpeg", "gif");
+    int selected =  filechooser.showOpenDialog(this);
+    if(selected==JFileChooser.APPROVE_OPTION){
+    File file = filechooser.getSelectedFile();
+    String getSelectedImage = file.getAbsolutePath();
+    JOptionPane.showConfirmDialog(null, getSelectedImage);
+    ImageIcon imIcon = new ImageIcon(getSelectedImage);
+    Image image = imIcon.getImage(); // transform it 
+Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
+ImageIcon imICon2 = new ImageIcon(newimg);
+    lblUploadImage.setIcon(imICon2);
+    
+    //upload file in folder
+    
+    String newPath = "/Users/mayurimore/NetBeansProjects/Final_Project/Images/";
+    
+             
+    File directory = new File(newPath);
+    if(!directory.exists()){
+    directory.mkdirs();
+    }
+    
+    File sourceFile = null;
+    File destinationFile = null;
+    String extension = getSelectedImage.substring(getSelectedImage.lastIndexOf('.' + 1));
+    sourceFile = new File(getSelectedImage);
+    destinationFile = new File(newPath  + extension);
+    
+            try {
+                Files.copy(sourceFile.toPath(), destinationFile.toPath());
+            } catch (IOException ex) {
+                Logger.getLogger(postSellingProduct.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          //  System.out.println(sourceFile.toPath());
+          //  System.out.println(destinationFile.toPath());
+            
+            
+    
+    
+    }
+    }//GEN-LAST:event_btnUploadImageActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Edit;
     private javax.swing.JButton btnPost;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUploadImage;
     private javax.swing.JComboBox<String> comboCategory;
     private javax.swing.JComboBox<String> comboCondition;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -429,6 +518,7 @@ public class postSellingProduct extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblPriceCheck;
     private javax.swing.JLabel lblQuantityCheck;
+    private javax.swing.JLabel lblUploadImage;
     private javax.swing.JTable tblProductList;
     private javax.swing.JTextArea txtAreaAddress;
     private javax.swing.JTextField txtComment;
@@ -461,13 +551,14 @@ public class postSellingProduct extends javax.swing.JPanel {
             System.out.print(userAccount.getStudent().getEmailAddress());
             foundDirectory = directory.get(userAccount.getStudent().getEmailAddress());
             for (Purchase p : foundDirectory) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[6];
 
                 row[0] = p.getProductName();
                 row[1] = p.getAddress();
                 row[2] = p.getPrice();
                 row[3] = p.getContidion();
-                row[4] = p.getComment();
+                row[4] = p.getCategory();
+                row[5] = p.getComment();
                 model.addRow(row);
         }
         }
