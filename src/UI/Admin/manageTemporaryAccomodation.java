@@ -91,17 +91,17 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
 
         tblTemporaryPosts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Price Per Day", "Host Name", "Address", "Status", "Comments"
+                "Price Per Day", "Host Name", "Address", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -472,12 +472,11 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
 
         for (ArrayList<Temporary> terArr : directory.values()) {
             for (Temporary t : terArr) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[4];
                 row[0] = t;
                 row[1] = t.getHostName();
                 row[2] = t.getAddress();
                 row[3] = t.getStatusOfPost();
-                row[4] = t.getComment();
                 model.addRow(row);
             }
         }

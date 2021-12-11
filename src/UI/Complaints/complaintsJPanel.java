@@ -537,6 +537,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                 lblPermFacilities.setText(null);
                 lblPermRent.setText(null);
                 lblPermTotalPpl.setText(null);
+                txtPermComment.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter the comments first");
                 return;

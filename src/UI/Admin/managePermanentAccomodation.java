@@ -96,17 +96,17 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
 
         tblAccomodationPosts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Distance from University", "Host Name", "Address", "Status", "Comment"
+                "Distance from University", "Host Name", "Address", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -493,12 +493,11 @@ private void populateTable() {
 
         for (ArrayList<Permanent> perArr : directory.values()) {
             for (Permanent p : perArr) {
-                Object[] row = new Object[5];
+                Object[] row = new Object[4];
                 row[0] = p;
                 row[1] = p.getHostName();
                 row[2] = p.getAddress();
                 row[3] = p.getStatusOfPost();
-                row[4] = p.getComment();
                 model.addRow(row);
             }
         }

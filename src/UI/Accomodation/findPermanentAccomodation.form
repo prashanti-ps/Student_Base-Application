@@ -20,7 +20,7 @@
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                       <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -73,9 +73,12 @@
                                                   <Component id="jLabel9" max="32767" attributes="0"/>
                                                   <Component id="jLabel8" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="jLabel13" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel13" max="32767" attributes="0"/>
+                                                  <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="btnConnectHost" min="-2" max="-2" attributes="0"/>
@@ -109,7 +112,7 @@
                       <Component id="jScrollPane4" min="-2" pref="658" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="256" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
