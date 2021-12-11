@@ -24,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author prashantii_s
  */
-
 public class manageComplaintManagement extends javax.swing.JPanel {
 
     /**
@@ -37,14 +36,14 @@ public class manageComplaintManagement extends javax.swing.JPanel {
     PermanentDirectory permanentDirectory;
     Temporary temp;
     Permanent per;
-    
+
     public manageComplaintManagement(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.ecosystem=ecosystem;
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
         this.userAccount = userAccount;
-        this.temporaryDirectory=ecosystem.getTemporaryDirectory();
-        this.permanentDirectory=ecosystem.getPermanentDirectory();
+        this.temporaryDirectory = ecosystem.getTemporaryDirectory();
+        this.permanentDirectory = ecosystem.getPermanentDirectory();
     }
 
     /**
@@ -189,17 +188,17 @@ public class manageComplaintManagement extends javax.swing.JPanel {
 
         tblAdminComplaintTemp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Complaint Against", "Comments", "Status"
+                "Price Per Day", "Complaint Against", "Comments", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -299,17 +298,17 @@ public class manageComplaintManagement extends javax.swing.JPanel {
 
         tblAdminComplaintPer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Complaint Against", "Comments", "Status"
+                "Rent", "Complaint Against", "Comments", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -443,122 +442,136 @@ public class manageComplaintManagement extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void adminComplaintManagementTabStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_adminComplaintManagementTabStateChanged
-       if(adminComplaintManagementTab.getSelectedIndex()==2){
-         populateTemporaryAccomodtionComplaintsTable();
-         initTempListerners();
+        if (adminComplaintManagementTab.getSelectedIndex() == 2) {
+            populateTemporaryAccomodtionComplaintsTable();
+            initTempListerners();
         }
-        if(adminComplaintManagementTab.getSelectedIndex()==3){
-         populatePermanentAccomodtionComplaintsTable();
-         initPermListerners();
+        if (adminComplaintManagementTab.getSelectedIndex() == 3) {
+            populatePermanentAccomodtionComplaintsTable();
+            initPermListerners();
         }
     }//GEN-LAST:event_adminComplaintManagementTabStateChanged
 
     private void btnAdminComplaintTempDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminComplaintTempDeleteActionPerformed
-       int selectedRow = tblAdminComplaintTemp.getSelectedRow();
-         if(selectedRow<0){
+        int selectedRow = tblAdminComplaintTemp.getSelectedRow();
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a post to delete");
             return;
-        }else{
-              temp = (Temporary) tblAdminComplaintTemp.getValueAt(selectedRow, 0);
-              temporaryDirectory.deleteObject(temp);
-              JOptionPane.showMessageDialog(null, "Post Deleted!");
-              populateTemporaryAccomodtionComplaintsTable();     
+        } else {
+            temp = (Temporary) tblAdminComplaintTemp.getValueAt(selectedRow, 0);
+            temporaryDirectory.deleteObject(temp);
+            JOptionPane.showMessageDialog(null, "Post Deleted!");
+            populateTemporaryAccomodtionComplaintsTable();
+            lblTempAddress.setText(null);
+            lblTempContact.setText(null);
+            lblTempDistance.setText(null);
+            lblTempFacilities.setText(null);
+            lblTempOccupancy.setText(null);
+            lblTempPrice.setText(null);
 
-             }
+        }
     }//GEN-LAST:event_btnAdminComplaintTempDeleteActionPerformed
 
     private void btnAdminComplaintPermDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminComplaintPermDeleteActionPerformed
-         int selectedRow = tblAdminComplaintPer.getSelectedRow();
-         if(selectedRow<0){
+        int selectedRow = tblAdminComplaintPer.getSelectedRow();
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a post to delete");
             return;
-        }else{
-              per = (Permanent) tblAdminComplaintPer.getValueAt(selectedRow, 0);
-              permanentDirectory.deleteObject(per);
-              JOptionPane.showMessageDialog(null, "Post Deleted!");
-              populatePermanentAccomodtionComplaintsTable();     
-
-             }
+        } else {
+            per = (Permanent) tblAdminComplaintPer.getValueAt(selectedRow, 0);
+            permanentDirectory.deleteObject(per);
+            JOptionPane.showMessageDialog(null, "Post Deleted!");
+            populatePermanentAccomodtionComplaintsTable();
+            lblPermAddress.setText(null);
+            lblPermContact.setText(null);
+            lblPermFacilities.setText(null);
+            lblPermRent.setText(null);
+            lblPermTotalPpl.setText(null);
+        }
     }//GEN-LAST:event_btnAdminComplaintPermDeleteActionPerformed
 
     private void btnBackComplaintManagementAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackComplaintManagementAdminActionPerformed
-         adminDashboard adminDashboardPanel = new adminDashboard(userProcessContainer, userAccount, ecosystem);
+        adminDashboard adminDashboardPanel = new adminDashboard(userProcessContainer, userAccount, ecosystem);
         userProcessContainer.add("adminDashboardPanel", adminDashboardPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackComplaintManagementAdminActionPerformed
- private void populateTemporaryAccomodtionComplaintsTable() {
+    private void populateTemporaryAccomodtionComplaintsTable() {
         DefaultTableModel model = (DefaultTableModel) tblAdminComplaintTemp.getModel();
         model.setRowCount(0);
-        String contact="";
-         Object[] row = new Object[3];
-         Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
-        for(String key: latestDirectory.keySet()){
-         for(Temporary value : latestDirectory.get(key)) {
-             if(value.getStatusOfPost().equals("Delete")){
-                    contact=key;
-                    row[0] = value.getHostName();
-                    row[1] = value.getComment();
-                    row[2] = value.getStatusOfPost();
+        String contact = "";
+        Object[] row = new Object[4];
+        Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
+        for (String key : latestDirectory.keySet()) {
+            for (Temporary value : latestDirectory.get(key)) {
+                if (value.getStatusOfPost().equals("Delete")) {
+                    contact = key;
+                    row[0] = value;
+                    row[1] = value.getHostName();
+                    row[2] = value.getComment();
+                    row[3] = value.getStatusOfPost();
                     model.addRow(row);
-             }
-         }
+                }
+            }
         }
     }
- 
-  private void populatePermanentAccomodtionComplaintsTable() {
+
+    private void populatePermanentAccomodtionComplaintsTable() {
         DefaultTableModel model = (DefaultTableModel) tblAdminComplaintPer.getModel();
         model.setRowCount(0);
-        String contact="";
-         Object[] row = new Object[3];
-         Map<String, ArrayList<Permanent>> latestDirectory = permanentDirectory.getPermanentDirectory();
-        for(String key: latestDirectory.keySet()){
-         for(Permanent value : latestDirectory.get(key)) {
-             if(value.getStatusOfPost().equals("Delete")){
-                    contact=key;
-                    row[0] = value.getHostName();
-                    row[1] = value.getStatusOfPost();
-                    row[2] = value.getStatusOfPost();
+        String contact = "";
+        Object[] row = new Object[4];
+        Map<String, ArrayList<Permanent>> latestDirectory = permanentDirectory.getPermanentDirectory();
+        for (String key : latestDirectory.keySet()) {
+            for (Permanent value : latestDirectory.get(key)) {
+                if (value.getStatusOfPost().equals("Delete")) {
+                    contact = key;
+                    row[0] = value;
+                    row[1] = value.getHostName();
+                    row[2] = value.getComment();
+                    row[3] = value.getStatusOfPost();
                     model.addRow(row);
+                }
             }
-         }
         }
     }
-private void initTempListerners() {
+
+    private void initTempListerners() {
         tblAdminComplaintTemp.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
                 int selectedRow = tblAdminComplaintTemp.getSelectedRow();
                 if (selectedRow >= 0) {
-                    Temporary temp = (Temporary) tblAdminComplaintTemp.getValueAt(selectedRow, 0);                      
-                        if(null != temp){
-                            lblTempAddress.setText(temp.getAddress().trim());
-                            lblTempContact.setText(temp.getContact().trim());
-                            lblTempDistance.setText(String.valueOf(temp.getDistanceFromUniversity()));
-                            lblPermFacilities.setText(temp.getFacilities().trim());
-                            lblTempOccupancy.setText(String.valueOf(temp.getOccupancyFor()));
-                            lblTempPrice.setText(String.valueOf(temp.getPricePerDay()));
-                            
-                        }  
-                 
+                    Temporary temp = (Temporary) tblAdminComplaintTemp.getValueAt(selectedRow, 0);
+                    if (null != temp) {
+                        lblTempAddress.setText(temp.getAddress().trim());
+                        lblTempContact.setText(temp.getContact().trim());
+                        lblTempDistance.setText(String.valueOf(temp.getDistanceFromUniversity()));
+                        lblTempFacilities.setText(temp.getFacilities().trim());
+                        lblTempOccupancy.setText(String.valueOf(temp.getOccupancyFor()));
+                        lblTempPrice.setText(String.valueOf(temp.getPricePerDay()));
+
+                    }
+
                 }
             }
         });
     }
- private void initPermListerners() {
+
+    private void initPermListerners() {
         tblAdminComplaintPer.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
                 int selectedRow = tblAdminComplaintPer.getSelectedRow();
                 if (selectedRow >= 0) {
-                    Permanent per = (Permanent) tblAdminComplaintPer.getValueAt(selectedRow, 0);                      
-                      if(null != per){
-                            lblPermAddress.setText(per.getAddress().trim());
-                            lblPermContact.setText(per.getContact().trim());
-                            lblPermFacilities.setText(per.getFacilities().trim());
-                            lblPermRent.setText(String.valueOf(per.getRent()));
-                            lblPermTotalPpl.setText(String.valueOf(per.getTotalPeopleInHouse()));
-                            
-                        }       
-                 
+                    Permanent per = (Permanent) tblAdminComplaintPer.getValueAt(selectedRow, 0);
+                    if (null != per) {
+                        lblPermAddress.setText(per.getAddress().trim());
+                        lblPermContact.setText(per.getContact().trim());
+                        lblPermFacilities.setText(per.getFacilities().trim());
+                        lblPermRent.setText(String.valueOf(per.getRent()));
+                        lblPermTotalPpl.setText(String.valueOf(per.getTotalPeopleInHouse()));
+
+                    }
+
                 }
             }
         });

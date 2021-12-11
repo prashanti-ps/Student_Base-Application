@@ -27,20 +27,20 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private EcoSystem system;
-
+    
     private DB4OUtil db4OUtil = DB4OUtil.getInstance();
     UserAccount userAccount;
-
+    
     JPanel userProcessContainer;
-
+    
     public MainJFrame() {
-         this.setUndecorated(true);
-           this.setSize(1680, 1050);
+        this.setUndecorated(true);
+        this.setSize(1680, 1050);
         system = db4OUtil.retrieveSystem();
         initComponents();
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -197,29 +197,28 @@ public class MainJFrame extends javax.swing.JFrame {
         String userName = txtUsername.getText();
         char[] passwordEncoded = txtPasswordField.getPassword();
         String password = String.valueOf(passwordEncoded);
-
+        
         userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
-
+        
         if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
         } else {
-
+            
             txtUsername.setText(null);
             txtPasswordField.setText(null);
             switchPanels(userAccount);
         }
-      
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentActionPerformed
-
+        
         studentRegistrationJPanel registrationPanel = new studentRegistrationJPanel(ContainerPanel, userAccount, system);
         ContainerPanel.add(registrationPanel);
         CardLayout layout = (CardLayout) ContainerPanel.getLayout();
         layout.next(ContainerPanel);
         db4OUtil.storeSystem(system);
-       
         
 
     }//GEN-LAST:event_btnRegisterStudentActionPerformed
@@ -229,17 +228,20 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-      db4OUtil.storeSystem(system);
-     // ContainerPanel.removeAll();
+        db4OUtil.storeSystem(system);
+        // ContainerPanel.removeAll();
+        lblHello.setText(null);
+        txtUsername.setText(null);
+        txtPasswordField.setText(null);
         HomeJPanel HomeJPanel1 = new HomeJPanel();
         ContainerPanel.add(HomeJPanel1);
         CardLayout layout = (CardLayout) ContainerPanel.getLayout();
         layout.next(ContainerPanel);
-      
+        
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-       db4OUtil.storeSystem(system);
+        db4OUtil.storeSystem(system);
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
     private void switchPanels(UserAccount userAccount) {
@@ -251,8 +253,7 @@ public class MainJFrame extends javax.swing.JFrame {
             } else if (("class " + userAccount.getRole().toString()).equals(ComplaintManagerRole.class.toString())) {
                 hello = "Hello " + userAccount.getCm().getName();
                 ContainerPanel.add("workArea", userAccount.getRole().createWorkArea(ContainerPanel, userAccount, system));
-            }
-            else if (("class " + userAccount.getRole().toString()).equals(StudentRole.class.toString())) {
+            } else if (("class " + userAccount.getRole().toString()).equals(StudentRole.class.toString())) {
                 hello = "Hello " + userAccount.getStudent().getFirstName();
                 ContainerPanel.add("workArea", userAccount.getRole().createWorkArea(ContainerPanel, userAccount, system));
             }
@@ -260,7 +261,7 @@ public class MainJFrame extends javax.swing.JFrame {
             CardLayout layout = (CardLayout) ContainerPanel.getLayout();
             layout.next(ContainerPanel);
         }
-
+        
     }
 
     /**
