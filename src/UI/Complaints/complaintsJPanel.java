@@ -35,16 +35,18 @@ public class complaintsJPanel extends javax.swing.JPanel {
     PermanentDirectory permanentDirectory;
     Temporary temp;
     Permanent per;
+
     public complaintsJPanel() {
-        
+
     }
-    public complaintsJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem){
+
+    public complaintsJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.ecosystem=ecosystem;
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
         this.userAccount = userAccount;
-        this.temporaryDirectory=ecosystem.getTemporaryDirectory();
-        this.permanentDirectory=ecosystem.getPermanentDirectory();
+        this.temporaryDirectory = ecosystem.getTemporaryDirectory();
+        this.permanentDirectory = ecosystem.getPermanentDirectory();
     }
 
     /**
@@ -129,7 +131,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
             .addGroup(sellingComplaintsJPanelLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         sellingComplaintsJPanelLayout.setVerticalGroup(
             sellingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +163,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
             .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         buyingComplaintsJPanelLayout.setVerticalGroup(
             buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,17 +177,17 @@ public class complaintsJPanel extends javax.swing.JPanel {
 
         TempComplaintsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Complaint Against", "Comment", "Status"
+                "Price Per Day", "Complaint Against", "Comment", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -238,24 +240,24 @@ public class complaintsJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel2)
                             .addComponent(jLabel18)
                             .addComponent(jLabel4))
-                        .addGap(54, 54, 54)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTempAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                                    .addComponent(lblTempAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblTempPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblTempFacilities, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(169, 169, 169))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(txtTempComment, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                                 .addComponent(tempSendToAdmin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnTempOK)
                                 .addGap(14, 14, 14))
                             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
-                                .addGap(97, 97, 97)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                                         .addComponent(jLabel5)
@@ -270,7 +272,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                                         .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                                                 .addComponent(lblTempDistance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(47, 47, 47))
+                                                .addContainerGap(305, Short.MAX_VALUE))
                                             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                                                 .addComponent(lblTempOccupancy, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))))
@@ -280,19 +282,19 @@ public class complaintsJPanel extends javax.swing.JPanel {
             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
                     .addComponent(lblTempAddress)
                     .addComponent(lblTempContact))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
                     .addComponent(lblTempFacilities)
                     .addComponent(lblTempDistance))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7)
@@ -313,17 +315,17 @@ public class complaintsJPanel extends javax.swing.JPanel {
 
         PermanentComplaintsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Complaint against", "Comments", "Status"
+                "Rent", "Complaint against", "Comments", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -369,7 +371,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel13)
                         .addGap(26, 26, 26)
                         .addComponent(txtPermComment, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                         .addComponent(PermSendToAdminbtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPermOk)
@@ -449,14 +451,13 @@ public class complaintsJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(350, 350, 350)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ComplaintManagerTab, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGap(350, 350, 350)
+                .addComponent(jLabel1)
+                .addContainerGap(431, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ComplaintManagerTab, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,154 +473,181 @@ public class complaintsJPanel extends javax.swing.JPanel {
     private void populateTemporaryAccomodtionComplaintsTable() {
         DefaultTableModel model = (DefaultTableModel) TempComplaintsTable.getModel();
         model.setRowCount(0);
-        String contact="";
-         Object[] row = new Object[3];
-         Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
-        for(String key: latestDirectory.keySet()){
-         for(Temporary value : latestDirectory.get(key)) {
-             if(value.getStatusOfPost().equals("reported")){
-                    contact=key;
-                    row[0] = value.getHostName();
-                    row[1] = value.getComment();
-                    row[2] = value.getStatusOfPost();
+        String contact = "";
+        Object[] row = new Object[4];
+        Map<String, ArrayList<Temporary>> latestDirectory = temporaryDirectory.getTemporaryDirectory();
+        for (String key : latestDirectory.keySet()) {
+            for (Temporary value : latestDirectory.get(key)) {
+                if (value.getStatusOfPost().equals("Reported")) {
+                    contact = key;
+                    row[0] = value;
+                    row[1] = value.getHostName();
+                    row[2] = value.getComment();
+                    row[3] = value.getStatusOfPost();
                     model.addRow(row);
-             }
-         }
+                }
+            }
         }
     }
-     private void populatePermanentAccomodtionComplaintsTable() {
+
+    private void populatePermanentAccomodtionComplaintsTable() {
         DefaultTableModel model = (DefaultTableModel) PermanentComplaintsTable.getModel();
         model.setRowCount(0);
-        String contact="";
-         Object[] row = new Object[3];
-         Map<String, ArrayList<Permanent>> latestDirectory = permanentDirectory.getPermanentDirectory();
-        for(String key: latestDirectory.keySet()){
-         for(Permanent value : latestDirectory.get(key)) {
-             if(value.getStatusOfPost().equals("reported")){
-                    contact=key;
-                    row[0] = value.getHostName();
-                    row[1] = value.getStatusOfPost();
-                    row[2] = value.getStatusOfPost();
+        String contact = "";
+        Object[] row = new Object[4];
+        Map<String, ArrayList<Permanent>> latestDirectory = permanentDirectory.getPermanentDirectory();
+        for (String key : latestDirectory.keySet()) {
+            for (Permanent value : latestDirectory.get(key)) {
+                if (value.getStatusOfPost().equals("Reported")) {
+                    contact = key;
+                    row[0] = value;
+                    row[1] = value.getHostName();
+                    row[2] = value.getComment();
+                    row[3] = value.getStatusOfPost();
                     model.addRow(row);
+                }
             }
-         }
         }
     }
     private void ComplaintManagerTabStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ComplaintManagerTabStateChanged
-        if(ComplaintManagerTab.getSelectedIndex()==2){
-         populateTemporaryAccomodtionComplaintsTable();
-         initTempListerners();
+        if (ComplaintManagerTab.getSelectedIndex() == 2) {
+            populateTemporaryAccomodtionComplaintsTable();
+            initTempListerners();
         }
-        if(ComplaintManagerTab.getSelectedIndex()==3){
-         populatePermanentAccomodtionComplaintsTable();
-         initPermListerners();
+        if (ComplaintManagerTab.getSelectedIndex() == 3) {
+            populatePermanentAccomodtionComplaintsTable();
+            initPermListerners();
         }
     }//GEN-LAST:event_ComplaintManagerTabStateChanged
 
     private void PermSendToAdminbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PermSendToAdminbtnActionPerformed
-      int selectedRow = PermanentComplaintsTable.getSelectedRow();
-         if(selectedRow<0){
+        int selectedRow = PermanentComplaintsTable.getSelectedRow();
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a post to send");
             return;
-        }else{
-              if(txtPermComment.getText().trim()!=null && txtPermComment.getText().trim()!=""){
-              per = (Permanent) PermanentComplaintsTable.getValueAt(selectedRow, 0);
-              per.setStatusOfPost("Delete");
-              temp.setComment("From Complaint Manager: "+ txtPermComment.getText().trim());
-              JOptionPane.showMessageDialog(null, "Admin will delete the post!");
-              populatePermanentAccomodtionComplaintsTable();
-              }
-              else{
-                 JOptionPane.showMessageDialog(null, "Please enter the comments first");
-            return;
-             }
-         }
+        } else {
+            if (txtPermComment.getText().trim() != null && txtPermComment.getText().trim() != "") {
+                per = (Permanent) PermanentComplaintsTable.getValueAt(selectedRow, 0);
+                per.setStatusOfPost("Delete");
+                per.setComment("From Complaint Manager: " + txtPermComment.getText().trim());
+                JOptionPane.showMessageDialog(null, "Admin will delete the post!");
+                populatePermanentAccomodtionComplaintsTable();
+                lblPermAddress.setText(null);
+                lblPermContact.setText(null);
+                lblPermFacilities.setText(null);
+                lblPermRent.setText(null);
+                lblPermTotalPpl.setText(null);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter the comments first");
+                return;
+            }
+        }
     }//GEN-LAST:event_PermSendToAdminbtnActionPerformed
 
     private void tempSendToAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempSendToAdminActionPerformed
-       int selectedRow = TempComplaintsTable.getSelectedRow();
-         if(selectedRow<0){
+        int selectedRow = TempComplaintsTable.getSelectedRow();
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a post to send");
             return;
-        }else{
-             if(txtTempComment.getText().trim()!=null && txtTempComment.getText().trim()!=""){
-              temp = (Temporary) TempComplaintsTable.getValueAt(selectedRow, 0);
-              temp.setStatusOfPost("Delete");
-              temp.setComment("From Complaint Manager: "+ txtTempComment.getText().trim());
-              JOptionPane.showMessageDialog(null, "Admin will delete the post!");
-              populateTemporaryAccomodtionComplaintsTable();
-             }
-             else{
-                 JOptionPane.showMessageDialog(null, "Please enter the comments first");
-            return;
-             }
-             }
+        } else {
+            if (null != txtTempComment.getText().trim() && !txtTempComment.getText().trim().equals("")) {
+                temp = (Temporary) TempComplaintsTable.getValueAt(selectedRow, 0);
+                temp.setStatusOfPost("Delete");
+                temp.setComment("From Complaint Manager: " + txtTempComment.getText().trim());
+                JOptionPane.showMessageDialog(null, "Admin will delete the post!");
+                populateTemporaryAccomodtionComplaintsTable();
+                lblTempAddress.setText(null);
+                lblTempContact.setText(null);
+                lblTempDistance.setText(null);
+                lblTempFacilities.setText(null);
+                lblTempOccupancy.setText(null);
+                lblTempPrice.setText(null);
+                txtTempComment.setText(null);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter the comments first");
+                return;
+            }
+        }
     }//GEN-LAST:event_tempSendToAdminActionPerformed
 
     private void btnTempOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTempOKActionPerformed
-       int selectedRow = TempComplaintsTable.getSelectedRow();
-         if(selectedRow<0){
+        int selectedRow = TempComplaintsTable.getSelectedRow();
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a post");
             return;
-        }else{
-              txtTempComment.setText(null);
-              temp = (Temporary) TempComplaintsTable.getValueAt(selectedRow, 0);
-              temp.setStatusOfPost("Ok");
-              JOptionPane.showMessageDialog(null, "Admin will delete the post!");
-              populateTemporaryAccomodtionComplaintsTable();     
+        } else {
+            txtTempComment.setText(null);
+            temp = (Temporary) TempComplaintsTable.getValueAt(selectedRow, 0);
+            temp.setStatusOfPost("Ok");
+            temp.setComment("");
+            JOptionPane.showMessageDialog(null, "Post will be kept in the list");
+            populateTemporaryAccomodtionComplaintsTable();
+            lblTempAddress.setText(null);
+            lblTempContact.setText(null);
+            lblTempDistance.setText(null);
+            lblTempFacilities.setText(null);
+            lblTempOccupancy.setText(null);
+            lblTempPrice.setText(null);
+            txtTempComment.setText(null);
 
-             }
+        }
     }//GEN-LAST:event_btnTempOKActionPerformed
 
     private void btnPermOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPermOkActionPerformed
         int selectedRow = PermanentComplaintsTable.getSelectedRow();
-         if(selectedRow<0){
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a post");
             return;
-        }else{
-              txtPermComment.setText(null);
-              per = (Permanent) PermanentComplaintsTable.getValueAt(selectedRow, 0);
-              per.setStatusOfPost("Ok");
-              JOptionPane.showMessageDialog(null, "Admin will delete the post!");
-              populateTemporaryAccomodtionComplaintsTable();     
-
-             }
+        } else {
+            txtPermComment.setText(null);
+            per = (Permanent) PermanentComplaintsTable.getValueAt(selectedRow, 0);
+            per.setStatusOfPost("Ok");
+            per.setComment("");
+            JOptionPane.showMessageDialog(null, "Admin will delete the post!");
+            populateTemporaryAccomodtionComplaintsTable();
+            lblPermAddress.setText(null);
+            lblPermContact.setText(null);
+            lblPermFacilities.setText(null);
+            lblPermRent.setText(null);
+            lblPermTotalPpl.setText(null);
+        }
     }//GEN-LAST:event_btnPermOkActionPerformed
-   private void initTempListerners() {
+    private void initTempListerners() {
         TempComplaintsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
                 int selectedRow = TempComplaintsTable.getSelectedRow();
                 if (selectedRow >= 0) {
-                    Temporary temp = (Temporary) TempComplaintsTable.getValueAt(selectedRow, 0);                      
-                        if(null != temp){
-                            lblTempAddress.setText(temp.getAddress().trim());
-                            lblTempContact.setText(temp.getContact().trim());
-                            lblTempDistance.setText(String.valueOf(temp.getDistanceFromUniversity()));
-                            lblTempFacilities.setText(temp.getFacilities().trim());
-                            lblTempOccupancy.setText(String.valueOf(temp.getOccupancyFor()));
-                            lblTempPrice.setText(String.valueOf(temp.getPricePerDay()));
-                            
-                        }  
-                 
+                    Temporary temp = (Temporary) TempComplaintsTable.getValueAt(selectedRow, 0);
+                    if (null != temp) {
+                        lblTempAddress.setText(temp.getAddress().trim());
+                        lblTempContact.setText(temp.getContact().trim());
+                        lblTempDistance.setText(String.valueOf(temp.getDistanceFromUniversity()));
+                        lblTempFacilities.setText(temp.getFacilities().trim());
+                        lblTempOccupancy.setText(String.valueOf(temp.getOccupancyFor()));
+                        lblTempPrice.setText(String.valueOf(temp.getPricePerDay()));
+
+                    }
+
                 }
             }
         });
     }
- private void initPermListerners() {
+
+    private void initPermListerners() {
         PermanentComplaintsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
                 int selectedRow = PermanentComplaintsTable.getSelectedRow();
                 if (selectedRow >= 0) {
-                    Permanent per = (Permanent) PermanentComplaintsTable.getValueAt(selectedRow, 0);                      
-                      if(null != per){
-                            lblPermAddress.setText(per.getAddress().trim());
-                            lblPermContact.setText(per.getContact().trim());
-                            lblPermFacilities.setText(per.getFacilities().trim());
-                            lblPermRent.setText(String.valueOf(per.getRent()));
-                            lblPermTotalPpl.setText(String.valueOf(per.getTotalPeopleInHouse()));
-                            
-                        }       
-                 
+                    Permanent per = (Permanent) PermanentComplaintsTable.getValueAt(selectedRow, 0);
+                    if (null != per) {
+                        lblPermAddress.setText(per.getAddress().trim());
+                        lblPermContact.setText(per.getContact().trim());
+                        lblPermFacilities.setText(per.getFacilities().trim());
+                        lblPermRent.setText(String.valueOf(per.getRent()));
+                        lblPermTotalPpl.setText(String.valueOf(per.getTotalPeopleInHouse()));
+
+                    }
+
                 }
             }
         });
