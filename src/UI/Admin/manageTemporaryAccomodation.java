@@ -129,7 +129,7 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
         jLabel6.setText("Status of Post:");
 
         comboBoxStatus.setEditable(true);
-        comboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rejected", "Ok" }));
+        comboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reported", "Ok" }));
 
         jLabel7.setText("From:");
 
@@ -195,11 +195,6 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBack)
@@ -253,7 +248,12 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                                                 .addGap(66, 66, 66)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))))))))
+                                                    .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(344, 344, 344)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(257, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -307,18 +307,9 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(txtPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnDelete)
-                                    .addComponent(btnSave))
-                                .addContainerGap(432, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblHostName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -331,8 +322,11 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel13))
-                        .addContainerGap())))
+                            .addComponent(jLabel13))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnSave))
+                .addContainerGap(456, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -419,10 +413,11 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
             lblContact.setText(t.getContact());
             txtFromDate.setText(t.getFromDate().toString());
             txtToDate.setText(t.getToDate().toString());
+            txtOccupancyFor.setText(String.valueOf(t.getOccupancyFor()));
             txtAreaAddress.setText(t.getAddress());
             txtAreaFacilities.setText(t.getFacilities());
             txtPricePerDay.setText(String.valueOf(t.getPricePerDay()));
-            comboBoxStatus.addItem(t.getStatusOfAccomodation());
+            comboBoxStatus.addItem(t.getStatusOfPost());
             txtDistance.setText(String.valueOf(t.getDistanceFromUniversity()));
             txtComments.setText(t.getComment());
 
@@ -473,11 +468,11 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tblTemporaryPosts.getModel();
         model.setRowCount(0);
-        Map<String, ArrayList<Temporary>> directory = temporaryDirectory.getTemporaryDirectory();
+        Map<String, ArrayList<Temporary>> directory = ecosystem.getTemporaryDirectory().getTemporaryDirectory();
 
         for (ArrayList<Temporary> terArr : directory.values()) {
             for (Temporary t : terArr) {
-                Object[] row = new Object[3];
+                Object[] row = new Object[5];
                 row[0] = t;
                 row[1] = t.getHostName();
                 row[2] = t.getAddress();
