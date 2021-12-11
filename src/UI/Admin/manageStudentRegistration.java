@@ -5,14 +5,22 @@
  */
 package UI.Admin;
 
+import business.EcoSystem;
 import static business.role.Role.RoleType.Student;
 import business.student.accomodation.Permanent;
+import business.student.accomodation.PermanentDirectory;
+import business.student.accomodation.Temporary;
+import business.student.accomodation.TemporaryDirectory;
 import business.student.registration.Student;
 import business.student.registration.StudentDirectory;
+import business.useraccount.UserAccount;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,36 +28,59 @@ import javax.swing.table.DefaultTableModel;
  * @author mayurimore
  */
 public class manageStudentRegistration extends javax.swing.JPanel {
-//kugiygygyigi
+
     /**
      * Creates new form manageStudentRegistration
      */
-    DefaultTableModel model;
-    JSplitPane jSplitPane1;
-    StudentDirectory studentHistory;
-    Student student;
-    public manageStudentRegistration(JSplitPane jSplitPane1, StudentDirectory studentHistory) {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount userAccount;
+    StudentDirectory studentDirectory;
+
+    public manageStudentRegistration(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
-        this.jSplitPane1 = jSplitPane1;
-        this.studentHistory = studentHistory;
-        
-        ArrayList<Student> studentList = studentHistory.getHistory();
-        
-      
-       
-        tblRegistrationRequest.setModel(model);
-        
-        model.addColumn("First Name");
-        model.addColumn("Last NAmne");
-        model.addColumn("Email ID");
-        model.addColumn("Proof");
-        model.addColumn("Status");
-        
-        
-        viewRequestList(studentList);
+
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = business;
+        this.userAccount = account;
+        this.studentDirectory = ecosystem.getStudentDirectory();
+        populateStudentsTable();
+        initStudentListerners();
     }
-    
-    
+
+    private void populateStudentsTable() {
+        DefaultTableModel model = (DefaultTableModel) tblStudents.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[3];
+        ArrayList<Student> studentList = studentDirectory.getStudentList();
+        for (Student value : studentList) {
+            row[0] = value;
+            row[1] = value.getEmailAddress();
+            row[2] = value.getPassword();
+            model.addRow(row);
+
+        }
+
+    }
+
+    private void initStudentListerners() {
+        tblStudents.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblStudents.getSelectedRow();
+                if (selectedRow >= 0) {
+                    Student student = (Student) tblStudents.getValueAt(selectedRow, 0);
+                    if (null != student) {
+                        txtEmailId.setText(student.getEmailAddress());
+                        txtFirstName.setText(student.getFirstName());
+                        txtLastName.setText(student.getLastName());
+                        txtPassword.setText(student.getPassword());
+                        btnStudentUpdate.setEnabled(true);
+                    }
+
+                }
+            }
+        });
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,30 +93,81 @@ public class manageStudentRegistration extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRegistrationRequest = new javax.swing.JTable();
-        btnViewRequests = new javax.swing.JButton();
+        tblStudents = new javax.swing.JTable();
+        btnDeleteStudent = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnStudentUpdate = new javax.swing.JButton();
+        txtFirstName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
+        txtEmailId = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Manage Student Registration");
+        jLabel1.setText("Manage Students");
 
-        tblRegistrationRequest.setModel(new javax.swing.table.DefaultTableModel(
+        tblStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Email", "Password"
             }
-        ));
-        jScrollPane1.setViewportView(tblRegistrationRequest);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        btnViewRequests.setText("View Requests");
-        btnViewRequests.addActionListener(new java.awt.event.ActionListener() {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblStudents);
+
+        btnDeleteStudent.setText("Delete");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewRequestsActionPerformed(evt);
+                btnDeleteStudentActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Students Registered:");
+
+        jLabel3.setText("First Name:");
+
+        jLabel4.setText("Last Name:");
+
+        jLabel5.setText("Email Id:");
+
+        jLabel6.setText("Password:");
+
+        btnStudentUpdate.setText("Update");
+        btnStudentUpdate.setEnabled(false);
+        btnStudentUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudentUpdateActionPerformed(evt);
+            }
+        });
+
+        txtLastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLastNameActionPerformed(evt);
+            }
+        });
+
+        txtEmailId.setEditable(false);
+        txtEmailId.setEnabled(false);
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
             }
         });
 
@@ -95,66 +177,145 @@ public class manageStudentRegistration extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addComponent(btnViewRequests)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                    .addComponent(txtEmailId)
+                    .addComponent(txtPassword))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnDeleteStudent)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(183, 183, 183)
+                .addComponent(btnStudentUpdate)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtEmailId, txtFirstName, txtLastName, txtPassword});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnViewRequests)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeleteStudent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnStudentUpdate)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
-        // TODO add your handling code here:
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+        int selectedRow = tblStudents.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a student to delete");
+            return;
+        } else {
+            Student student = (Student) tblStudents.getValueAt(selectedRow, 0);
+           
+            ArrayList<UserAccount> userAccountList ;
+            userAccountList=ecosystem.getUserAccountDirectory().getUserAccountList();
+                  for (UserAccount value : userAccountList) {
+                      if(value.getUsername().equals(txtEmailId.getText().trim())){
+                         ecosystem.getUserAccountDirectory().deleteUserAccount(value);
+                         break;
+                      }
+                  }
+            studentDirectory.deleteStudent(student);
+          
+            populateStudentsTable();
+            txtEmailId.setText(null);
+            txtFirstName.setText(null);
+            txtLastName.setText(null);
+            txtPassword.setText(null);
+            btnStudentUpdate.setEnabled(false);
+              JOptionPane.showMessageDialog(null, "Student account Deleted");
         
-    
-    }//GEN-LAST:event_btnViewRequestsActionPerformed
+
+        }
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
+
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastNameActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnStudentUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentUpdateActionPerformed
+        int selectedRow = tblStudents.getSelectedRow();
+         ArrayList<UserAccount> userAccountList ;
+        if (selectedRow >= 0) {
+            Student student = (Student) tblStudents.getValueAt(selectedRow, 0);
+            if (null != student) {
+                student.setEmailAddress(txtEmailId.getText());
+                student.setFirstName(txtFirstName.getText());
+                student.setLastName(txtLastName.getText());
+                student.setPassword(txtPassword.getText());
+                userAccountList=ecosystem.getUserAccountDirectory().getUserAccountList();
+                  for (UserAccount value : userAccountList) {
+                      if(value.getUsername().equals(student.getEmailAddress())){
+                          value.setPassword(student.getPassword());
+                      }
+
+        }
+                JOptionPane.showMessageDialog(null, "Student Details Updated");
+                populateStudentsTable();
+            }
+        }
+    }//GEN-LAST:event_btnStudentUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnViewRequests;
+    private javax.swing.JButton btnDeleteStudent;
+    private javax.swing.JButton btnStudentUpdate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblRegistrationRequest;
+    private javax.swing.JTable tblStudents;
+    private javax.swing.JTextField txtEmailId;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 
-
-public void viewRequestList(ArrayList<Student> studentList) {
-    
-        DefaultTableModel model = (DefaultTableModel) tblRegistrationRequest.getModel();
-        model.setRowCount(0);
-        
-        for (Student student : studentList) {
-            
-                Object[] row = new Object[4];
-                row[0] = student;
-                row[1] = student.getFirstName();
-                row[2] = student.getLastName();
-                row[3] = student.getEmailAddress();
-                
-                model.addRow(row);
-            }
-        
-            
-             
-            
-           
-        }
-    }
-
-
-
-
+}
