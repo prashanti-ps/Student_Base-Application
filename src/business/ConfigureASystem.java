@@ -21,8 +21,8 @@ public class ConfigureASystem {
         
        
         
-      Admin admin = system.getAdminDirectory().createAdmin("Prashanti");
-      ComplaintManager cm=system.getComplaintManagerDirectory().createComplaintManager("Pratik");
+      Admin admin = system.getAdminDirectory().createAdmin("Prashanti Admin");
+      ComplaintManager cm=system.getComplaintManagerDirectory().createComplaintManager("Pratik Complaint Manager");
       UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", admin,null,null, new AdminRole());
       UserAccount ua1 = system.getUserAccountDirectory().createUserAccount("complaint", "complaint", null,cm,null, new ComplaintManagerRole());
         

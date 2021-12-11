@@ -62,7 +62,10 @@ public class Student extends UserAccount{
         this.password = password;
     }
     
-    
+     @Override
+    public String toString(){
+        return this.firstName+" " +this.lastName;
+    }
     
     
     
