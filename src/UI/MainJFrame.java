@@ -137,7 +137,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnExit.setBackground(new java.awt.Color(251, 129, 34));
         btnExit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setText("Exit");
+        btnExit.setText("Close");
         btnExit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnExit.setBorderPainted(false);
         btnExit.addActionListener(new java.awt.event.ActionListener() {
