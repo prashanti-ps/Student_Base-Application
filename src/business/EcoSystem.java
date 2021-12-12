@@ -28,7 +28,7 @@ public class EcoSystem extends Organization{
     private EventDirectory eventDirectory;
     private PurchaseDirectory purchaseDirectory;
 
-    public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory, StudentDirectory studentDirectory, PurchaseDirectory purchaseDirectory)
+    public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory, StudentDirectory studentDirectory, EventDirectory eventDirectory,PurchaseDirectory purchaseDirectory)
     {
 
         this.temporaryDirectory = temporaryDirectory;
