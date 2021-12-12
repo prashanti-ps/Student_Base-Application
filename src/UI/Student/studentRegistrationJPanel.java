@@ -297,6 +297,7 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
             txtLastName.setText("");
             txtEmailAddress.setText("");
             txtPassword.setText("");
+            lblPasswordCheck.setText("");
 
         } else {
             if (!isemailVerified) {

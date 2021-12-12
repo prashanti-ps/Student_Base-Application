@@ -16,7 +16,7 @@ public class Event {
     private String location;
     private String statusOfPost;
     private String type;
-    private String hostname;
+    private String hostName;
     private String contact;
     private String date;
     private String capacity;
@@ -79,12 +79,12 @@ public class Event {
         this.type = type;
     }
 
-    public String getHostname() {
-        return hostname;
+    public String getHostName() {
+        return hostName;
     }
 
-    public void setHostname(String hostname) {
-        this.hostname = hostname;
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
     }
 
     public String getContact() {
@@ -119,5 +119,8 @@ public class Event {
         this.entryFee = entryFee;
     }
     
-    
+    @Override
+    public String toString(){
+        return String.valueOf(type);
+    }
 }
