@@ -60,7 +60,7 @@ public class adminDashboard extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnManageBuyingSelling = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(29, 34, 40));
 
@@ -157,9 +157,17 @@ public class adminDashboard extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Student Management");
 
-        jButton1.setBackground(new java.awt.Color(251, 129, 34));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Manage buying and selling");
+        btnManageBuyingSelling.setBackground(new java.awt.Color(251, 129, 34));
+        btnManageBuyingSelling.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnManageBuyingSelling.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageBuyingSelling.setText("Manage buying and selling");
+        btnManageBuyingSelling.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnManageBuyingSelling.setBorderPainted(false);
+        btnManageBuyingSelling.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageBuyingSellingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -191,7 +199,7 @@ public class adminDashboard extends javax.swing.JPanel {
                             .addComponent(btnManagePermanentAccomodation1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(btnManagePermanentAccomodation3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(btnManagePermanentAccomodation2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnManageBuyingSelling, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(313, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -205,12 +213,12 @@ public class adminDashboard extends javax.swing.JPanel {
                 .addComponent(btnManageTemporaryAccomodation, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnManagePermanentAccomodation, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(btnManagePermanentAccomodation1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
-                .addComponent(jButton1)
+                .addComponent(btnManageBuyingSelling)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnManagePermanentAccomodation3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -221,7 +229,7 @@ public class adminDashboard extends javax.swing.JPanel {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(btnStudentRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(531, Short.MAX_VALUE))
+                .addContainerGap(536, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -264,15 +272,23 @@ public class adminDashboard extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnStudentRegistrationActionPerformed
 
+    private void btnManageBuyingSellingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageBuyingSellingActionPerformed
+        // TODO add your handling code here:
+        manageBuyingSelling ManageBuyingSelling=new manageBuyingSelling( userProcessContainer,  userAccount,  ecosystem);
+         userProcessContainer.add("ManageBuyingSelling", ManageBuyingSelling);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageBuyingSellingActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManageBuyingSelling;
     private javax.swing.JButton btnManagePermanentAccomodation;
     private javax.swing.JButton btnManagePermanentAccomodation1;
     private javax.swing.JButton btnManagePermanentAccomodation2;
     private javax.swing.JButton btnManagePermanentAccomodation3;
     private javax.swing.JButton btnManageTemporaryAccomodation;
     private javax.swing.JButton btnStudentRegistration;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

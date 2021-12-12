@@ -293,7 +293,7 @@ public class managePermanentAccomodation extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane3)
                                     .addComponent(jScrollPane2)
-                                    .addComponent(txtMoveInDate, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                    .addComponent(txtMoveInDate)
                                     .addComponent(jScrollPane4))
                                 .addGap(86, 86, 86)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

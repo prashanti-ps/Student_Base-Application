@@ -26,6 +26,15 @@ public class Purchase {
     private String StatusOfProduct;
     private String BuyRequests;
     private String contact;
+    private int AvailibilityPeriod;
+
+    public int getAvailibilityPeriod() {
+        return AvailibilityPeriod;
+    }
+
+    public void setAvailibilityPeriod(int AvailibilityPeriod) {
+        this.AvailibilityPeriod = AvailibilityPeriod;
+    }
 
     public String getContact() {
         return contact;

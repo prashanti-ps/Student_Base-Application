@@ -44,5 +44,12 @@ public class PurchaseDirectory {
        }
        
    }
+    
+    public void deleteObject(Purchase p)
+   {
+        purchaseDirectory.get(p.getContact()).remove(p);
+
+        
+   }
    
 }
