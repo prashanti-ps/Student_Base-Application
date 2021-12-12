@@ -61,13 +61,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="lblPriceCheck" max="32767" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblQuantityCheck" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lblQuantityCheck" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -229,7 +227,7 @@
             <Component class="javax.swing.JTable" name="tblProductList">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="5">
+                  <Table columnCount="9" rowCount="5">
                     <Column editable="true" title="Product Name" type="java.lang.Object"/>
                     <Column editable="true" title="Address" type="java.lang.Object"/>
                     <Column editable="true" title="price" type="java.lang.Object"/>
@@ -237,11 +235,17 @@
                     <Column editable="true" title="Condition" type="java.lang.Object"/>
                     <Column editable="true" title="Category" type="java.lang.Object"/>
                     <Column editable="true" title="Comment" type="java.lang.Object"/>
+                    <Column editable="true" title="Availibility" type="java.lang.Object"/>
                     <Column editable="true" title="Status" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
