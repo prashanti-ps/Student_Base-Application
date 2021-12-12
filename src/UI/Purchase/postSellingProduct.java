@@ -49,6 +49,7 @@ public class postSellingProduct extends javax.swing.JPanel {
     UserAccount userAccount;
     EcoSystem ecosystem;
      String getSelectedImage ;
+     Purchase p = new Purchase();
     
     public postSellingProduct(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
@@ -444,7 +445,7 @@ public class postSellingProduct extends javax.swing.JPanel {
         
          if (validityCheck()){
             // Purchase p = new Purchase();
-        Purchase p = new Purchase();
+        //Purchase p = new Purchase();
         String email = userAccount.getStudent().getEmailAddress();
         p.setProductName(txtProductName.getText());
         p.setCategory(comboCategory.getSelectedItem().toString());
@@ -510,11 +511,11 @@ public class postSellingProduct extends javax.swing.JPanel {
                     obj.setPrice(Integer.parseInt(txtPrice.getText()));
                     obj.setAddress(txtAreaAddress.getText());
                     //obj.setQuantity(Integer.parseInt(txtQuantity.getText()));
-                    obj.setContidion(comboCondition.getItemAt(0));
+                    obj.setContidion(comboCondition.getSelectedItem().toString());
                     obj.setComment(txtComment.getText());
                     
-                    obj.setCategory(comboCategory.getItemAt(0));
-                    obj.setStatusOfProduct(comboStatus.getItemAt(0));
+                    obj.setCategory(comboCategory.getSelectedItem().toString());
+                    obj.setStatusOfProduct(comboStatus.getSelectedItem().toString());
                     JOptionPane.showMessageDialog(this, "Record Updated!");
                    // enableFields(false);
                     lblPriceCheck.setEnabled(false);
@@ -591,7 +592,7 @@ public class postSellingProduct extends javax.swing.JPanel {
             comboStatus.setSelectedItem(p.getStatusOfProduct().toString());
             txtAreaRequests.setText(p.getBuyRequests());
             
-            ImageIcon imIcon = new ImageIcon(p.getProductImage());
+             ImageIcon imIcon = new ImageIcon(p.getProductImage());
     Image image = imIcon.getImage(); // transform it 
 Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
 ImageIcon imICon2 = new ImageIcon(newimg);
@@ -615,6 +616,8 @@ ImageIcon imICon2 = new ImageIcon(newimg);
         Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
 ImageIcon imICon2 = new ImageIcon(newimg);
     lblUploadImage.setIcon(imICon2);
+    
+    p.setProductImage(getSelectedImage);
     
     
     //Purchase p = new Purchase();

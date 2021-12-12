@@ -374,6 +374,10 @@ public class StudentDashboard extends javax.swing.JPanel {
 
     private void btnCustomerRentProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerRentProductsActionPerformed
         // TODO add your handling code here:
+        FindRentingProducts findRentingProduct=new FindRentingProducts( userProcessContainer, userAccount, ecosystem);
+        userProcessContainer.add("findRentingProduct", findRentingProduct);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCustomerRentProductsActionPerformed
 
 
