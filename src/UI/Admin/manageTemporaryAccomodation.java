@@ -260,7 +260,7 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                                 .addComponent(jLabel10))
                             .addGap(14, 14, 14)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(txtDistance)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,6 +296,7 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGroup(layout.createSequentialGroup()
+                                    .addGap(67, 67, 67)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(28, 28, 28)
                                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -352,7 +353,7 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                                     .addComponent(jLabel14))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(lblContact, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
+                        .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblHostName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -373,7 +374,7 @@ public class manageTemporaryAccomodation extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(392, 392, 392))
+                .addGap(366, 366, 366))
         );
     }// </editor-fold>//GEN-END:initComponents
 
