@@ -128,6 +128,10 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        lblHello.setFont(new java.awt.Font("Tahoma", 3, 13)); // NOI18N
+        lblHello.setForeground(new java.awt.Color(251, 129, 34));
+        lblHello.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         btnExit.setBackground(new java.awt.Color(251, 129, 34));
         btnExit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnExit.setForeground(new java.awt.Color(255, 255, 255));

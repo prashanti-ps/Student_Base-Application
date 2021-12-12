@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import business.role.Role;
 import business.admin.AdminDirectory;
 import business.complaintManagement.ComplaintManagerDirectory;
+import business.events.EventDirectory;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
 import business.student.registration.StudentDirectory;
@@ -28,8 +29,9 @@ public abstract class Organization {
     private TemporaryDirectory temporaryDirectory;
     private PermanentDirectory permanentDirectory;
     private StudentDirectory studentDirectory;
-    private PurchaseDirectory purchaseDirectory;
+    private EventDirectory eventDirectory;
     private int organizationID;
+     private PurchaseDirectory purchaseDirectory;
     private static int counter = 0;
 
     public enum Type {
@@ -67,6 +69,14 @@ public abstract class Organization {
 
     public void setPurchaseDirectory(PurchaseDirectory purchaseDirectory) {
         this.purchaseDirectory = purchaseDirectory;
+    }
+
+    public EventDirectory getEventDirectory() {
+        return eventDirectory;
+    }
+
+    public void setEventDirectory(EventDirectory eventDirectory) {
+        this.eventDirectory = eventDirectory;
     }
 
     public StudentDirectory getStudentDirectory() {

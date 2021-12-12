@@ -6,6 +6,7 @@
 package business;
 
 import business.Purchase.PurchaseDirectory;
+import business.events.EventDirectory;
 import business.role.AdminRole;
 import business.role.Role;
 import business.student.accomodation.PermanentDirectory;
@@ -24,6 +25,7 @@ public class EcoSystem extends Organization{
     private TemporaryDirectory temporaryDirectory;
     private PermanentDirectory permanentDirectory;
     private StudentDirectory studentDirectory;
+    private EventDirectory eventDirectory;
     private PurchaseDirectory purchaseDirectory;
 
     public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory, StudentDirectory studentDirectory, PurchaseDirectory purchaseDirectory)
@@ -32,6 +34,7 @@ public class EcoSystem extends Organization{
         this.temporaryDirectory = temporaryDirectory;
         this.permanentDirectory = permanentDirectory;
         this.studentDirectory=studentDirectory;
+        this.eventDirectory=eventDirectory;
         this.purchaseDirectory = purchaseDirectory;
     }
     
