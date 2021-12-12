@@ -38,7 +38,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="txtDistance" max="32767" attributes="0"/>
                                       <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
@@ -86,6 +86,7 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                                   <Component id="btnDelete" min="-2" pref="218" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Component id="btnSave" min="-2" pref="227" max="-2" attributes="0"/>
@@ -160,7 +161,7 @@
                       </Group>
                       <EmptySpace pref="36" max="32767" attributes="0"/>
                       <Component id="lblContact" min="-2" pref="14" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblHostName" min="-2" pref="20" max="-2" attributes="0"/>
@@ -188,7 +189,7 @@
                   <Component id="btnDelete" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="btnSave" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="392" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="366" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

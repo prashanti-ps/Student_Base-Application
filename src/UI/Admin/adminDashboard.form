@@ -44,7 +44,7 @@
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnStudentRegistration" alignment="1" pref="250" max="32767" attributes="0"/>
                           <Component id="btnManageTemporaryAccomodation" max="32767" attributes="0"/>

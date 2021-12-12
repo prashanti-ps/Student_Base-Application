@@ -62,6 +62,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 25));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1250, 1004));
         setResizable(false);
         setSize(new java.awt.Dimension(1500, 1500));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -71,6 +72,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        ContainerPanel.setBackground(new java.awt.Color(29, 34, 40));
         ContainerPanel.setPreferredSize(new java.awt.Dimension(1000, 1000));
         ContainerPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(ContainerPanel);

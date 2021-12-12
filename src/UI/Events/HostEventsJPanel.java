@@ -9,13 +9,21 @@ import UI.Student.StudentDashboard;
 import business.EcoSystem;
 import business.events.Event;
 import business.events.EventDirectory;
-import business.student.accomodation.Permanent;
-import business.student.accomodation.Temporary;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -35,11 +43,12 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     EventDirectory eventDirectory;
 
     public HostEventsJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
-        initComponents();
-        this.ecosystem = ecosystem;
-        this.userAccount = userAccount;
+        
+        this.ecosystem = ecosystem;           
+        this.userAccount = userAccount;  
         this.userProcessContainer = userProcessContainer;
-        eventDirectory=ecosystem.getEventDirectory();
+        this.eventDirectory = ecosystem.getEventDirectory();
+       initComponents();
         populateTable();
         clearFields();
         enableFields(false);
@@ -90,6 +99,9 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         lblCapacityCheck = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtTitle = new javax.swing.JTextField();
+        btnSendLink = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtLink = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(29, 34, 40));
 
@@ -249,14 +261,38 @@ public class HostEventsJPanel extends javax.swing.JPanel {
 
         dropdownEventType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Career", "Art", "Meetup", "Collaboration", "Cultural", "Food", "Other" }));
 
+        btnEdit.setBackground(new java.awt.Color(251, 129, 34));
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
         btnEdit.setText("Edit");
+        btnEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnEdit.setBorderPainted(false);
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Title");
+
+        btnSendLink.setBackground(new java.awt.Color(251, 129, 34));
+        btnSendLink.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSendLink.setForeground(new java.awt.Color(255, 255, 255));
+        btnSendLink.setText("Send Registration Link");
+        btnSendLink.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnSendLink.setBorderPainted(false);
+        btnSendLink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendLinkActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Registration Link");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -265,42 +301,46 @@ public class HostEventsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(btnPost, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel13))
-                                    .addGap(34, 34, 34)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblHostName, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lblMoveInDateCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(lblContact, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnPost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(58, 58, 58)
-                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabel13))
+                                            .addGap(34, 34, 34)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblHostName, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lblMoveInDateCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(btnSendLink, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(lblContact, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))))
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLabel10))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,19 +353,20 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                                                 .addComponent(lblFeeCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(lblCapacityCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtLink, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtTitle, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(dropdownEventType, javax.swing.GroupLayout.Alignment.LEADING, 0, 112, Short.MAX_VALUE)))
-                                    .addGap(84, 84, 84))))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel15))
-                .addGap(92, 92, 92))
+                                    .addGap(84, 84, 84))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel15))
+                        .addGap(92, 92, 92))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +382,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEdit))
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -369,7 +410,9 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))
-                        .addGap(32, 32, 32))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSendLink, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -398,11 +441,15 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(txtLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPost, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(378, 378, 378))
+                .addGap(357, 357, 357))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -423,6 +470,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
             e.setStatusOfPost("Ok");
             e.setType(dropdownEventType.getSelectedItem().toString());
             e.setTitle(txtTitle.getText());
+            e.setLink(txtLink.getText());
 
             ecosystem.getEventDirectory().addNewEvent(email, e);
             JOptionPane.showMessageDialog(this, "Event Posted!");
@@ -479,7 +527,8 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                     obj.setRequests(txtAreaRequests.getText());
                     obj.setType(dropdownEventType.getSelectedItem().toString());
                     obj.setContact(lblContact.getText());
-                   
+                    obj.setLink(txtLink.getText());
+
                     JOptionPane.showMessageDialog(this, "Record Updated!");
                     enableFields(false);
                     lblMoveInDateCheck.setEnabled(false);
@@ -565,10 +614,74 @@ public class HostEventsJPanel extends javax.swing.JPanel {
             lblContact.setText(t.getContact());
             dropdownEventType.addItem(t.getType());
             txtAreaRequests.setText(t.getRequests());
+            txtLink.setText(t.getLink());
 
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void btnSendLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendLinkActionPerformed
+            int selectedRowIndex = tblEventsList.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an event first");
+            return;
+        } else {
+            enableFields(true);
+            btnUpdate.setEnabled(true);
+            btnPost.setEnabled(false);
+            DefaultTableModel model = (DefaultTableModel) tblEventsList.getModel();
+            Event t = (Event) model.getValueAt(selectedRowIndex, 0);
+
+
+        
+        if (txtAreaRequests.getText() != null && txtAreaRequests.getText() != "") {
+            String toEmail;
+            String fromEmail = "randadpratik789@gmail.com";
+            String pass = "pratik@3848";
+            String subject = t.getTitle()+" : Registration link";
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "25");
+            props.put("mail.debug", "true");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.EnableSSL.enable", "true");
+            props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            props.setProperty("mail.smtp.socketFactory.fallback", "false");
+            props.setProperty("mail.smtp.port", "465");
+            props.setProperty("mail.smtp.socketFactory.port", "465");
+            Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(fromEmail, pass);
+                }
+            });
+            try {
+                String requests = txtAreaRequests.getText().trim();
+                String[] elements = requests.split(",");
+                List<String> fixedLenghtList = Arrays.asList(elements);
+                ArrayList<String> listOfRequests = new ArrayList<String>(fixedLenghtList);
+                for (String email : listOfRequests) {
+
+                    toEmail = email;
+                    MimeMessage message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(fromEmail));
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+                    message.setSubject(subject);
+                    message.setText("Hello "+ t.getHostName() + "! " + "\n" + " Here is your registration link for the event: \n" + t.getLink());
+                    Transport.send(message);
+
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                JOptionPane.showMessageDialog(this, "Links sent successfully");
+                txtAreaRequests.setText("");
+
+            }
+        }else
+             JOptionPane.showMessageDialog(this, "There are no any  registration requests!");
+    }//GEN-LAST:event_btnSendLinkActionPerformed
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Date;
@@ -576,9 +689,11 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnPost;
+    private javax.swing.JButton btnSendLink;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> dropdownEventType;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -605,6 +720,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtCapacity;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtFee;
+    private javax.swing.JTextField txtLink;
     private javax.swing.JTextField txtTitle;
     private javax.swing.JTextField txtdate;
     // End of variables declaration//GEN-END:variables
@@ -630,7 +746,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     }
 
     private void clearFields() {
-        lblHostName.setText(userAccount.getStudent().getFirstName() + " " +userAccount.getStudent().getLastName());
+        lblHostName.setText(userAccount.getStudent().getFirstName() + " " + userAccount.getStudent().getLastName());
         lblContact.setText(userAccount.getStudent().getEmailAddress());
         txtdate.setText("");
         txtAreaAddress.setText("");
@@ -639,7 +755,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         txtFee.setText("");
         txtCapacity.setText("");
         txtTitle.setText("");
-               
+        txtLink.setText("");
 
     }
 
@@ -654,14 +770,16 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         txtCapacity.setEnabled(b);
         dropdownEventType.setEnabled(b);
         txtTitle.setEnabled(b);
+        txtLink.setEnabled(b);
     }
 
     private boolean validityCheck() {
-        if (lblMoveInDateCheck.getForeground() == Color.WHITE  && lblFeeCheck.getForeground() == Color.WHITE && lblCapacityCheck.getForeground() == Color.WHITE &&  txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0) {
+        if (lblMoveInDateCheck.getForeground() == Color.WHITE && lblFeeCheck.getForeground() == Color.WHITE && lblCapacityCheck.getForeground() == Color.WHITE && txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0) {
             return true;
-        } else if(txtdate.getText().length() >0  && txtFee.getText().length() >0 && txtCapacity.getText().length() >0 &&  txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0){
+        } else if (txtdate.getText().length() > 0 && txtFee.getText().length() > 0 && txtCapacity.getText().length() > 0 && txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0) {
             return true;
-        }else
+        } else {
             return false;
+        }
     }
 }

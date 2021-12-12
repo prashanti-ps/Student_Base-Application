@@ -43,12 +43,12 @@ public class postSellingProduct extends javax.swing.JPanel {
     /**
      * Creates new form postSellingProduct
      */
-    PurchaseDirectory purchaseDirectory = new PurchaseDirectory();
+    PurchaseDirectory purchaseDirectory;
     JPanel userProcessContainer;
     StudentDirectory studentDirectory;
     UserAccount userAccount;
     EcoSystem ecosystem;
-    Purchase p = new Purchase();
+     String getSelectedImage ;
     
     public postSellingProduct(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
@@ -444,7 +444,7 @@ public class postSellingProduct extends javax.swing.JPanel {
         
          if (validityCheck()){
             // Purchase p = new Purchase();
-         
+        Purchase p = new Purchase();
         String email = userAccount.getStudent().getEmailAddress();
         p.setProductName(txtProductName.getText());
         p.setCategory(comboCategory.getSelectedItem().toString());
@@ -456,6 +456,7 @@ public class postSellingProduct extends javax.swing.JPanel {
         p.setContact(email);
         p.setContidion(comboCondition.getSelectedItem().toString());
         p.setStatus("OK");
+
         p.setStatusOfProduct(comboStatus.getSelectedItem().toString());
         p.setBuyRequests("");
         
@@ -469,7 +470,7 @@ public class postSellingProduct extends javax.swing.JPanel {
     
         
         
-       
+
         
         ecosystem.getPurchaseDirectory().addNewPurchaseProduct(email, p);
          //purchaseDirectory.addNewPurchaseProduct(email, p);
@@ -607,18 +608,18 @@ ImageIcon imICon2 = new ImageIcon(newimg);
     int selected =  filechooser.showOpenDialog(this);
     if(selected==JFileChooser.APPROVE_OPTION){
     File file = filechooser.getSelectedFile();
-     String getSelectedImage = file.getAbsolutePath();
+      getSelectedImage = file.getAbsolutePath();
     JOptionPane.showConfirmDialog(null, getSelectedImage);
     ImageIcon imIcon = new ImageIcon(getSelectedImage);
     Image image = imIcon.getImage(); // transform it 
-Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
+        Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
 ImageIcon imICon2 = new ImageIcon(newimg);
     lblUploadImage.setIcon(imICon2);
     
     
     //Purchase p = new Purchase();
-    p.setProductImage(getSelectedImage);
-    System.out.print("path in sell is " + p.getProductImage());
+    //p.setProductImage(getSelectedImage);
+    //System.out.print("path in sell is " + p.getProductImage());
     
    /* Purchase p = new Purchase();
     

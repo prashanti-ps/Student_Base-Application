@@ -62,6 +62,7 @@ public abstract class Organization {
         studentDirectory = new StudentDirectory();
         purchaseDirectory = new PurchaseDirectory();
         rentProductDirectory = new RentProductDirectory();
+        eventDirectory= new EventDirectory();
         organizationID = counter;
         ++counter;
     }

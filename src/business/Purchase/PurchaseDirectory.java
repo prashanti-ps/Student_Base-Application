@@ -5,6 +5,7 @@
  */
 package business.Purchase;
 
+import business.student.accomodation.Permanent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +45,7 @@ public class PurchaseDirectory {
        }
        
    }
+
     
     public void deleteObject(Purchase p)
    {

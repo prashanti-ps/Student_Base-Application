@@ -157,6 +157,7 @@ public class adminDashboard extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Student Management");
 
+
         btnManageBuyingSelling.setBackground(new java.awt.Color(251, 129, 34));
         btnManageBuyingSelling.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnManageBuyingSelling.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,7 +192,7 @@ public class adminDashboard extends javax.swing.JPanel {
                         .addGap(258, 258, 258)
                         .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
+                        .addGap(204, 204, 204)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnStudentRegistration, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(btnManageTemporaryAccomodation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
