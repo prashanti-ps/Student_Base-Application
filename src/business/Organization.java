@@ -6,6 +6,7 @@
 package business;
 
 import business.Purchase.PurchaseDirectory;
+import business.Rent.RentProductDirectory;
 import business.useraccount.UserAccountDirectory;
 import java.util.ArrayList;
 import business.role.Role;
@@ -30,6 +31,7 @@ public abstract class Organization {
     private PermanentDirectory permanentDirectory;
     private StudentDirectory studentDirectory;
     private EventDirectory eventDirectory;
+    private RentProductDirectory rentProductDirectory;
     private int organizationID;
      private PurchaseDirectory purchaseDirectory;
     private static int counter = 0;
@@ -59,8 +61,17 @@ public abstract class Organization {
         permanentDirectory = new PermanentDirectory();
         studentDirectory = new StudentDirectory();
         purchaseDirectory = new PurchaseDirectory();
+        rentProductDirectory = new RentProductDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public RentProductDirectory getRentProductDirectory() {
+        return rentProductDirectory;
+    }
+
+    public void setRentProductDirectory(RentProductDirectory rentProductDirectory) {
+        this.rentProductDirectory = rentProductDirectory;
     }
 
     public PurchaseDirectory getPurchaseDirectory() {

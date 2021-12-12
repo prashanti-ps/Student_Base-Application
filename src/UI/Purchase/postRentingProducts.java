@@ -9,6 +9,9 @@ import UI.Student.StudentDashboard;
 import business.EcoSystem;
 import business.Purchase.Purchase;
 import business.Purchase.PurchaseDirectory;
+import business.Rent.RentProduct;
+import business.Rent.RentProductDirectory;
+import business.student.registration.StudentDirectory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -35,14 +38,16 @@ public class postRentingProducts extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccount userAccount;
-    PurchaseDirectory purchaseDirectory ;
-    Purchase p = new Purchase();
+    RentProductDirectory rentProductDirectory;
+    StudentDirectory studentDirectory;
+    RentProduct p = new RentProduct();
     public postRentingProducts(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.ecosystem = ecosystem;
         this.userAccount = userAccount;
-        this.purchaseDirectory = ecosystem.getPurchaseDirectory();
+        this.ecosystem = ecosystem;
+        this.studentDirectory = ecosystem.getStudentDirectory();
+        this.userProcessContainer = userProcessContainer;
+        this.rentProductDirectory = ecosystem.getRentProductDirectory();
         
         populateTable();
         clearFields();
@@ -61,12 +66,7 @@ public class postRentingProducts extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblProductList = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblProductList1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -81,9 +81,6 @@ public class postRentingProducts extends javax.swing.JPanel {
         txtQuantity = new javax.swing.JTextField();
         txtContactEmail = new javax.swing.JTextField();
         btnPost = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        txtComment = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         lblPriceCheck = new javax.swing.JLabel();
         comboCategory = new javax.swing.JComboBox<>();
@@ -104,42 +101,13 @@ public class postRentingProducts extends javax.swing.JPanel {
         txtAvailibilityPeriod = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         lblPeriodCheck = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProductList = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Post Products for Rent");
-
-        tblProductList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Product Name", "Address", "price", "Quantity", "Condition", "Category", "Time Period", "Availibility", "Status"
-            }
-        ));
-        jScrollPane1.setViewportView(tblProductList);
-
         jPanel2.setBackground(new java.awt.Color(29, 31, 40));
-
-        tblProductList1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Product Name", "Address", "price", "Quantity", "Condition", "Category", "Comment", "Availibility", "Status"
-            }
-        ));
-        jScrollPane2.setViewportView(tblProductList1);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,15 +174,6 @@ public class postRentingProducts extends javax.swing.JPanel {
                 btnPostActionPerformed(evt);
             }
         });
-
-        jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Post Products for sale");
-
-        jLabel10.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Comment :");
 
         btnUpdate.setBackground(new java.awt.Color(251, 129, 34));
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
@@ -307,120 +266,125 @@ public class postRentingProducts extends javax.swing.JPanel {
 
         lblPeriodCheck.setText("Period Check");
 
+        tblProductList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Product Name", "Address", "price", "Quantity", "Condition", "Category", "Available For", "Availibility", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(tblProductList);
+
+        jLabel9.setBackground(new java.awt.Color(29, 34, 40));
+        jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Post Products for Rent");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel14))
-                .addGap(90, 90, 90)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtProductName)
-                            .addComponent(txtPrice)
-                            .addComponent(txtQuantity)
-                            .addComponent(txtContactEmail)
-                            .addComponent(comboCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboCondition, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtAvailibilityPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel15)))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPriceCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE))
+                                .addGap(237, 237, 237)
+                                .addComponent(lblPeriodCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnPost)
-                                .addGap(74, 74, 74)
-                                .addComponent(btnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE))))
+                                .addGap(40, 40, 40)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 189, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblPeriodCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(lblUploadImage)
-                        .addContainerGap(89, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtComment, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(113, 113, 113))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(267, 267, 267)
-                .addComponent(btnAdd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Edit)
-                .addGap(209, 209, 209))
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel14))
+                                        .addGap(90, 90, 90)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtProductName)
+                                            .addComponent(txtPrice)
+                                            .addComponent(txtQuantity)
+                                            .addComponent(txtContactEmail)
+                                            .addComponent(comboCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(comboCondition, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(txtAvailibilityPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel15)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblPriceCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(btnAdd)
+                                        .addGap(63, 63, 63)
+                                        .addComponent(btnPost)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane4)
+                                            .addComponent(jScrollPane3)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(lblUploadImage)))
+                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel9)
+                .addGap(26, 26, 26)
+                .addComponent(btnBack)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel9))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btnBack)))
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel12)
-                            .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnUploadImage)
-                            .addComponent(jLabel11)
                             .addComponent(lblUploadImage))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -430,11 +394,14 @@ public class postRentingProducts extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblPriceCheck)))
+                                .addComponent(lblPriceCheck)
+                                .addComponent(jLabel11)))
                         .addGap(19, 19, 19)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8)))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -444,208 +411,77 @@ public class postRentingProducts extends javax.swing.JPanel {
                                     .addComponent(comboCondition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtContactEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel7)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(txtContactEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel13)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel14)
+                                            .addComponent(txtAvailibilityPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel15)))
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(lblQuantityCheck)
-                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtAvailibilityPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel15))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel14)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPeriodCheck)))
-                .addGap(40, 40, 40)
+                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel12))
+                .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnPost)
                     .addComponent(btnUpdate)
                     .addComponent(Edit))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(333, 333, 333)
+                .addComponent(lblPeriodCheck)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(561, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductNameActionPerformed
-
-    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPriceActionPerformed
-
-    private void txtPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyReleased
+    private void txtAvailibilityPeriodKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAvailibilityPeriodKeyReleased
         // TODO add your handling code here:
 
-        String enteredText = txtPrice.getText();
+        String enteredText = txtAvailibilityPeriod.getText();
         if (enteredText.matches("^[0-9]+$")) {
-            lblPriceCheck.setVisible(true);
-            lblPriceCheck.setForeground(Color.WHITE);
-            lblPriceCheck.setText("Valid Entry");
+            lblPeriodCheck.setVisible(true);
+            lblPeriodCheck.setForeground(Color.WHITE);
+            lblPeriodCheck.setText("Valid Entry");
         } else {
-            lblPriceCheck.setVisible(true);
-            lblPriceCheck.setForeground(Color.orange);
-            lblPriceCheck.setText("Enter numbers only");
+            lblPeriodCheck.setVisible(true);
+            lblPeriodCheck.setForeground(Color.orange);
+            lblPeriodCheck.setText("Enter numbers only");
         }
-    }//GEN-LAST:event_txtPriceKeyReleased
+    }//GEN-LAST:event_txtAvailibilityPeriodKeyReleased
 
-    private void txtQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyReleased
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        String enteredText = txtPrice.getText();
-        if (enteredText.matches("^[0-9]+$")) {
-            lblQuantityCheck.setVisible(true);
-            lblQuantityCheck.setForeground(Color.WHITE);
-            lblQuantityCheck.setText("Valid Entry");
-        } else {
-            lblQuantityCheck.setVisible(true);
-            lblQuantityCheck.setForeground(Color.orange);
-            lblQuantityCheck.setText("Enter numbers only");
-        }
-    }//GEN-LAST:event_txtQuantityKeyReleased
+        StudentDashboard studentDashboardPanel = new StudentDashboard(userProcessContainer, userAccount, ecosystem);
+        userProcessContainer.add("studentDashboardPanel", studentDashboardPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-
-        if (validityCheck()){
-            // Purchase p = new Purchase();
-
-            String email = userAccount.getStudent().getEmailAddress();
-            p.setProductName(txtProductName.getText());
-            p.setCategory(comboCategory.getSelectedItem().toString());
-            p.setQuantity(Integer.parseInt(txtQuantity.getText()));
-            p.setPrice(Integer.parseInt(txtPrice.getText()));
-            p.setComment(txtComment.getText());
-            p.setAddress(txtAreaAddress.getText());
-            // p.setContactEmail(email);
-            p.setContact(email);
-            p.setContidion(comboCondition.getSelectedItem().toString());
-            p.setStatus("OK");
-            p.setStatusOfProduct(comboStatus.getSelectedItem().toString());
-            p.setBuyRequests("");
-            p.setAvailibilityPeriod(Integer.parseInt(txtAvailibilityPeriod.getText()));
-
-            ecosystem.getPurchaseDirectory().addNewPurchaseProduct(email, p);
-            //purchaseDirectory.addNewPurchaseProduct(email, p);
-            // p.setProductImage(productImage);
-            JOptionPane.showMessageDialog(this, "Product Posted!");
-            clearFields();
-            populateTable();
-
-            btnPost.setEnabled(false);
-            enableFields(false);
-        }
-
-    }//GEN-LAST:event_btnPostActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-
-        int selectedRowIndex = tblProductList.getSelectedRow();
-
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to update!");
-            return;
-        } else if (validityCheck()) {
-            //fieldsEnableDisable(true);
-            DefaultTableModel model = (DefaultTableModel) tblProductList.getModel();
-            Purchase p = (Purchase) model.getValueAt(selectedRowIndex, 0);
-            Map<String, ArrayList<Purchase>> latestDirectory = purchaseDirectory.getPurchaseDirectory();
-            ArrayList<Purchase> perArr = latestDirectory.get(p.getContact());
-            for (Purchase obj : perArr) {
-                if (obj.equals(p)) {
-                    obj.setProductName(txtProductName.getText());
-                    obj.setPrice(Integer.parseInt(txtPrice.getText()));
-                    obj.setAddress(txtAreaAddress.getText());
-                    //obj.setQuantity(Integer.parseInt(txtQuantity.getText()));
-                    obj.setContidion(comboCondition.getItemAt(0));
-                    obj.setComment(txtComment.getText());
-
-                    obj.setCategory(comboCategory.getItemAt(0));
-                    obj.setStatusOfProduct(comboStatus.getItemAt(0));
-                    obj.setAvailibilityPeriod(Integer.parseInt(txtAvailibilityPeriod.getText()));
-                    JOptionPane.showMessageDialog(this, "Record Updated!");
-                    // enableFields(false);
-                    lblPriceCheck.setEnabled(false);
-                    lblQuantityCheck.setEnabled(false);
-
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "All fields must be filled and valid!");
-        }
-        btnUpdate.setEnabled(false);
         clearFields();
-        populateTable();
-
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
-        // TODO add your handling code here:
-
-        int selectedRowIndex = tblProductList.getSelectedRow();
-
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to edit!");
-            return;
-        } else {
-            enableFields(true);
-            btnUpdate.setEnabled(true);
-            btnPost.setEnabled(false);
-            DefaultTableModel model = (DefaultTableModel) tblProductList.getModel();
-            Purchase p = (Purchase) model.getValueAt(selectedRowIndex, 0);
-            txtProductName.setText(p.getProductName());
-            txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
-            txtPrice.setText(String.valueOf(p.getPrice()));
-            txtAreaAddress.setText(p.getAddress());
-            txtQuantity.setText(String.valueOf(p.getQuantity()));
-            txtComment.setText(p.getComment());
-
-            comboCategory.setSelectedItem(p.getCategory().toString());
-            comboCondition.setSelectedItem(p.getContidion().toString());
-            comboStatus.setSelectedItem(p.getStatusOfProduct().toString());
-            txtAreaRequests.setText(p.getBuyRequests());
-            txtAvailibilityPeriod.setText(String.valueOf(p.getAvailibilityPeriod()));
-        }
-    }//GEN-LAST:event_EditActionPerformed
+        enableFields(true);
+        btnUpdate.setEnabled(false);
+        btnPost.setEnabled(true);
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadImageActionPerformed
         // TODO add your handling code here:
@@ -664,11 +500,10 @@ public class postRentingProducts extends javax.swing.JPanel {
             ImageIcon imICon2 = new ImageIcon(newimg);
             lblUploadImage.setIcon(imICon2);
 
-            //Purchase p = new Purchase();
             p.setProductImage(getSelectedImage);
             System.out.print("path in sell is " + p.getProductImage());
 
-            /* Purchase p = new Purchase();
+            /*
 
             //upload file in folder
 
@@ -697,36 +532,151 @@ public class postRentingProducts extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnUploadImageActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
         // TODO add your handling code here:
-        clearFields();
-        enableFields(true);
-        btnUpdate.setEnabled(false);
-        btnPost.setEnabled(true);
-    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        StudentDashboard studentDashboardPanel = new StudentDashboard(userProcessContainer, userAccount, ecosystem);
-        userProcessContainer.add("studentDashboardPanel", studentDashboardPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
+        int selectedRowIndex = tblProductList.getSelectedRow();
 
-    private void txtAvailibilityPeriodKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAvailibilityPeriodKeyReleased
-        // TODO add your handling code here:
-        
-        String enteredText = txtAvailibilityPeriod.getText();
-        if (enteredText.matches("^[0-9]+$")) {
-            lblPeriodCheck.setVisible(true);
-            lblPeriodCheck.setForeground(Color.WHITE);
-            lblPeriodCheck.setText("Valid Entry");
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to edit!");
+            return;
         } else {
-            lblPeriodCheck.setVisible(true);
-            lblPeriodCheck.setForeground(Color.orange);
-            lblPeriodCheck.setText("Enter numbers only");
+            enableFields(true);
+            btnUpdate.setEnabled(true);
+            btnPost.setEnabled(false);
+            DefaultTableModel model = (DefaultTableModel) tblProductList.getModel();
+            RentProduct p = (RentProduct) model.getValueAt(selectedRowIndex, 0);
+            txtProductName.setText(p.getProductName());
+            txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
+            txtPrice.setText(String.valueOf(p.getPrice()));
+            txtAreaAddress.setText(p.getAddress());
+            txtQuantity.setText(String.valueOf(p.getQuantity()));
+           // txtComment.setText(p.getComment());
+
+            comboCategory.setSelectedItem(p.getCategory().toString());
+            comboCondition.setSelectedItem(p.getContidion().toString());
+            comboStatus.setSelectedItem(p.getStatusOfProduct().toString());
+            txtAreaRequests.setText(p.getBuyRequests());
+            txtAvailibilityPeriod.setText(String.valueOf(p.getAvailibilityPeriod()));
+            
+            ImageIcon imIcon = new ImageIcon(p.getProductImage());
+    Image image = imIcon.getImage(); // transform it 
+Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
+ImageIcon imICon2 = new ImageIcon(newimg);
+    lblUploadImage.setIcon(imICon2);
         }
-    }//GEN-LAST:event_txtAvailibilityPeriodKeyReleased
+    }//GEN-LAST:event_EditActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+
+        int selectedRowIndex = tblProductList.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update!");
+            return;
+        } else if (validityCheck()) {
+            //fieldsEnableDisable(true);
+            DefaultTableModel model = (DefaultTableModel) tblProductList.getModel();
+            RentProduct p = (RentProduct) model.getValueAt(selectedRowIndex, 0);
+            Map<String, ArrayList<RentProduct>> latestDirectory = rentProductDirectory.getRentProductDirectory();
+            ArrayList<RentProduct> perArr = latestDirectory.get(p.getContact());
+            for (RentProduct obj : perArr) {
+                if (obj.equals(p)) {
+                    obj.setProductName(txtProductName.getText());
+                    obj.setPrice(Integer.parseInt(txtPrice.getText()));
+                    obj.setAddress(txtAreaAddress.getText());
+                    //obj.setQuantity(Integer.parseInt(txtQuantity.getText()));
+                    obj.setContidion(comboCondition.getSelectedItem().toString());
+                   // obj.setComment(txtComment.getText());
+
+                    obj.setCategory(comboCategory.getSelectedItem().toString());
+                    obj.setStatusOfProduct(comboStatus.getSelectedItem().toString());
+                    obj.setAvailibilityPeriod(Integer.parseInt(txtAvailibilityPeriod.getText()));
+                    JOptionPane.showMessageDialog(this, "Record Updated!");
+                    // enableFields(false);
+                    lblPriceCheck.setEnabled(false);
+                    lblQuantityCheck.setEnabled(false);
+
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "All fields must be filled and valid!");
+        }
+        btnUpdate.setEnabled(false);
+        clearFields();
+        populateTable();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
+        // TODO add your handling code here:
+
+        if (validityCheck()){
+
+            String email = userAccount.getStudent().getEmailAddress();
+
+            p.setProductName(txtProductName.getText());
+            p.setCategory(comboCategory.getSelectedItem().toString());
+            p.setQuantity(Integer.parseInt(txtQuantity.getText()));
+            p.setPrice(Integer.parseInt(txtPrice.getText()));
+           // p.setComment(txtComment.getText());
+            p.setAddress(txtAreaAddress.getText());
+            // p.setContactEmail(email);
+            p.setContact(email);
+            p.setContidion(comboCondition.getSelectedItem().toString());
+            p.setStatus("OK");
+            p.setStatusOfProduct(comboStatus.getSelectedItem().toString());
+            p.setBuyRequests("");
+            p.setAvailibilityPeriod(Integer.parseInt(txtAvailibilityPeriod.getText()));
+
+            ecosystem.getRentProductDirectory().addNewRentProduct(email, p);
+
+            // p.setProductImage(productImage);
+            JOptionPane.showMessageDialog(this, "Product Posted!");
+            clearFields();
+            populateTable();
+
+            btnPost.setEnabled(false);
+            enableFields(false);
+        }
+    }//GEN-LAST:event_btnPostActionPerformed
+
+    private void txtQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyReleased
+        // TODO add your handling code here:
+        String enteredText = txtPrice.getText();
+        if (enteredText.matches("^[0-9]+$")) {
+            lblQuantityCheck.setVisible(true);
+            lblQuantityCheck.setForeground(Color.WHITE);
+            lblQuantityCheck.setText("Valid Entry");
+        } else {
+            lblQuantityCheck.setVisible(true);
+            lblQuantityCheck.setForeground(Color.orange);
+            lblQuantityCheck.setText("Enter numbers only");
+        }
+    }//GEN-LAST:event_txtQuantityKeyReleased
+
+    private void txtPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyReleased
+        // TODO add your handling code here:
+
+        String enteredText = txtPrice.getText();
+        if (enteredText.matches("^[0-9]+$")) {
+            lblPriceCheck.setVisible(true);
+            lblPriceCheck.setForeground(Color.WHITE);
+            lblPriceCheck.setText("Valid Entry");
+        } else {
+            lblPriceCheck.setVisible(true);
+            lblPriceCheck.setForeground(Color.orange);
+            lblPriceCheck.setText("Enter numbers only");
+        }
+    }//GEN-LAST:event_txtPriceKeyReleased
+
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
+
+    private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -739,8 +689,6 @@ public class postRentingProducts extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comboCategory;
     private javax.swing.JComboBox<String> comboCondition;
     private javax.swing.JComboBox<String> comboStatus;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -757,7 +705,6 @@ public class postRentingProducts extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblPeriodCheck;
@@ -765,11 +712,9 @@ public class postRentingProducts extends javax.swing.JPanel {
     private javax.swing.JLabel lblQuantityCheck;
     private javax.swing.JLabel lblUploadImage;
     private javax.swing.JTable tblProductList;
-    private javax.swing.JTable tblProductList1;
     private javax.swing.JTextArea txtAreaAddress;
     private javax.swing.JTextArea txtAreaRequests;
     private javax.swing.JTextField txtAvailibilityPeriod;
-    private javax.swing.JTextField txtComment;
     private javax.swing.JTextField txtContactEmail;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtProductName;
@@ -780,7 +725,7 @@ private void clearFields() {
         txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
         txtAreaAddress.setText("");
         
-        txtComment.setText("");
+//        txtComment.setText("");
         
        // txtContactEmail.setText("");
         txtPrice.setText("");
@@ -796,12 +741,12 @@ private void clearFields() {
         //sync
         DefaultTableModel model = (DefaultTableModel) tblProductList.getModel();
         model.setRowCount(0);
-        Map<String, ArrayList<Purchase>> directory = purchaseDirectory.getPurchaseDirectory();
-        ArrayList<Purchase> foundDirectory = new ArrayList<Purchase>();
+        Map<String, ArrayList<RentProduct>> directory = rentProductDirectory.getRentProductDirectory();
+        ArrayList<RentProduct> foundDirectory = new ArrayList<RentProduct>();
         try {
             //System.out.print(userAccount.getStudent().getEmailAddress());
             foundDirectory = directory.get(userAccount.getStudent().getEmailAddress());
-            for (Purchase p : foundDirectory) {
+            for (RentProduct p : foundDirectory) {
                 Object[] row = new Object[9];
 
                 row[0] = p;
@@ -810,7 +755,7 @@ private void clearFields() {
                 row[3] = p.getQuantity();
                 row[4] = p.getContidion();
                 row[5] = p.getCategory();
-                row[6] = p.getComment();
+                row[6] = p.getAvailibilityPeriod() + " Months";
                 row[7] = p.getStatusOfProduct();
                 row[8] = p.getStatus();
                 model.addRow(row);
@@ -828,7 +773,7 @@ private void clearFields() {
         txtContactEmail.setEnabled(b);
         txtAreaAddress.setEnabled(b);
         
-        txtComment.setEnabled(b);
+//        txtComment.setEnabled(b);
         txtQuantity.setEnabled(b);
         comboCondition.setEnabled(b);
         comboCategory.setEnabled(b);
