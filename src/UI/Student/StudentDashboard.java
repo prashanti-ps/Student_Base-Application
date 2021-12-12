@@ -62,6 +62,9 @@ public class StudentDashboard extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btnHost = new javax.swing.JButton();
+        btnFindEvent = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(29, 34, 40));
 
@@ -149,6 +152,13 @@ public class StudentDashboard extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Permanent Accomodation:");
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Events");
+
+        btnHost.setText("Host");
+
+        btnFindEvent.setText("Find");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,7 +184,15 @@ public class StudentDashboard extends javax.swing.JPanel {
                         .addGap(76, 76, 76)
                         .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(84, 84, 84)
-                        .addComponent(btnSellItems, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSellItems, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(337, 337, 337)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(btnHost)
+                        .addGap(121, 121, 121)
+                        .addComponent(btnFindEvent)))
                 .addContainerGap(314, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -200,7 +218,13 @@ public class StudentDashboard extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSellItems))
-                .addContainerGap(712, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(jLabel5)
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHost)
+                    .addComponent(btnFindEvent))
+                .addContainerGap(558, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBuyItems, btnSellItems});
@@ -249,8 +273,10 @@ public class StudentDashboard extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyItems;
+    private javax.swing.JButton btnFindEvent;
     private javax.swing.JButton btnFindPermanent;
     private javax.swing.JButton btnFindTemp;
+    private javax.swing.JButton btnHost;
     private javax.swing.JButton btnPostPermanent;
     private javax.swing.JButton btnPostTemp;
     private javax.swing.JButton btnSellItems;
@@ -258,5 +284,6 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
