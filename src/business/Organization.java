@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import business.role.Role;
 import business.admin.AdminDirectory;
 import business.complaintManagement.ComplaintManagerDirectory;
+import business.events.EventDirectory;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
 import business.student.registration.StudentDirectory;
@@ -27,6 +28,7 @@ public abstract class Organization {
     private TemporaryDirectory temporaryDirectory;
     private PermanentDirectory permanentDirectory;
     private StudentDirectory studentDirectory;
+    private EventDirectory eventDirectory;
     private int organizationID;
     private static int counter = 0;
 
@@ -54,8 +56,17 @@ public abstract class Organization {
         temporaryDirectory = new TemporaryDirectory();
         permanentDirectory = new PermanentDirectory();
         studentDirectory = new StudentDirectory();
+        eventDirectory=new EventDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public EventDirectory getEventDirectory() {
+        return eventDirectory;
+    }
+
+    public void setEventDirectory(EventDirectory eventDirectory) {
+        this.eventDirectory = eventDirectory;
     }
 
     public StudentDirectory getStudentDirectory() {

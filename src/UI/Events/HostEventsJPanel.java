@@ -5,6 +5,21 @@
  */
 package UI.Events;
 
+import UI.Student.StudentDashboard;
+import business.EcoSystem;
+import business.events.Event;
+import business.events.EventDirectory;
+import business.student.accomodation.Permanent;
+import business.student.accomodation.Temporary;
+import business.useraccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author prashantii_s
@@ -14,8 +29,20 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form EventsJPanel
      */
-    public HostEventsJPanel() {
+    EcoSystem ecosystem;
+    UserAccount userAccount;
+    JPanel userProcessContainer;
+    EventDirectory eventDirectory;
+
+    public HostEventsJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
+        this.ecosystem = ecosystem;
+        this.userAccount = userAccount;
+        this.userProcessContainer = userProcessContainer;
+        eventDirectory=ecosystem.getEventDirectory();
+        populateTable();
+        clearFields();
+        enableFields(false);
     }
 
     /**
@@ -30,13 +57,11 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAccomodationList = new javax.swing.JTable();
+        tblEventsList = new javax.swing.JTable();
         btnPost = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
-        comboBoxStatus = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtAreaRequests = new javax.swing.JTextArea();
         btnUpdate = new javax.swing.JButton();
@@ -59,7 +84,14 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        DropdownEventType = new javax.swing.JComboBox<>();
+        dropdownEventType = new javax.swing.JComboBox<>();
+        btnEdit = new javax.swing.JButton();
+        lblFeeCheck = new javax.swing.JLabel();
+        lblCapacityCheck = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtTitle = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(29, 34, 40));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -69,7 +101,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Capacity");
 
-        tblAccomodationList.setModel(new javax.swing.table.DefaultTableModel(
+        tblEventsList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -88,7 +120,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblAccomodationList);
+        jScrollPane1.setViewportView(tblEventsList);
 
         btnPost.setBackground(new java.awt.Color(251, 129, 34));
         btnPost.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -119,10 +151,6 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Host an  Event");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Status of Accomodation:");
-
         btnAdd.setBackground(new java.awt.Color(251, 129, 34));
         btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,13 +160,6 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
-            }
-        });
-
-        comboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Taken" }));
-        comboBoxStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxStatusActionPerformed(evt);
             }
         });
 
@@ -174,7 +195,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
 
         Date.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Date.setForeground(new java.awt.Color(255, 255, 255));
-        Date.setText("Move In date");
+        Date.setText("Event Date");
 
         txtFee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,14 +247,23 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Type");
 
-        DropdownEventType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dropdownEventType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technical", "Career", "Art", "Meetup", "Collaboration", "Cultural", "Food", "Other" }));
+
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Title");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -260,46 +290,42 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                                 .addComponent(btnPost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(20, 20, 20)
-                                            .addComponent(txtCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(DropdownEventType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(0, 0, 0)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(txtFee, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addGap(2, 2, 2))
-                                .addGroup(layout.createSequentialGroup()
                                     .addGap(58, 58, 58)
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(txtCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtFee, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblFeeCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblCapacityCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtTitle, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dropdownEventType, javax.swing.GroupLayout.Alignment.LEADING, 0, 112, Short.MAX_VALUE)))
+                                    .addGap(84, 84, 84))))
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(169, 169, 169))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel15))
-                .addGap(80, 80, 80))
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,7 +339,9 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEdit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -343,28 +371,33 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel13))
                         .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtFee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DropdownEventType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel9)))
-                        .addGap(18, 18, 18)
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel6)
+                                .addGap(74, 74, 74))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(lblFeeCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)
+                                .addComponent(txtCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCapacityCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9)
+                            .addComponent(dropdownEventType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPost, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,27 +411,26 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         if (validityCheck()) {
             btnUpdate.setEnabled(false);
             String email = userAccount.getStudent().getEmailAddress();
-            Permanent p = new Permanent();
-            p.setHostName(lblHostName.getText());
-            p.setMoveInDate(txtdate.getText());
-            p.setContact(email);
-            p.setAddress(txtAreaAddress.getText());
-            p.setAccomodationRequests("");
-            p.setFacilities(txtDescription.getText());
-            p.setRent(Integer.parseInt(txtFee.getText()));
-            p.setDistance(Double.parseDouble(txtDistanceFromUniversity.getText()));
-            p.setTotalPeopleInHouse(Integer.parseInt(txtCapacity.getText()));
-            p.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
-            p.setStatusOfPost("Ok");
+            Event e = new Event();
+            e.setHostName(lblHostName.getText());
+            e.setDate(txtdate.getText());
+            e.setContact(email);
+            e.setLocation(txtAreaAddress.getText());
+            e.setRequests("");
+            e.setDescription(txtDescription.getText());
+            e.setEntryFee((txtFee.getText()));
+            e.setCapacity(txtCapacity.getText());
+            e.setStatusOfPost("Ok");
+            e.setType(dropdownEventType.getSelectedItem().toString());
+            e.setTitle(txtTitle.getText());
 
-            ecosystem.getPermanentDirectory().addNewPermanentAccomodation(email, p);
-            JOptionPane.showMessageDialog(this, "Accomodation Posted!");
+            ecosystem.getEventDirectory().addNewEvent(email, e);
+            JOptionPane.showMessageDialog(this, "Event Posted!");
             clearFields();
             populateTable();
             lblMoveInDateCheck.setEnabled(false);
-            lblDistanceCheck.setEnabled(false);
-            lblTotalPeopleInHouseCheck1.setEnabled(false);
-            lblRentCheck.setEnabled(false);
+            lblFeeCheck.setEnabled(false);
+            lblCapacityCheck.setEnabled(false);
             btnPost.setEnabled(false);
             enableFields(false);
         } else {
@@ -417,39 +449,42 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         clearFields();
         enableFields(true);
+        txtAreaRequests.setEnabled(false);
         btnUpdate.setEnabled(false);
         btnPost.setEnabled(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblAccomodationList.getSelectedRow();
+        int selectedRowIndex = tblEventsList.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to update!");
             return;
         } else if (validityCheck()) {
             //fieldsEnableDisable(true);
-            DefaultTableModel model = (DefaultTableModel) tblAccomodationList.getModel();
-            Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
-            Map<String, ArrayList<Permanent>> latestDirectory = permanentDirectory.getPermanentDirectory();
-            ArrayList<Permanent> perArr = latestDirectory.get(p.getContact());
-            for (Permanent obj : perArr) {
+            DefaultTableModel model = (DefaultTableModel) tblEventsList.getModel();
+            Event p = (Event) model.getValueAt(selectedRowIndex, 0);
+            Map<String, ArrayList<Event>> latestDirectory = eventDirectory.getEventDirectory();
+            ArrayList<Event> perArr = latestDirectory.get(p.getContact());
+            for (Event obj : perArr) {
                 if (obj.equals(p)) {
                     obj.setHostName(lblHostName.getText());
-                    obj.setMoveInDate(txtdate.getText());
-                    obj.setAddress(txtAreaAddress.getText());
-                    obj.setFacilities(txtDescription.getText());
-                    obj.setRent(Integer.parseInt(txtFee.getText()));
-                    obj.setTotalPeopleInHouse(Integer.parseInt(txtCapacity.getText()));
-                    obj.setDistance(Double.parseDouble(txtDistanceFromUniversity.getText()));
-                    obj.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
+                    obj.setDate(txtdate.getText());
+                    obj.setLocation(txtAreaAddress.getText());
+                    obj.setDescription(txtDescription.getText());
+                    obj.setEntryFee((txtFee.getText()));
+                    obj.setCapacity((txtCapacity.getText()));
+                    obj.setTitle(txtTitle.getText());
+                    obj.setRequests(txtAreaRequests.getText());
+                    obj.setType(dropdownEventType.getSelectedItem().toString());
+                    obj.setContact(lblContact.getText());
+                   
                     JOptionPane.showMessageDialog(this, "Record Updated!");
                     enableFields(false);
                     lblMoveInDateCheck.setEnabled(false);
-                    lblDistanceCheck.setEnabled(false);
-                    lblTotalPeopleInHouseCheck1.setEnabled(false);
-                    lblRentCheck.setEnabled(false);
+                    lblFeeCheck.setEnabled(false);
+                    lblCapacityCheck.setEnabled(false);
                 }
             }
         } else {
@@ -464,13 +499,13 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String enteredText = txtCapacity.getText();
         if (enteredText.matches("^[0-9]+$")) {
-            lblTotalPeopleInHouseCheck1.setVisible(true);
-            lblTotalPeopleInHouseCheck1.setForeground(Color.WHITE);
-            lblTotalPeopleInHouseCheck1.setText("Valid Entry");
+            lblCapacityCheck.setVisible(true);
+            lblCapacityCheck.setForeground(Color.WHITE);
+            lblCapacityCheck.setText("Valid Entry");
         } else {
-            lblTotalPeopleInHouseCheck1.setVisible(true);
-            lblTotalPeopleInHouseCheck1.setForeground(Color.orange);
-            lblTotalPeopleInHouseCheck1.setText("Enter numbers only");
+            lblCapacityCheck.setVisible(true);
+            lblCapacityCheck.setForeground(Color.orange);
+            lblCapacityCheck.setText("Enter numbers only");
         }
     }//GEN-LAST:event_txtCapacityKeyReleased
 
@@ -478,13 +513,13 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String enteredText = txtFee.getText();
         if (enteredText.matches("^[0-9]+$")) {
-            lblRentCheck.setVisible(true);
-            lblRentCheck.setForeground(Color.WHITE);
-            lblRentCheck.setText("Valid Entry");
+            lblFeeCheck.setVisible(true);
+            lblFeeCheck.setForeground(Color.WHITE);
+            lblFeeCheck.setText("Valid Entry");
         } else {
-            lblRentCheck.setVisible(true);
-            lblRentCheck.setForeground(Color.orange);
-            lblRentCheck.setText("Enter numbers only");
+            lblFeeCheck.setVisible(true);
+            lblFeeCheck.setForeground(Color.orange);
+            lblFeeCheck.setText("Enter numbers only");
         }
     }//GEN-LAST:event_txtFeeKeyReleased
 
@@ -506,25 +541,49 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtdateKeyReleased
 
-    private void comboBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxStatusActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxStatusActionPerformed
+        int selectedRowIndex = tblEventsList.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to edit!");
+            return;
+        } else {
+            enableFields(true);
+            btnUpdate.setEnabled(true);
+            btnPost.setEnabled(false);
+            DefaultTableModel model = (DefaultTableModel) tblEventsList.getModel();
+            Event t = (Event) model.getValueAt(selectedRowIndex, 0);
+
+            lblHostName.setText(t.getHostName());
+            txtdate.setText(t.getDate().toString());
+            txtAreaAddress.setText(t.getLocation());
+            txtFee.setText(String.valueOf(t.getEntryFee()));
+            txtCapacity.setText(String.valueOf(t.getCapacity()));
+            txtDescription.setText(t.getDescription());
+            txtTitle.setText(t.getTitle());
+            lblContact.setText(t.getContact());
+            dropdownEventType.addItem(t.getType());
+            txtAreaRequests.setText(t.getRequests());
+
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Date;
-    private javax.swing.JComboBox<String> DropdownEventType;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnPost;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> comboBoxStatus;
+    private javax.swing.JComboBox<String> dropdownEventType;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -535,15 +594,74 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblCapacityCheck;
     private javax.swing.JLabel lblContact;
+    private javax.swing.JLabel lblFeeCheck;
     private javax.swing.JLabel lblHostName;
     private javax.swing.JLabel lblMoveInDateCheck;
-    private javax.swing.JTable tblAccomodationList;
+    private javax.swing.JTable tblEventsList;
     private javax.swing.JTextArea txtAreaAddress;
     private javax.swing.JTextArea txtAreaRequests;
     private javax.swing.JTextField txtCapacity;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtFee;
+    private javax.swing.JTextField txtTitle;
     private javax.swing.JTextField txtdate;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblEventsList.getModel();
+        model.setRowCount(0);
+        Map<String, ArrayList<Event>> directory = eventDirectory.getEventDirectory();
+        ArrayList<Event> foundDirectory = new ArrayList<Event>();
+        try {
+            foundDirectory = directory.get(userAccount.getStudent().getEmailAddress());
+            for (Event e : foundDirectory) {
+                Object[] row = new Object[3];
+
+                row[0] = e;
+                row[1] = e.getTitle();
+                row[2] = e.getDate();
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void clearFields() {
+        lblHostName.setText(userAccount.getStudent().getFirstName() + " " +userAccount.getStudent().getLastName());
+        lblContact.setText(userAccount.getStudent().getEmailAddress());
+        txtdate.setText("");
+        txtAreaAddress.setText("");
+        txtAreaRequests.setText("");
+        txtDescription.setText("");
+        txtFee.setText("");
+        txtCapacity.setText("");
+        txtTitle.setText("");
+               
+
+    }
+
+    private void enableFields(boolean b) {
+        lblHostName.setEnabled(b);
+        lblContact.setEnabled(b);
+        txtdate.setEnabled(b);
+        txtAreaAddress.setEnabled(b);
+        txtAreaRequests.setEnabled(b);
+        txtDescription.setEnabled(b);
+        txtFee.setEnabled(b);
+        txtCapacity.setEnabled(b);
+        dropdownEventType.setEnabled(b);
+        txtTitle.setEnabled(b);
+    }
+
+    private boolean validityCheck() {
+        if (lblMoveInDateCheck.getForeground() == Color.WHITE  && lblFeeCheck.getForeground() == Color.WHITE && lblCapacityCheck.getForeground() == Color.WHITE &&  txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0) {
+            return true;
+        } else if(txtdate.getText().length() >0  && txtFee.getText().length() >0 && txtCapacity.getText().length() >0 &&  txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0){
+            return true;
+        }else
+            return false;
+    }
 }
