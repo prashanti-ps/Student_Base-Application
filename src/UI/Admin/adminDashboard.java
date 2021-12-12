@@ -55,80 +55,176 @@ public class adminDashboard extends javax.swing.JPanel {
         btnManagePermanentAccomodation2 = new javax.swing.JButton();
         btnManagePermanentAccomodation3 = new javax.swing.JButton();
         btnStudentRegistration = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
-        btnManageTemporaryAccomodation.setText("Manage Temporary Accomodation");
+        setBackground(new java.awt.Color(29, 34, 40));
+
+        btnManageTemporaryAccomodation.setBackground(new java.awt.Color(251, 129, 34));
+        btnManageTemporaryAccomodation.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnManageTemporaryAccomodation.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageTemporaryAccomodation.setText(" Temporary ");
+        btnManageTemporaryAccomodation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnManageTemporaryAccomodation.setBorderPainted(false);
         btnManageTemporaryAccomodation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageTemporaryAccomodationActionPerformed(evt);
             }
         });
 
-        btnManagePermanentAccomodation.setText("Manage Permanent Accomodation");
+        btnManagePermanentAccomodation.setBackground(new java.awt.Color(251, 129, 34));
+        btnManagePermanentAccomodation.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnManagePermanentAccomodation.setForeground(new java.awt.Color(255, 255, 255));
+        btnManagePermanentAccomodation.setText(" Permanent ");
+        btnManagePermanentAccomodation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnManagePermanentAccomodation.setBorderPainted(false);
         btnManagePermanentAccomodation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManagePermanentAccomodationActionPerformed(evt);
             }
         });
 
-        btnManagePermanentAccomodation1.setText("Manage Complaint Management ");
+        btnManagePermanentAccomodation1.setBackground(new java.awt.Color(251, 129, 34));
+        btnManagePermanentAccomodation1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnManagePermanentAccomodation1.setForeground(new java.awt.Color(255, 255, 255));
+        btnManagePermanentAccomodation1.setText(" Complaint  ");
+        btnManagePermanentAccomodation1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnManagePermanentAccomodation1.setBorderPainted(false);
         btnManagePermanentAccomodation1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManagePermanentAccomodation1ActionPerformed(evt);
             }
         });
 
-        btnManagePermanentAccomodation2.setText("Manage Selling");
+        btnManagePermanentAccomodation2.setBackground(new java.awt.Color(251, 129, 34));
+        btnManagePermanentAccomodation2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnManagePermanentAccomodation2.setForeground(new java.awt.Color(255, 255, 255));
+        btnManagePermanentAccomodation2.setText(" Selling");
+        btnManagePermanentAccomodation2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnManagePermanentAccomodation2.setBorderPainted(false);
         btnManagePermanentAccomodation2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManagePermanentAccomodation2ActionPerformed(evt);
             }
         });
 
-        btnManagePermanentAccomodation3.setText("Manage Buying");
+        btnManagePermanentAccomodation3.setBackground(new java.awt.Color(251, 129, 34));
+        btnManagePermanentAccomodation3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnManagePermanentAccomodation3.setForeground(new java.awt.Color(255, 255, 255));
+        btnManagePermanentAccomodation3.setText(" Buying");
+        btnManagePermanentAccomodation3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnManagePermanentAccomodation3.setBorderPainted(false);
         btnManagePermanentAccomodation3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManagePermanentAccomodation3ActionPerformed(evt);
             }
         });
 
-        btnStudentRegistration.setText("Manage Students");
+        btnStudentRegistration.setBackground(new java.awt.Color(251, 129, 34));
+        btnStudentRegistration.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnStudentRegistration.setForeground(new java.awt.Color(255, 255, 255));
+        btnStudentRegistration.setText(" Students");
+        btnStudentRegistration.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnStudentRegistration.setBorderPainted(false);
         btnStudentRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStudentRegistrationActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Admin Dashboard");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Manage Accomodation");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Complaint Management");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Buying Management");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Selling Management");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Student Management");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnManagePermanentAccomodation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManageTemporaryAccomodation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManagePermanentAccomodation2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManagePermanentAccomodation1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManagePermanentAccomodation3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnStudentRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(747, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(265, 265, 265)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(266, 266, 266)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(258, 258, 258)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnStudentRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnManageTemporaryAccomodation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnManagePermanentAccomodation, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnManagePermanentAccomodation1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnManagePermanentAccomodation3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnManagePermanentAccomodation2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(btnManageTemporaryAccomodation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnManagePermanentAccomodation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnManagePermanentAccomodation1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnManagePermanentAccomodation2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnManagePermanentAccomodation3)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(btnStudentRegistration)
-                .addContainerGap(757, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(btnManageTemporaryAccomodation, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManagePermanentAccomodation, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(btnManagePermanentAccomodation1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(btnManagePermanentAccomodation3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(btnManagePermanentAccomodation2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(btnStudentRegistration, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(531, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,5 +275,11 @@ public class adminDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnManagePermanentAccomodation3;
     private javax.swing.JButton btnManageTemporaryAccomodation;
     private javax.swing.JButton btnStudentRegistration;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

@@ -58,80 +58,155 @@ public class StudentDashboard extends javax.swing.JPanel {
         btnPostPermanent = new javax.swing.JButton();
         btnBuyItems = new javax.swing.JButton();
         btnSellItems = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(29, 34, 40));
+
+        btnFindTemp.setBackground(new java.awt.Color(251, 129, 34));
+        btnFindTemp.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnFindTemp.setForeground(new java.awt.Color(255, 255, 255));
         btnFindTemp.setText("Find Temporary Accomodation");
+        btnFindTemp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnFindTemp.setBorderPainted(false);
         btnFindTemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindTempActionPerformed(evt);
             }
         });
 
+        btnPostTemp.setBackground(new java.awt.Color(251, 129, 34));
+        btnPostTemp.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnPostTemp.setForeground(new java.awt.Color(255, 255, 255));
         btnPostTemp.setText("Post a Temporary Accomodation");
+        btnPostTemp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnPostTemp.setBorderPainted(false);
         btnPostTemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPostTempActionPerformed(evt);
             }
         });
 
+        btnFindPermanent.setBackground(new java.awt.Color(251, 129, 34));
+        btnFindPermanent.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnFindPermanent.setForeground(new java.awt.Color(255, 255, 255));
         btnFindPermanent.setText("Find Permanent Accomodation");
+        btnFindPermanent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnFindPermanent.setBorderPainted(false);
         btnFindPermanent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindPermanentActionPerformed(evt);
             }
         });
 
+        btnPostPermanent.setBackground(new java.awt.Color(251, 129, 34));
+        btnPostPermanent.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnPostPermanent.setForeground(new java.awt.Color(255, 255, 255));
         btnPostPermanent.setText("Post a Permanent Accomodation");
+        btnPostPermanent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnPostPermanent.setBorderPainted(false);
         btnPostPermanent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPostPermanentActionPerformed(evt);
             }
         });
 
+        btnBuyItems.setBackground(new java.awt.Color(251, 129, 34));
+        btnBuyItems.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBuyItems.setForeground(new java.awt.Color(255, 255, 255));
         btnBuyItems.setText("Buy items");
+        btnBuyItems.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnBuyItems.setBorderPainted(false);
 
+        btnSellItems.setBackground(new java.awt.Color(251, 129, 34));
+        btnSellItems.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSellItems.setForeground(new java.awt.Color(255, 255, 255));
         btnSellItems.setText("Post Products for Sale");
+        btnSellItems.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnSellItems.setBorderPainted(false);
         btnSellItems.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSellItemsActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Student Dasboard");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Temorary Accomodation:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Permanent Accomodation:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Permanent Accomodation:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSellItems, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPostPermanent, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFindPermanent, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(btnFindTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(77, 77, 77)
-                            .addComponent(btnPostTemp))))
-                .addContainerGap(730, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2)
+                            .addComponent(btnFindTemp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPostTemp, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                        .addGap(126, 126, 126)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnFindPermanent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(btnPostPermanent, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84)
+                        .addComponent(btnSellItems, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(btnFindTemp)
-                .addGap(31, 31, 31)
-                .addComponent(btnPostTemp)
-                .addGap(31, 31, 31)
-                .addComponent(btnFindPermanent)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFindTemp)
+                    .addComponent(btnFindPermanent))
                 .addGap(28, 28, 28)
-                .addComponent(btnPostPermanent)
-                .addGap(46, 46, 46)
-                .addComponent(btnBuyItems)
-                .addGap(36, 36, 36)
-                .addComponent(btnSellItems)
-                .addContainerGap(638, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPostTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPostPermanent))
+                .addGap(64, 64, 64)
+                .addComponent(jLabel4)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSellItems))
+                .addContainerGap(712, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBuyItems, btnSellItems});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnFindPermanent, btnFindTemp, btnPostPermanent, btnPostTemp});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSellItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellItemsActionPerformed
@@ -179,5 +254,9 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnPostPermanent;
     private javax.swing.JButton btnPostTemp;
     private javax.swing.JButton btnSellItems;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
