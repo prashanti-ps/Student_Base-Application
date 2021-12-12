@@ -137,7 +137,7 @@ public class StudentDashboard extends javax.swing.JPanel {
     private void btnSellItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellItemsActionPerformed
         // TODO add your handling code here:
         
-        postSellingProduct postPermanentAccomodationPanel=new postSellingProduct( userProcessContainer, userAccount);
+        postSellingProduct postPermanentAccomodationPanel=new postSellingProduct( userProcessContainer, userAccount, ecosystem);
         userProcessContainer.add("postPermanentAccomodationPanel", postPermanentAccomodationPanel);
                            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                            layout.next(userProcessContainer);  

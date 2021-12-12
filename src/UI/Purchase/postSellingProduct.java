@@ -5,6 +5,7 @@
  */
 package UI.Purchase;
 
+import business.EcoSystem;
 import business.Purchase.Purchase;
 import business.Purchase.PurchaseDirectory;
 import business.student.accomodation.Permanent;
@@ -43,11 +44,15 @@ public class postSellingProduct extends javax.swing.JPanel {
     JPanel userProcessContainer;
     StudentDirectory studentDirectory;
     UserAccount userAccount;
-    public postSellingProduct(JPanel userProcessContainer, UserAccount userAccount) {
+    EcoSystem ecosystem;
+    
+    public postSellingProduct(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
         initComponents();
-        this.purchaseDirectory = purchaseDirectory;
-        this.studentDirectory = studentDirectory;
+        
         this.userAccount = userAccount;
+        this.ecosystem = ecosystem;
+        this.purchaseDirectory = ecosystem.getPurchaseDirectory();
+        this.studentDirectory = ecosystem.getStudentDirectory();
         
         txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
     }
@@ -90,18 +95,20 @@ public class postSellingProduct extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         lblUploadImage = new javax.swing.JLabel();
         btnUploadImage = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        comboStatus = new javax.swing.JComboBox<>();
 
         setLayout(new java.awt.CardLayout());
 
         tblProductList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Product Name", "Address", "price", "Condition", "Category", "Comment"
+                "Product Name", "Address", "price", "Quantity", "Condition", "Category", "Comment", "Status"
             }
         ));
         jScrollPane1.setViewportView(tblProductList);
@@ -158,7 +165,7 @@ public class postSellingProduct extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Post Porducts for sale");
+        jLabel8.setText("Post Products for sale");
 
         jLabel9.setText("Comment :");
 
@@ -197,58 +204,68 @@ public class postSellingProduct extends javax.swing.JPanel {
             }
         });
 
+        jLabel11.setText("Status");
+
+        comboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Taken" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addGap(90, 90, 90)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(54, 54, 54)
+                        .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtContactEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(txtComment, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboCategory, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboCondition, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblUploadImage)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnPost)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnUpdate)
                                 .addGap(18, 18, 18)
-                                .addComponent(Edit)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(lblPriceCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtContactEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(txtComment, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboCategory, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboCondition, javax.swing.GroupLayout.Alignment.LEADING, 0, 217, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblUploadImage)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblPriceCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(27, 27, 27)
-                                        .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                .addGap(27, 27, 27)
+                                .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)))))
                 .addGap(138, 138, 138))
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addComponent(btnPost)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnUpdate)
+                        .addGap(18, 18, 18)
+                        .addComponent(Edit))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,13 +275,12 @@ public class postSellingProduct extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(60, 60, 60)
-                                        .addComponent(jLabel1))
+                                    .addComponent(jLabel1)
                                     .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel2))
@@ -298,16 +314,20 @@ public class postSellingProduct extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11)
+                    .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                    .addComponent(btnUploadImage)
                     .addComponent(lblUploadImage)
-                    .addComponent(btnUploadImage))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPost)
                     .addComponent(btnUpdate)
                     .addComponent(Edit))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
@@ -330,6 +350,8 @@ public class postSellingProduct extends javax.swing.JPanel {
         p.setAddress(txtAreaAddress.getText());
         p.setContactEmail(email);
         p.setContidion(comboCondition.getItemAt(0));
+        p.setStatus("OK");
+        p.setStatusOfProduct(comboStatus.getItemAt(0));
         
         
         
@@ -338,8 +360,8 @@ public class postSellingProduct extends javax.swing.JPanel {
         
        
         
-        
-         purchaseDirectory.addNewPurchaseProduct(email, p);
+        ecosystem.getPurchaseDirectory().addNewPurchaseProduct(email, p);
+         //purchaseDirectory.addNewPurchaseProduct(email, p);
        // p.setProductImage(productImage);
        JOptionPane.showMessageDialog(this, "Product Posted!");
         
@@ -367,11 +389,12 @@ public class postSellingProduct extends javax.swing.JPanel {
                     obj.setProductName(txtProductName.getText());
                     obj.setPrice(Integer.parseInt(txtPrice.getText()));
                     obj.setAddress(txtAreaAddress.getText());
-                    obj.setQuantity(Integer.parseInt(txtQuantity.getText()));
+                    //obj.setQuantity(Integer.parseInt(txtQuantity.getText()));
                     obj.setContidion(comboCondition.getItemAt(0));
                     obj.setComment(txtComment.getText());
                     
                     obj.setCategory(comboCategory.getItemAt(0));
+                    obj.setStatus(comboStatus.getItemAt(0));
                     JOptionPane.showMessageDialog(this, "Record Updated!");
                    // enableFields(false);
                     lblPriceCheck.setEnabled(false);
@@ -440,7 +463,7 @@ public class postSellingProduct extends javax.swing.JPanel {
             txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
             txtPrice.setText(String.valueOf(p.getPrice()));
             txtAreaAddress.setText(p.getAddress());
-           // txtQuantity.setText(String.valueOf(p.getQuantity()));
+            txtQuantity.setText(String.valueOf(p.getQuantity()));
             txtComment.setText(p.getComment());
             
           //  comboCategory.addItem(p.getCategory().toString());
@@ -464,6 +487,8 @@ public class postSellingProduct extends javax.swing.JPanel {
 Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
 ImageIcon imICon2 = new ImageIcon(newimg);
     lblUploadImage.setIcon(imICon2);
+    
+    Purchase p = new Purchase();
     
     //upload file in folder
     
@@ -503,8 +528,10 @@ ImageIcon imICon2 = new ImageIcon(newimg);
     private javax.swing.JButton btnUploadImage;
     private javax.swing.JComboBox<String> comboCategory;
     private javax.swing.JComboBox<String> comboCondition;
+    private javax.swing.JComboBox<String> comboStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -551,14 +578,16 @@ ImageIcon imICon2 = new ImageIcon(newimg);
             System.out.print(userAccount.getStudent().getEmailAddress());
             foundDirectory = directory.get(userAccount.getStudent().getEmailAddress());
             for (Purchase p : foundDirectory) {
-                Object[] row = new Object[6];
+                Object[] row = new Object[8];
 
-                row[0] = p.getProductName();
+                row[0] = p;
                 row[1] = p.getAddress();
                 row[2] = p.getPrice();
-                row[3] = p.getContidion();
-                row[4] = p.getCategory();
-                row[5] = p.getComment();
+                row[3] = p.getQuantity();
+                row[4] = p.getContidion();
+                row[5] = p.getCategory();
+                row[6] = p.getComment();
+                row[7] = p.getStatusOfProduct();
                 model.addRow(row);
         }
         }

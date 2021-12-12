@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.Purchase.PurchaseDirectory;
 import business.useraccount.UserAccountDirectory;
 import java.util.ArrayList;
 import business.role.Role;
@@ -27,6 +28,7 @@ public abstract class Organization {
     private TemporaryDirectory temporaryDirectory;
     private PermanentDirectory permanentDirectory;
     private StudentDirectory studentDirectory;
+    private PurchaseDirectory purchaseDirectory;
     private int organizationID;
     private static int counter = 0;
 
@@ -54,8 +56,17 @@ public abstract class Organization {
         temporaryDirectory = new TemporaryDirectory();
         permanentDirectory = new PermanentDirectory();
         studentDirectory = new StudentDirectory();
+        purchaseDirectory = new PurchaseDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public PurchaseDirectory getPurchaseDirectory() {
+        return purchaseDirectory;
+    }
+
+    public void setPurchaseDirectory(PurchaseDirectory purchaseDirectory) {
+        this.purchaseDirectory = purchaseDirectory;
     }
 
     public StudentDirectory getStudentDirectory() {
