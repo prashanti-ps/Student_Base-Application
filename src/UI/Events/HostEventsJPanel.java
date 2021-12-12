@@ -43,11 +43,12 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     EventDirectory eventDirectory;
 
     public HostEventsJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
-        initComponents();
-        this.ecosystem = ecosystem;
-        this.userAccount = userAccount;
+        
+        this.ecosystem = ecosystem;           
+        this.userAccount = userAccount;  
         this.userProcessContainer = userProcessContainer;
-        eventDirectory = ecosystem.getEventDirectory();
+        this.eventDirectory = ecosystem.getEventDirectory();
+       initComponents();
         populateTable();
         clearFields();
         enableFields(false);
@@ -637,7 +638,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
             String toEmail;
             String fromEmail = "randadpratik789@gmail.com";
             String pass = "pratik@3848";
-            String subject = "Verify Your OTP- AED Final Project Test";
+            String subject = t.getTitle()+" : Registration link";
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.gmail.com");
             props.put("mail.smtp.port", "25");
@@ -666,7 +667,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                     message.setFrom(new InternetAddress(fromEmail));
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
                     message.setSubject(subject);
-                    message.setText("Hello "+ t.getHostName() + "! " + "\n" + " Here is your registration link for the event: ");
+                    message.setText("Hello "+ t.getHostName() + "! " + "\n" + " Here is your registration link for the event: \n" + t.getLink());
                     Transport.send(message);
 
                 }
@@ -678,7 +679,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
 
             }
         }else
-             JOptionPane.showMessageDialog(this, "There are not registration requests!");
+             JOptionPane.showMessageDialog(this, "There are no any  registration requests!");
     }//GEN-LAST:event_btnSendLinkActionPerformed
     }
 
