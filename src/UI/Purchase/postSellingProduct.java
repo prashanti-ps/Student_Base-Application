@@ -482,6 +482,11 @@ public class postSellingProduct extends javax.swing.JPanel {
         btnPost.setEnabled(false);
         enableFields(false);
          }
+         
+         else{
+             JOptionPane.showMessageDialog(this, "All fields must be filled");
+         
+         }
         
     }//GEN-LAST:event_btnPostActionPerformed
 
@@ -585,6 +590,12 @@ public class postSellingProduct extends javax.swing.JPanel {
             comboCondition.setSelectedItem(p.getContidion().toString());
             comboStatus.setSelectedItem(p.getStatusOfProduct().toString());
             txtAreaRequests.setText(p.getBuyRequests());
+            
+            ImageIcon imIcon = new ImageIcon(p.getProductImage());
+    Image image = imIcon.getImage(); // transform it 
+Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
+ImageIcon imICon2 = new ImageIcon(newimg);
+    lblUploadImage.setIcon(imICon2);
         }
     }//GEN-LAST:event_EditActionPerformed
 
@@ -750,7 +761,7 @@ ImageIcon imICon2 = new ImageIcon(newimg);
     
     private boolean validityCheck() {
 
-        if (lblPriceCheck.getForeground() == Color.WHITE && lblQuantityCheck.getForeground() == Color.WHITE) {
+        if (lblPriceCheck.getForeground() == Color.WHITE && lblQuantityCheck.getForeground() == Color.WHITE && lblUploadImage.getIcon() != null ) {
             return true;
         } else {
             return false;

@@ -6,6 +6,7 @@
 package business;
 
 import business.Purchase.PurchaseDirectory;
+import business.Rent.RentProductDirectory;
 import business.events.EventDirectory;
 import business.role.AdminRole;
 import business.role.Role;
@@ -27,8 +28,10 @@ public class EcoSystem extends Organization{
     private StudentDirectory studentDirectory;
     private EventDirectory eventDirectory;
     private PurchaseDirectory purchaseDirectory;
+    private RentProductDirectory rentProductDirectory;
 
-    public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory, StudentDirectory studentDirectory, EventDirectory eventDirectory,PurchaseDirectory purchaseDirectory)
+
+    public EcoSystem( TemporaryDirectory temporaryDirectory, PermanentDirectory permanentDirectory, StudentDirectory studentDirectory, PurchaseDirectory purchaseDirectory, RentProductDirectory rentProductDirectory, EventDirectory eventDirectory)
     {
 
         this.temporaryDirectory = temporaryDirectory;
@@ -36,6 +39,7 @@ public class EcoSystem extends Organization{
         this.studentDirectory=studentDirectory;
         this.eventDirectory=eventDirectory;
         this.purchaseDirectory = purchaseDirectory;
+        this.rentProductDirectory = rentProductDirectory;
     }
     
     public static EcoSystem getInstance(){
