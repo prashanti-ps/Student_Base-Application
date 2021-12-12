@@ -5,6 +5,7 @@
  */
 package business.Purchase;
 
+import business.student.accomodation.Permanent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,12 @@ public class PurchaseDirectory {
        this.purchaseDirectory.put(email,per);
        }
        
+   }
+     public void deleteObject(Purchase p)
+   {
+        purchaseDirectory.get(p.getContact()).remove(p);
+
+        
    }
    
 }

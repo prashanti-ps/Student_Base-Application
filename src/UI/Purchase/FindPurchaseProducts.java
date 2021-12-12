@@ -57,7 +57,6 @@ public class FindPurchaseProducts extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateChooserPanelBeanInfo1 = new com.toedter.calendar.demo.DateChooserPanelBeanInfo();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -511,7 +510,6 @@ ImageIcon imICon2 = new ImageIcon(newimg);
     private javax.swing.JComboBox<String> comboCategory;
     private javax.swing.JComboBox<String> comboCondition;
     private javax.swing.JComboBox<String> comboStatus;
-    private com.toedter.calendar.demo.DateChooserPanelBeanInfo dateChooserPanelBeanInfo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

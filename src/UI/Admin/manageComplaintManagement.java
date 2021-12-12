@@ -6,14 +6,18 @@
 package UI.Admin;
 
 import business.EcoSystem;
+import business.Purchase.Purchase;
+import business.Purchase.PurchaseDirectory;
 import business.student.accomodation.Permanent;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
 import business.student.accomodation.TemporaryDirectory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
@@ -34,16 +38,22 @@ public class manageComplaintManagement extends javax.swing.JPanel {
     UserAccount userAccount;
     TemporaryDirectory temporaryDirectory;
     PermanentDirectory permanentDirectory;
+     PurchaseDirectory purchaseDirectory;
     Temporary temp;
     Permanent per;
+    Purchase pur;
 
     public manageComplaintManagement(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem) {
-        initComponents();
+       
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.userAccount = userAccount;
         this.temporaryDirectory = ecosystem.getTemporaryDirectory();
         this.permanentDirectory = ecosystem.getPermanentDirectory();
+         this.purchaseDirectory = ecosystem.getPurchaseDirectory();
+          initComponents();
+        populateComplaintsTable();
+        initPurchaseListerners();
     }
 
     /**
@@ -57,15 +67,23 @@ public class manageComplaintManagement extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         adminComplaintManagementTab = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        buyingComplaintsJPanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        tblComplaintsPurchase = new javax.swing.JTable();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        txtProductName = new javax.swing.JLabel();
+        txtProductCategory = new javax.swing.JLabel();
+        txtProductCondition = new javax.swing.JLabel();
+        txtProductQuantity = new javax.swing.JLabel();
+        txtProductAddress = new javax.swing.JLabel();
+        lblProductImage = new javax.swing.JLabel();
+        btnDeletePurchase = new javax.swing.JButton();
+        TemporaryAccomodationPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAdminComplaintTemp = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -81,7 +99,7 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         lblTempContact = new javax.swing.JLabel();
         lblTempDistance = new javax.swing.JLabel();
         lblTempOccupancy = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        PermanentAccomodationPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblAdminComplaintPer = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
@@ -109,9 +127,9 @@ public class manageComplaintManagement extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(29, 34, 40));
+        buyingComplaintsJPanel.setBackground(new java.awt.Color(29, 34, 40));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblComplaintsPurchase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -119,91 +137,146 @@ public class manageComplaintManagement extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Product Name", "Complaint Against ", "Status", "Comment"
             }
-        ));
-        jScrollPane3.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
 
-        jButton3.setBackground(new java.awt.Color(251, 129, 34));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Delete Post");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton3.setBorderPainted(false);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
-        );
-
-        adminComplaintManagementTab.addTab("Selling", jPanel1);
-
-        jPanel2.setBackground(new java.awt.Color(29, 34, 40));
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
-        ));
-        jScrollPane4.setViewportView(jTable3);
+        });
+        jScrollPane4.setViewportView(tblComplaintsPurchase);
 
-        jButton4.setBackground(new java.awt.Color(251, 129, 34));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Delete Post");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setBorderPainted(false);
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Product:");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(235, 235, 235)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Category:");
+
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Condition:");
+
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Quantity:");
+
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Address:");
+
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Product Image:");
+
+        txtProductName.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtProductCategory.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtProductCondition.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtProductQuantity.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtProductAddress.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnDeletePurchase.setBackground(new java.awt.Color(251, 129, 34));
+        btnDeletePurchase.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnDeletePurchase.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeletePurchase.setText("Delete Post");
+        btnDeletePurchase.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDeletePurchase.setBorderPainted(false);
+        btnDeletePurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletePurchaseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout buyingComplaintsJPanelLayout = new javax.swing.GroupLayout(buyingComplaintsJPanel);
+        buyingComplaintsJPanel.setLayout(buyingComplaintsJPanelLayout);
+        buyingComplaintsJPanelLayout.setHorizontalGroup(
+            buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel21))
+                                .addGap(63, 63, 63)
+                                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtProductCondition)
+                                    .addComponent(txtProductCategory)
+                                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34)
+                                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel22)
+                                        .addComponent(jLabel23))
+                                    .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel24)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtProductAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                        .addComponent(txtProductQuantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                        .addGap(286, 286, 286)
+                        .addComponent(btnDeletePurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(376, Short.MAX_VALUE))
+
+        buyingComplaintsJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtProductCategory, txtProductCondition, txtProductName});
+
+        buyingComplaintsJPanelLayout.setVerticalGroup(
+            buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                        .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProductQuantity))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(txtProductAddress)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, buyingComplaintsJPanelLayout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                            .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel20)
+                                .addComponent(txtProductCategory))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                            .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel21)
+                                .addComponent(txtProductCondition)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, buyingComplaintsJPanelLayout.createSequentialGroup()
+                            .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel23))
+                                .addComponent(jLabel22))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(btnDeletePurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
-        adminComplaintManagementTab.addTab("Buying", jPanel2);
+        buyingComplaintsJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtProductAddress, txtProductCategory, txtProductCondition, txtProductName, txtProductQuantity});
 
-        jPanel3.setBackground(new java.awt.Color(29, 34, 40));
+        adminComplaintManagementTab.addTab("Purchase", buyingComplaintsJPanel);
+
+        TemporaryAccomodationPanel.setBackground(new java.awt.Color(29, 34, 40));
 
         tblAdminComplaintTemp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -262,82 +335,82 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Occupancy For:");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout TemporaryAccomodationPanelLayout = new javax.swing.GroupLayout(TemporaryAccomodationPanel);
+        TemporaryAccomodationPanel.setLayout(TemporaryAccomodationPanelLayout);
+        TemporaryAccomodationPanelLayout.setHorizontalGroup(
+            TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
+                .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(32, 32, 32)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblTempAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .addComponent(lblTempFacilities, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblTempPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblTempContact, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                    .addComponent(lblTempDistance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblTempOccupancy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(32, 32, 32)
+                        .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTempAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                            .addComponent(lblTempFacilities, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTempPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTempContact, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                            .addComponent(lblTempDistance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTempOccupancy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
                         .addGap(205, 205, 205)
-                        .addComponent(btnAdminComplaintTempDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
+                        .addComponent(btnAdminComplaintTempDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+        TemporaryAccomodationPanelLayout.setVerticalGroup(
+            TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jLabel5))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(lblTempAddress)
                         .addComponent(lblTempContact)))
                 .addGap(36, 36, 36)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
                     .addComponent(lblTempFacilities)
                     .addComponent(lblTempDistance))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(lblTempPrice)
                             .addComponent(lblTempOccupancy, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(jLabel7)))
                 .addGap(51, 51, 51)
                 .addComponent(btnAdminComplaintTempDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(238, 238, 238))
+                .addContainerGap(438, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblTempAddress, lblTempContact, lblTempDistance, lblTempFacilities, lblTempOccupancy, lblTempPrice});
+        TemporaryAccomodationPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblTempAddress, lblTempContact, lblTempDistance, lblTempFacilities, lblTempOccupancy, lblTempPrice});
 
-        adminComplaintManagementTab.addTab("Temporary Accomodation", jPanel3);
+        adminComplaintManagementTab.addTab("Temporary Accomodation", TemporaryAccomodationPanel);
 
-        jPanel4.setBackground(new java.awt.Color(29, 34, 40));
-        jPanel4.setForeground(new java.awt.Color(255, 255, 255));
+        PermanentAccomodationPanel.setBackground(new java.awt.Color(29, 34, 40));
+        PermanentAccomodationPanel.setForeground(new java.awt.Color(255, 255, 255));
 
         tblAdminComplaintPer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -392,71 +465,71 @@ public class manageComplaintManagement extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout PermanentAccomodationPanelLayout = new javax.swing.GroupLayout(PermanentAccomodationPanel);
+        PermanentAccomodationPanel.setLayout(PermanentAccomodationPanelLayout);
+        PermanentAccomodationPanelLayout.setHorizontalGroup(
+            PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PermanentAccomodationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE)
+                    .addGroup(PermanentAccomodationPanelLayout.createSequentialGroup()
+                        .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel18)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel16)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPermFacilities, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                             .addComponent(lblPermAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblPermRent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(36, 36, 36)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel15)
                             .addComponent(jLabel17))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPermContact, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                             .addComponent(lblPermTotalPpl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(PermanentAccomodationPanelLayout.createSequentialGroup()
                 .addGap(224, 224, 224)
                 .addComponent(btnAdminComplaintPermDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        PermanentAccomodationPanelLayout.setVerticalGroup(
+            PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PermanentAccomodationPanelLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(lblPermAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPermContact)
                     .addComponent(jLabel15))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PermanentAccomodationPanelLayout.createSequentialGroup()
+                        .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addComponent(lblPermFacilities)
                             .addComponent(jLabel17))
                         .addGap(19, 19, 19)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
                             .addComponent(lblPermRent)))
                     .addComponent(lblPermTotalPpl))
                 .addGap(53, 53, 53)
                 .addComponent(btnAdminComplaintPermDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(444, Short.MAX_VALUE))
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdminComplaintPermDelete, lblPermAddress, lblPermContact, lblPermFacilities, lblPermRent, lblPermTotalPpl});
+        PermanentAccomodationPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdminComplaintPermDelete, lblPermAddress, lblPermContact, lblPermFacilities, lblPermRent, lblPermTotalPpl});
 
-        adminComplaintManagementTab.addTab("Permanent Accomodation", jPanel4);
+        adminComplaintManagementTab.addTab("Permanent Accomodation", PermanentAccomodationPanel);
 
         btnBackComplaintManagementAdmin.setBackground(new java.awt.Color(251, 129, 34));
         btnBackComplaintManagementAdmin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -474,38 +547,60 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(adminComplaintManagementTab))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(225, 225, 225))
+                        .addGap(261, 261, 261)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(adminComplaintManagementTab)
-                        .addContainerGap(13, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBackComplaintManagementAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(24, 24, 24)
+                        .addComponent(btnBackComplaintManagementAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(btnBackComplaintManagementAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(adminComplaintManagementTab, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(adminComplaintManagementTab))
         );
     }// </editor-fold>//GEN-END:initComponents
+private void populateComplaintsTable() {
+        DefaultTableModel model = (DefaultTableModel) tblComplaintsPurchase.getModel();
+        model.setRowCount(0);
+        String contact = "";
+        Object[] row = new Object[4];
+        Map<String, ArrayList<Purchase>> latestDirectory = purchaseDirectory.getPurchaseDirectory();
+        for (String key : latestDirectory.keySet()) {
+            for (Purchase value : latestDirectory.get(key)) {
+                if (value.getStatus().equals("Delete")) {
+                    contact = key;
+                    row[0] = value;
+                    row[1] = value.getContact();
+                    row[2] = value.getStatus();
+                    row[3] = value.getComment();
+                    model.addRow(row);
+                }
+            }
+        }
+    }
 
     private void adminComplaintManagementTabStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_adminComplaintManagementTabStateChanged
-        if (adminComplaintManagementTab.getSelectedIndex() == 2) {
+         if (adminComplaintManagementTab.getSelectedIndex() == 0) {
+            populateComplaintsTable();
+            initPurchaseListerners();
+        }
+        if (adminComplaintManagementTab.getSelectedIndex() == 1) {
             populateTemporaryAccomodtionComplaintsTable();
             initTempListerners();
         }
-        if (adminComplaintManagementTab.getSelectedIndex() == 3) {
+        if (adminComplaintManagementTab.getSelectedIndex() == 2) {
             populatePermanentAccomodtionComplaintsTable();
             initPermListerners();
         }
@@ -555,6 +650,26 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackComplaintManagementAdminActionPerformed
+
+    private void btnDeletePurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePurchaseActionPerformed
+        int selectedRow = tblComplaintsPurchase.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a post to delete");
+            return;
+        } else {
+            pur = (Purchase) tblComplaintsPurchase.getValueAt(selectedRow, 0);
+            purchaseDirectory.deleteObject(pur);
+            JOptionPane.showMessageDialog(null, "Post Deleted!");
+            populateComplaintsTable();
+            txtProductAddress.setText(null);
+            txtProductCategory.setText(null);
+            txtProductCondition.setText(null);
+            txtProductName.setText(null);
+            txtProductQuantity.setText(null);
+            lblProductImage.setIcon(null);
+
+        }
+    }//GEN-LAST:event_btnDeletePurchaseActionPerformed
     private void populateTemporaryAccomodtionComplaintsTable() {
         DefaultTableModel model = (DefaultTableModel) tblAdminComplaintTemp.getModel();
         model.setRowCount(0);
@@ -615,6 +730,29 @@ public class manageComplaintManagement extends javax.swing.JPanel {
             }
         });
     }
+private void initPurchaseListerners() {
+        tblComplaintsPurchase.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblComplaintsPurchase.getSelectedRow();
+                if (selectedRow >= 0) {
+                    Purchase pur = (Purchase) tblComplaintsPurchase.getValueAt(selectedRow, 0);
+                    if (null != pur) {
+                        txtProductAddress.setText(pur.getAddress());
+                        txtProductCategory.setText(pur.getCategory());
+                        txtProductCondition.setText(pur.getContidion());
+                        txtProductName.setText(pur.getProductName());
+                        txtProductQuantity.setText(String.valueOf(pur.getQuantity()));
+                        ImageIcon photo = new ImageIcon(pur.getProductImage());
+                        Image fitImage = photo.getImage();
+                        Image fitSize = fitImage.getScaledInstance(220, 170, Image.SCALE_SMOOTH);
+                        lblProductImage.setIcon(new ImageIcon(fitSize));
+
+                    }
+
+                }
+            }
+        });
+    }
 
     private void initPermListerners() {
         tblAdminComplaintPer.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -636,39 +774,41 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PermanentAccomodationPanel;
+    private javax.swing.JPanel TemporaryAccomodationPanel;
     private javax.swing.JTabbedPane adminComplaintManagementTab;
     private javax.swing.JButton btnAdminComplaintPermDelete;
     private javax.swing.JButton btnAdminComplaintTempDelete;
     private javax.swing.JButton btnBackComplaintManagementAdmin;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnDeletePurchase;
+    private javax.swing.JPanel buyingComplaintsJPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JLabel lblPermAddress;
     private javax.swing.JLabel lblPermContact;
     private javax.swing.JLabel lblPermFacilities;
     private javax.swing.JLabel lblPermRent;
     private javax.swing.JLabel lblPermTotalPpl;
+    private javax.swing.JLabel lblProductImage;
     private javax.swing.JLabel lblTempAddress;
     private javax.swing.JLabel lblTempContact;
     private javax.swing.JLabel lblTempDistance;
@@ -677,5 +817,11 @@ public class manageComplaintManagement extends javax.swing.JPanel {
     private javax.swing.JLabel lblTempPrice;
     private javax.swing.JTable tblAdminComplaintPer;
     private javax.swing.JTable tblAdminComplaintTemp;
+    private javax.swing.JTable tblComplaintsPurchase;
+    private javax.swing.JLabel txtProductAddress;
+    private javax.swing.JLabel txtProductCategory;
+    private javax.swing.JLabel txtProductCondition;
+    private javax.swing.JLabel txtProductName;
+    private javax.swing.JLabel txtProductQuantity;
     // End of variables declaration//GEN-END:variables
 }
