@@ -11,6 +11,7 @@ import UI.Accomodation.postPermanentAccomodation;
 import UI.Accomodation.postTemporaryAccomodationJPanel;
 import UI.Events.FindEventsJPanel;
 import UI.Events.HostEventsJPanel;
+import UI.Purchase.FindPurchaseProducts;
 import UI.Purchase.postSellingProduct;
 import business.EcoSystem;
 import javax.swing.JSplitPane;
@@ -31,6 +32,7 @@ public class StudentDashboard extends javax.swing.JPanel {
      */
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
+    
    JSplitPane jSplitPane1;
     EcoSystem ecosystem;
     UserAccount userAccount;
@@ -57,7 +59,6 @@ public class StudentDashboard extends javax.swing.JPanel {
         btnPostTemp = new javax.swing.JButton();
         btnFindPermanent = new javax.swing.JButton();
         btnPostPermanent = new javax.swing.JButton();
-        btnBuyItems = new javax.swing.JButton();
         btnSellItems = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -66,6 +67,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         btnHost = new javax.swing.JButton();
         btnFindEvent = new javax.swing.JButton();
+        btnBuyItems = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(29, 34, 40));
 
@@ -116,13 +118,6 @@ public class StudentDashboard extends javax.swing.JPanel {
                 btnPostPermanentActionPerformed(evt);
             }
         });
-
-        btnBuyItems.setBackground(new java.awt.Color(251, 129, 34));
-        btnBuyItems.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnBuyItems.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuyItems.setText("Buy items");
-        btnBuyItems.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnBuyItems.setBorderPainted(false);
 
         btnSellItems.setBackground(new java.awt.Color(251, 129, 34));
         btnSellItems.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -185,6 +180,17 @@ public class StudentDashboard extends javax.swing.JPanel {
             }
         });
 
+        btnBuyItems.setBackground(new java.awt.Color(251, 129, 34));
+        btnBuyItems.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuyItems.setText("Buy Products");
+        btnBuyItems.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnBuyItems.setBorderPainted(false);
+        btnBuyItems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuyItemsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,7 +200,7 @@ public class StudentDashboard extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSellItems, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -237,20 +243,20 @@ public class StudentDashboard extends javax.swing.JPanel {
                     .addComponent(btnPostPermanent))
                 .addGap(33, 33, 33)
                 .addComponent(jLabel4)
-                .addGap(33, 33, 33)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSellItems))
-                .addGap(45, 45, 45)
+                    .addComponent(btnSellItems)
+                    .addComponent(btnBuyItems))
+                .addGap(38, 38, 38)
                 .addComponent(jLabel5)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHost)
                     .addComponent(btnFindEvent))
-                .addContainerGap(604, Short.MAX_VALUE))
+                .addContainerGap(633, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBuyItems, btnFindEvent, btnHost, btnSellItems});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnFindEvent, btnHost, btnSellItems});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnFindPermanent, btnFindTemp, btnPostPermanent, btnPostTemp});
 
@@ -259,7 +265,7 @@ public class StudentDashboard extends javax.swing.JPanel {
     private void btnSellItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellItemsActionPerformed
         // TODO add your handling code here:
         
-        postSellingProduct postPermanentAccomodationPanel=new postSellingProduct( userProcessContainer, userAccount);
+        postSellingProduct postPermanentAccomodationPanel=new postSellingProduct( userProcessContainer, userAccount, ecosystem);
         userProcessContainer.add("postPermanentAccomodationPanel", postPermanentAccomodationPanel);
                            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                            layout.next(userProcessContainer);  
@@ -308,6 +314,14 @@ public class StudentDashboard extends javax.swing.JPanel {
                            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                            layout.next(userProcessContainer);
     }//GEN-LAST:event_btnFindEventActionPerformed
+
+    private void btnBuyItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyItemsActionPerformed
+        // TODO add your handling code here:
+        FindPurchaseProducts postPermanentAccomodationPanel=new FindPurchaseProducts( userProcessContainer, userAccount, ecosystem);
+        userProcessContainer.add("postPermanentAccomodationPanel", postPermanentAccomodationPanel);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);  
+    }//GEN-LAST:event_btnBuyItemsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

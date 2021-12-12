@@ -21,8 +21,35 @@ public class Purchase {
     private String status;
     private String comment;
     private String report;
-    private BufferedImage productImage;
+    private String productImage;
     private String Address;
+    private String StatusOfProduct;
+    private String BuyRequests;
+    private String contact;
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getBuyRequests() {
+        return BuyRequests;
+    }
+
+    public void setBuyRequests(String BuyRequests) {
+        this.BuyRequests = BuyRequests;
+    }
+
+    public String getStatusOfProduct() {
+        return StatusOfProduct;
+    }
+
+    public void setStatusOfProduct(String StatusOfProduct) {
+        this.StatusOfProduct = StatusOfProduct;
+    }
 
     public String getAddress() {
         return Address;
@@ -32,11 +59,11 @@ public class Purchase {
         this.Address = Address;
     }
 
-    public BufferedImage getProductImage() {
+    public String getProductImage() {
         return productImage;
     }
 
-    public void setProductImage(BufferedImage productImage) {
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 
@@ -114,7 +141,7 @@ public class Purchase {
     
     @Override
     public String toString(){
-        return productName;
+        return this.productName;
     }
     
     

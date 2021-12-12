@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.Purchase.PurchaseDirectory;
 import business.useraccount.UserAccountDirectory;
 import java.util.ArrayList;
 import business.role.Role;
@@ -30,6 +31,7 @@ public abstract class Organization {
     private StudentDirectory studentDirectory;
     private EventDirectory eventDirectory;
     private int organizationID;
+     private PurchaseDirectory purchaseDirectory;
     private static int counter = 0;
 
     public enum Type {
@@ -56,9 +58,17 @@ public abstract class Organization {
         temporaryDirectory = new TemporaryDirectory();
         permanentDirectory = new PermanentDirectory();
         studentDirectory = new StudentDirectory();
-        eventDirectory=new EventDirectory();
+        purchaseDirectory = new PurchaseDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public PurchaseDirectory getPurchaseDirectory() {
+        return purchaseDirectory;
+    }
+
+    public void setPurchaseDirectory(PurchaseDirectory purchaseDirectory) {
+        this.purchaseDirectory = purchaseDirectory;
     }
 
     public EventDirectory getEventDirectory() {
