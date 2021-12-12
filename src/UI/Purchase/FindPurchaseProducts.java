@@ -102,13 +102,13 @@ public class FindPurchaseProducts extends javax.swing.JPanel {
 
         tblProductList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Product Name", "Address", "price", "Quantity", "Condition", "Category", "Comment", "Status"
+                "Product Name", "Address", "price", "Quantity", "Condition", "Category", "Comment", "Availibility", "Status"
             }
         ));
         jScrollPane1.setViewportView(tblProductList);
@@ -488,9 +488,9 @@ public class FindPurchaseProducts extends javax.swing.JPanel {
             txtComment.setText(p.getComment());
             
           //  comboCategory.addItem(p.getCategory().toString());
-            comboCondition.addItem(p.getContidion().toString());
-            comboCategory.addItem(p.getCategory().toString());
-            comboStatus.addItem(p.getStatus().toString());
+            comboCategory.setSelectedItem(p.getCategory().toString());
+            comboCondition.setSelectedItem(p.getContidion().toString());
+            comboStatus.setSelectedItem(p.getStatusOfProduct().toString());
             
             System.out.print("path is " + p.getProductImage());
             ImageIcon imIcon = new ImageIcon(p.getProductImage());
@@ -546,7 +546,7 @@ private void populateTable() {
         for (ArrayList<Purchase> perArr : directory.values()) {
             for (Purchase p : perArr) {
                 if (p.getStatusOfProduct().equals("Available") && p.getStatus().equals("OK")) {
-                    Object[] row = new Object[8];
+                    Object[] row = new Object[9];
                     row[0] = p;
                     row[1] = p.getAddress();
                     row[2] = p.getPrice();
@@ -555,6 +555,7 @@ private void populateTable() {
                     row[5] = p.getCategory();
                     row[6] = p.getComment();
                     row[7] = p.getStatusOfProduct();
+                    row[8] = p.getStatus();
                     model.addRow(row);
                 }
                 else {
@@ -574,7 +575,23 @@ private void clearFields() {
         txtPrice.setText("");
         txtProductName.setText("");
         txtQuantity.setText("");
+        lblImage.setIcon(null) ;
       
+    }
+
+private void enableFields(boolean b) {
+        txtProductName.setEnabled(b);
+        txtPrice.setEnabled(b);
+        txtContactEmail.setEnabled(b);
+        txtAreaAddress.setEnabled(b);
+        
+        txtComment.setEnabled(b);
+        txtQuantity.setEnabled(b);
+        comboCondition.setEnabled(b);
+        comboCategory.setEnabled(b);
+        comboStatus.setEnabled(b);
+        txtAreaComment.setEnabled(b);
+
     }
 
 }

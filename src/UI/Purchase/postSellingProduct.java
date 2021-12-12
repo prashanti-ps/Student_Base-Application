@@ -123,14 +123,14 @@ public class postSellingProduct extends javax.swing.JPanel {
 
         tblProductList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Product Name", "Address", "price", "Quantity", "Condition", "Category", "Comment", "Status"
+                "Product Name", "Address", "price", "Quantity", "Condition", "Category", "Comment", "Availibility", "Status"
             }
         ));
         jScrollPane1.setViewportView(tblProductList);
@@ -316,10 +316,9 @@ public class postSellingProduct extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblPriceCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(lblQuantityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -448,18 +447,30 @@ public class postSellingProduct extends javax.swing.JPanel {
         Purchase p = new Purchase();
         String email = userAccount.getStudent().getEmailAddress();
         p.setProductName(txtProductName.getText());
-        p.setCategory(comboCategory.getItemAt(0));
+        p.setCategory(comboCategory.getSelectedItem().toString());
         p.setQuantity(Integer.parseInt(txtQuantity.getText()));
         p.setPrice(Integer.parseInt(txtPrice.getText()));
         p.setComment(txtComment.getText());
         p.setAddress(txtAreaAddress.getText());
        // p.setContactEmail(email);
         p.setContact(email);
-        p.setContidion(comboCondition.getItemAt(0));
+        p.setContidion(comboCondition.getSelectedItem().toString());
         p.setStatus("OK");
-        p.setStatusOfProduct(comboStatus.getItemAt(0));
-        p.setBuyRequests("");   
-       p.setProductImage(getSelectedImage);
+
+        p.setStatusOfProduct(comboStatus.getSelectedItem().toString());
+        p.setBuyRequests("");
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+
         
         ecosystem.getPurchaseDirectory().addNewPurchaseProduct(email, p);
          //purchaseDirectory.addNewPurchaseProduct(email, p);
@@ -498,7 +509,7 @@ public class postSellingProduct extends javax.swing.JPanel {
                     obj.setComment(txtComment.getText());
                     
                     obj.setCategory(comboCategory.getItemAt(0));
-                    obj.setStatus(comboStatus.getItemAt(0));
+                    obj.setStatusOfProduct(comboStatus.getItemAt(0));
                     JOptionPane.showMessageDialog(this, "Record Updated!");
                    // enableFields(false);
                     lblPriceCheck.setEnabled(false);
@@ -570,8 +581,9 @@ public class postSellingProduct extends javax.swing.JPanel {
             txtQuantity.setText(String.valueOf(p.getQuantity()));
             txtComment.setText(p.getComment());
             
-          //  comboCategory.addItem(p.getCategory().toString());
-            comboCondition.addItem(p.getContidion().toString());
+            comboCategory.setSelectedItem(p.getCategory().toString());
+            comboCondition.setSelectedItem(p.getContidion().toString());
+            comboStatus.setSelectedItem(p.getStatusOfProduct().toString());
             txtAreaRequests.setText(p.getBuyRequests());
         }
     }//GEN-LAST:event_EditActionPerformed
@@ -696,6 +708,8 @@ ImageIcon imICon2 = new ImageIcon(newimg);
         txtPrice.setText("");
         txtProductName.setText("");
         txtQuantity.setText("");
+        lblUploadImage.setIcon(null) ;
+        txtAreaRequests.setText("");
       
     }
 
@@ -710,7 +724,7 @@ ImageIcon imICon2 = new ImageIcon(newimg);
             //System.out.print(userAccount.getStudent().getEmailAddress());
             foundDirectory = directory.get(userAccount.getStudent().getEmailAddress());
             for (Purchase p : foundDirectory) {
-                Object[] row = new Object[8];
+                Object[] row = new Object[9];
 
                 row[0] = p;
                 row[1] = p.getAddress();
@@ -720,6 +734,7 @@ ImageIcon imICon2 = new ImageIcon(newimg);
                 row[5] = p.getCategory();
                 row[6] = p.getComment();
                 row[7] = p.getStatusOfProduct();
+                row[8] = p.getStatus();
                 model.addRow(row);
         }
         }
@@ -752,6 +767,7 @@ ImageIcon imICon2 = new ImageIcon(newimg);
         txtQuantity.setEnabled(b);
         comboCondition.setEnabled(b);
         comboCategory.setEnabled(b);
+        btnUploadImage.setEnabled(b);
 
     }
     

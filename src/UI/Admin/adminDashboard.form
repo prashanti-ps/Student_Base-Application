@@ -52,7 +52,7 @@
                           <Component id="btnManagePermanentAccomodation1" alignment="1" pref="250" max="32767" attributes="0"/>
                           <Component id="btnManagePermanentAccomodation3" alignment="1" pref="250" max="32767" attributes="0"/>
                           <Component id="btnManagePermanentAccomodation2" alignment="1" pref="250" max="32767" attributes="0"/>
-                          <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnManageBuyingSelling" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -76,7 +76,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnManagePermanentAccomodation1" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="btnManageBuyingSelling" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnManagePermanentAccomodation3" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -287,10 +287,13 @@
         <Property name="text" type="java.lang.String" value="Student Management"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnManageBuyingSelling">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="22" green="81" red="fb" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -303,6 +306,9 @@
         </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageBuyingSellingActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
