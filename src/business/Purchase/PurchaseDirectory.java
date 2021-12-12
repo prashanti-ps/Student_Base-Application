@@ -14,7 +14,7 @@ import java.util.Map;
  * @author mayurimore
  */
 public class PurchaseDirectory {
-    private Map<String,ArrayList<Purchase>> purchaseDirectory;
+    private  Map<String,ArrayList<Purchase>> purchaseDirectory;
     
     public PurchaseDirectory()
     {
@@ -31,9 +31,17 @@ public class PurchaseDirectory {
     
     public void addNewPurchaseProduct(String email, Purchase p)
    {
-       ArrayList<Purchase> purchaseArr = new ArrayList<Purchase>();
-       purchaseArr.add(p);
-       this.purchaseDirectory.put(email,purchaseArr);
+       ArrayList<Purchase> perArr = purchaseDirectory.get(email);
+       if(null != perArr)
+       {
+           perArr.add(p);
+       this.purchaseDirectory.put(email,perArr);
+       }
+       else{
+       ArrayList<Purchase> per = new ArrayList<Purchase>();
+       per.add(p);
+       this.purchaseDirectory.put(email,per);
+       }
        
    }
    

@@ -24,6 +24,24 @@ public class Purchase {
     private String productImage;
     private String Address;
     private String StatusOfProduct;
+    private String BuyRequests;
+    private String contact;
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getBuyRequests() {
+        return BuyRequests;
+    }
+
+    public void setBuyRequests(String BuyRequests) {
+        this.BuyRequests = BuyRequests;
+    }
 
     public String getStatusOfProduct() {
         return StatusOfProduct;

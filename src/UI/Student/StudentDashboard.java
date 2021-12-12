@@ -10,6 +10,7 @@ import UI.Accomodation.findTemporaryAccomodationJPanel;
 import UI.Accomodation.postPermanentAccomodation;
 import UI.Accomodation.postTemporaryAccomodationJPanel;
 import UI.Admin.adminDashboard;
+import UI.Purchase.FindPurchaseProducts;
 import UI.Purchase.postSellingProduct;
 import business.EcoSystem;
 import javax.swing.JSplitPane;
@@ -30,6 +31,7 @@ public class StudentDashboard extends javax.swing.JPanel {
      */
     PermanentDirectory permanentDirectory;
     TemporaryDirectory temporaryDirectory;
+    
    JSplitPane jSplitPane1;
     EcoSystem ecosystem;
     UserAccount userAccount;
@@ -122,6 +124,11 @@ public class StudentDashboard extends javax.swing.JPanel {
         btnBuyItems.setText("Buy items");
         btnBuyItems.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnBuyItems.setBorderPainted(false);
+        btnBuyItems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuyItemsActionPerformed(evt);
+            }
+        });
 
         btnSellItems.setBackground(new java.awt.Color(251, 129, 34));
         btnSellItems.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -269,6 +276,14 @@ public class StudentDashboard extends javax.swing.JPanel {
                            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                            layout.next(userProcessContainer);  
     }//GEN-LAST:event_btnPostPermanentActionPerformed
+
+    private void btnBuyItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyItemsActionPerformed
+        // TODO add your handling code here:
+        FindPurchaseProducts findPurchaseProducts=new FindPurchaseProducts( userProcessContainer, userAccount, ecosystem);
+        userProcessContainer.add("findPurchaseProducts", findPurchaseProducts);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);  
+    }//GEN-LAST:event_btnBuyItemsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
