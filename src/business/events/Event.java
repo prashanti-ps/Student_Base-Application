@@ -22,6 +22,15 @@ public class Event {
     private String capacity;
     private String entryFee;
     private String title;
+    private String link;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public String getTitle() {
         return title;
