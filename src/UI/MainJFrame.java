@@ -71,6 +71,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        ContainerPanel.setBackground(new java.awt.Color(29, 34, 40));
         ContainerPanel.setPreferredSize(new java.awt.Dimension(1000, 1000));
         ContainerPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(ContainerPanel);
