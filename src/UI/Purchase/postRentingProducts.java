@@ -606,6 +606,7 @@ ImageIcon imICon2 = new ImageIcon(newimg);
         btnUpdate.setEnabled(false);
         clearFields();
         populateTable();
+        enableFields(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
@@ -779,6 +780,7 @@ private void clearFields() {
         comboCategory.setEnabled(b);
         btnUploadImage.setEnabled(b);
         txtAvailibilityPeriod.setEnabled(b);
+        comboStatus.setEnabled(b);
 
     }
  private boolean validityCheck() {
