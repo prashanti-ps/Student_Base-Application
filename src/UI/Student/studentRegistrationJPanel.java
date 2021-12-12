@@ -81,16 +81,27 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
+        registrationPanel.setBackground(new java.awt.Color(29, 34, 40));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("First Name :");
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Student Registration");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Last Name :");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Email Address :");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password :");
 
         txtFirstName.addActionListener(new java.awt.event.ActionListener() {
@@ -111,21 +122,36 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnRegister.setBackground(new java.awt.Color(251, 129, 34));
+        btnRegister.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRegister.setForeground(new java.awt.Color(255, 255, 255));
         btnRegister.setText("Register");
+        btnRegister.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnRegister.setBorderPainted(false);
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(251, 129, 34));
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
+        btnBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnBack.setBorderPainted(false);
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
+        btnVerifyEmail.setBackground(new java.awt.Color(251, 129, 34));
+        btnVerifyEmail.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnVerifyEmail.setForeground(new java.awt.Color(255, 255, 255));
         btnVerifyEmail.setText("Verify Email");
+        btnVerifyEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnVerifyEmail.setBorderPainted(false);
         btnVerifyEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerifyEmailActionPerformed(evt);
@@ -134,7 +160,12 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
 
         txtOTP.setEnabled(false);
 
+        btnCheckOTP.setBackground(new java.awt.Color(251, 129, 34));
+        btnCheckOTP.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnCheckOTP.setForeground(new java.awt.Color(255, 255, 255));
         btnCheckOTP.setText("Submit OTP");
+        btnCheckOTP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnCheckOTP.setBorderPainted(false);
         btnCheckOTP.setEnabled(false);
         btnCheckOTP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,16 +173,14 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("OTP:");
 
         javax.swing.GroupLayout registrationPanelLayout = new javax.swing.GroupLayout(registrationPanel);
         registrationPanel.setLayout(registrationPanelLayout);
         registrationPanelLayout.setHorizontalGroup(
             registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registrationPanelLayout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registrationPanelLayout.createSequentialGroup()
                 .addGap(150, 150, 150)
                 .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -184,7 +213,10 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
                                     .addComponent(txtEmailAddress, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblPasswordCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, registrationPanelLayout.createSequentialGroup()
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(232, 232, 232))
             .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(registrationPanelLayout.createSequentialGroup()
@@ -195,9 +227,9 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
         registrationPanelLayout.setVerticalGroup(
             registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registrationPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(45, 45, 45)
+                .addGap(38, 38, 38)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(registrationPanelLayout.createSequentialGroup()
                         .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -212,21 +244,21 @@ public class studentRegistrationJPanel extends javax.swing.JPanel {
                             .addComponent(txtOTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnVerifyEmail))
-                    .addComponent(btnCheckOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnVerifyEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCheckOTP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPasswordCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(btnRegister)
-                .addContainerGap(782, Short.MAX_VALUE))
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(784, Short.MAX_VALUE))
             .addGroup(registrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(registrationPanelLayout.createSequentialGroup()
                     .addGap(9, 9, 9)
                     .addComponent(jLabel6)
-                    .addContainerGap(1011, Short.MAX_VALUE)))
+                    .addContainerGap(1026, Short.MAX_VALUE)))
         );
 
         add(registrationPanel, "card2");
