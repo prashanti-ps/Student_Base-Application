@@ -9,13 +9,21 @@ import UI.Student.StudentDashboard;
 import business.EcoSystem;
 import business.events.Event;
 import business.events.EventDirectory;
-import business.student.accomodation.Permanent;
-import business.student.accomodation.Temporary;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +47,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         this.ecosystem = ecosystem;
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;
-        eventDirectory=ecosystem.getEventDirectory();
+        eventDirectory = ecosystem.getEventDirectory();
         populateTable();
         clearFields();
         enableFields(false);
@@ -90,7 +98,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         lblCapacityCheck = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtTitle = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSendLink = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(29, 34, 40));
 
@@ -257,9 +265,16 @@ public class HostEventsJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Title");
 
-        jButton1.setText("Send Registration Links");
+        btnSendLink.setText("Send Registration Link");
+        btnSendLink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendLinkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -331,7 +346,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(244, 244, 244)
-                        .addComponent(jButton1)))
+                        .addComponent(btnSendLink)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -377,7 +392,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnSendLink)
                         .addGap(27, 27, 27))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,7 +503,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                     obj.setRequests(txtAreaRequests.getText());
                     obj.setType(dropdownEventType.getSelectedItem().toString());
                     obj.setContact(lblContact.getText());
-                   
+
                     JOptionPane.showMessageDialog(this, "Record Updated!");
                     enableFields(false);
                     lblMoveInDateCheck.setEnabled(false);
@@ -578,6 +593,69 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void btnSendLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendLinkActionPerformed
+            int selectedRowIndex = tblEventsList.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select an event first");
+            return;
+        } else {
+            enableFields(true);
+            btnUpdate.setEnabled(true);
+            btnPost.setEnabled(false);
+            DefaultTableModel model = (DefaultTableModel) tblEventsList.getModel();
+            Event t = (Event) model.getValueAt(selectedRowIndex, 0);
+
+
+        
+        if (txtAreaRequests.getText() != null && txtAreaRequests.getText() != "") {
+            String toEmail;
+            String fromEmail = "randadpratik789@gmail.com";
+            String pass = "pratik@3848";
+            String subject = "Verify Your OTP- AED Final Project Test";
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "25");
+            props.put("mail.debug", "true");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.EnableSSL.enable", "true");
+            props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            props.setProperty("mail.smtp.socketFactory.fallback", "false");
+            props.setProperty("mail.smtp.port", "465");
+            props.setProperty("mail.smtp.socketFactory.port", "465");
+            Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(fromEmail, pass);
+                }
+            });
+            try {
+                String requests = txtAreaRequests.getText().trim();
+                String[] elements = requests.split(",");
+                List<String> fixedLenghtList = Arrays.asList(elements);
+                ArrayList<String> listOfRequests = new ArrayList<String>(fixedLenghtList);
+                for (String email : listOfRequests) {
+
+                    toEmail = email;
+                    MimeMessage message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(fromEmail));
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+                    message.setSubject(subject);
+                    message.setText("Hello "+ t.getHostName() + "! " + "\n" + " Here is your registration link for the event: ");
+                    Transport.send(message);
+
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                JOptionPane.showMessageDialog(this, "Links sent successfully");
+                txtAreaRequests.setText("");
+
+            }
+        }else
+             JOptionPane.showMessageDialog(this, "There are not registration requests!");
+    }//GEN-LAST:event_btnSendLinkActionPerformed
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Date;
@@ -585,9 +663,9 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnPost;
+    private javax.swing.JButton btnSendLink;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> dropdownEventType;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -640,7 +718,7 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     }
 
     private void clearFields() {
-        lblHostName.setText(userAccount.getStudent().getFirstName() + " " +userAccount.getStudent().getLastName());
+        lblHostName.setText(userAccount.getStudent().getFirstName() + " " + userAccount.getStudent().getLastName());
         lblContact.setText(userAccount.getStudent().getEmailAddress());
         txtdate.setText("");
         txtAreaAddress.setText("");
@@ -649,7 +727,6 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         txtFee.setText("");
         txtCapacity.setText("");
         txtTitle.setText("");
-               
 
     }
 
@@ -667,11 +744,12 @@ public class HostEventsJPanel extends javax.swing.JPanel {
     }
 
     private boolean validityCheck() {
-        if (lblMoveInDateCheck.getForeground() == Color.WHITE  && lblFeeCheck.getForeground() == Color.WHITE && lblCapacityCheck.getForeground() == Color.WHITE &&  txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0) {
+        if (lblMoveInDateCheck.getForeground() == Color.WHITE && lblFeeCheck.getForeground() == Color.WHITE && lblCapacityCheck.getForeground() == Color.WHITE && txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0) {
             return true;
-        } else if(txtdate.getText().length() >0  && txtFee.getText().length() >0 && txtCapacity.getText().length() >0 &&  txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0){
+        } else if (txtdate.getText().length() > 0 && txtFee.getText().length() > 0 && txtCapacity.getText().length() > 0 && txtAreaAddress.getText().length() > 10 && txtDescription.getText().length() > 10 && txtTitle.getText().length() > 0) {
             return true;
-        }else
+        } else {
             return false;
+        }
     }
 }
