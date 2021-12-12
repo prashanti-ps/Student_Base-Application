@@ -123,6 +123,8 @@ public class FindEventsJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Host Name");
 
+        lblHostName.setForeground(new java.awt.Color(255, 255, 255));
+
         txtEventDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtEventDateKeyReleased(evt);
@@ -136,6 +138,8 @@ public class FindEventsJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contact");
+
+        lblContact.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -204,6 +208,10 @@ public class FindEventsJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Events");
 
+        lblFee.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblCapacity.setForeground(new java.awt.Color(255, 255, 255));
+
         btnRegister.setBackground(new java.awt.Color(251, 129, 34));
         btnRegister.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,6 +244,7 @@ public class FindEventsJPanel extends javax.swing.JPanel {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Description");
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Comment");
 
         txtAreaComment.setColumns(20);

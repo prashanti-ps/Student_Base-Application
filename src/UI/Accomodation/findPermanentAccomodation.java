@@ -13,6 +13,7 @@ import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.TemporaryDirectory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -392,13 +393,20 @@ public class findPermanentAccomodation extends javax.swing.JPanel {
             btnReport.setEnabled(true);
             DefaultTableModel model = (DefaultTableModel) tblPermanentAccomodationTable.getModel();
             Permanent p = (Permanent) model.getValueAt(selectedRowIndex, 0);
+            lblHostName.setForeground(Color.WHITE);
             lblHostName.setText(p.getHostName());
+            lblMoveInDate.setForeground(Color.WHITE);
             lblMoveInDate.setText(p.getMoveInDate().toString());
+            
             txtAreaAddress.setText(p.getAddress());
             txtAreaFacilities.setText(p.getFacilities());
+            lblRent.setForeground(Color.WHITE);
             lblRent.setText(String.valueOf(p.getRent()));
+            lblDistance.setForeground(Color.WHITE);
             lblDistance.setText(String.valueOf(p.getDistance()));
+            lblTotalPeople.setForeground(Color.WHITE);
             lblTotalPeople.setText(String.valueOf(p.getTotalPeopleInHouse()));
+            lblContact.setForeground(Color.WHITE);
             lblContact.setText(p.getContact());
 
         }

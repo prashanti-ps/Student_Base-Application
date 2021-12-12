@@ -199,6 +199,8 @@ public class HostEventsJPanel extends javax.swing.JPanel {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Event Requests");
 
+        lblHostName.setForeground(new java.awt.Color(255, 255, 255));
+
         txtdate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtdateKeyReleased(evt);
@@ -229,6 +231,8 @@ public class HostEventsJPanel extends javax.swing.JPanel {
                 txtCapacityKeyReleased(evt);
             }
         });
+
+        lblContact.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));

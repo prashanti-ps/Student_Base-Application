@@ -570,10 +570,10 @@ public class postPermanentAccomodation extends javax.swing.JPanel {
                     obj.setStatusOfAccomodation(comboBoxStatus.getItemAt(0));
                     JOptionPane.showMessageDialog(this, "Record Updated!");
                     enableFields(false);
-                    lblMoveInDateCheck.setEnabled(false);
-                    lblDistanceCheck.setEnabled(false);
-                    lblTotalPeopleInHouseCheck1.setEnabled(false);
-                    lblRentCheck.setEnabled(false);
+                    lblMoveInDateCheck.setText("");
+                    lblDistanceCheck.setText("");
+                    lblTotalPeopleInHouseCheck1.setText("");
+                    lblRentCheck.setText("");
                 }
             }
         } else {
