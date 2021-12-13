@@ -309,9 +309,13 @@ public class complaintsJPanel extends javax.swing.JPanel {
         buyingComplaintsJPanelLayout.setVerticalGroup(
             buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buyingComplaintsJPanelLayout.createSequentialGroup()
-                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,17 +323,13 @@ public class complaintsJPanel extends javax.swing.JPanel {
                             .addComponent(btnOKProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3))
                     .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel21)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                        .addGap(21, 21, 21)
+                        .addGap(20, 20, 20)
                         .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtProductName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel15)
                                     .addComponent(txtProductCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
@@ -337,22 +337,22 @@ public class complaintsJPanel extends javax.swing.JPanel {
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16)
                                     .addComponent(txtProductCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel17)
                                     .addComponent(txtProductQuantity))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 39, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtProductAddress, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel20)
                                 .addGap(81, 81, 81)))
                         .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel27)
                             .addComponent(txtPurchaseComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(315, Short.MAX_VALUE))
         );
 
         buyingComplaintsJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtProductAddress, txtProductCategory, txtProductCondition, txtProductQuantity});
@@ -430,6 +430,18 @@ public class complaintsJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblTempAddress.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblTempFacilities.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblTempPrice.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblTempContact.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblTempDistance.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblTempOccupancy.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Comment:");
@@ -484,9 +496,9 @@ public class complaintsJPanel extends javax.swing.JPanel {
         tempAccomodationsComplaintsJPanelLayout.setVerticalGroup(
             tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(lblTempAddress)
@@ -508,7 +520,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                     .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                         .addComponent(lblTempOccupancy, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 122, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 68, Short.MAX_VALUE)
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(txtTempComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -516,7 +528,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tempSendToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTempOK, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
 
         tempAccomodationsComplaintsJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblTempAddress, lblTempContact, lblTempDistance, lblTempOccupancy, lblTempPrice});
@@ -593,6 +605,16 @@ public class complaintsJPanel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Comment:");
+
+        lblPermAddress.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblPermFacilities.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblPermRent.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblPermContact.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblPermTotalPpl.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout permAccomodationsComplaintsJPanelLayout = new javax.swing.GroupLayout(permAccomodationsComplaintsJPanel);
         permAccomodationsComplaintsJPanel.setLayout(permAccomodationsComplaintsJPanelLayout);
