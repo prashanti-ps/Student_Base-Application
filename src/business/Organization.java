@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.FAQ.FAQDirectory;
 import business.Purchase.PurchaseDirectory;
 import business.Rent.RentProductDirectory;
 import business.useraccount.UserAccountDirectory;
@@ -34,6 +35,7 @@ public abstract class Organization {
     private RentProductDirectory rentProductDirectory;
     private int organizationID;
      private PurchaseDirectory purchaseDirectory;
+     private FAQDirectory faqDirectory;
     private static int counter = 0;
 
     public enum Type {
@@ -63,8 +65,17 @@ public abstract class Organization {
         purchaseDirectory = new PurchaseDirectory();
         rentProductDirectory = new RentProductDirectory();
         eventDirectory= new EventDirectory();
+        faqDirectory = new FAQDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public FAQDirectory getFaqDirectory() {
+        return faqDirectory;
+    }
+
+    public void setFaqDirectory(FAQDirectory faqDirectory) {
+        this.faqDirectory = faqDirectory;
     }
 
     public RentProductDirectory getRentProductDirectory() {
