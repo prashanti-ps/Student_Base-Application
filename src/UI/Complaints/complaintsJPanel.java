@@ -8,6 +8,8 @@ package UI.Complaints;
 import business.EcoSystem;
 import business.Purchase.Purchase;
 import business.Purchase.PurchaseDirectory;
+import business.Rent.RentProduct;
+import business.Rent.RentProductDirectory;
 import business.student.accomodation.Permanent;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
@@ -17,6 +19,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
@@ -38,9 +41,11 @@ public class complaintsJPanel extends javax.swing.JPanel {
     TemporaryDirectory temporaryDirectory;
     PermanentDirectory permanentDirectory;
     PurchaseDirectory purchaseDirectory;
+    RentProductDirectory rentProductDirectory;
     Temporary temp;
     Permanent per;
     Purchase pur;
+    RentProduct ren;
 
     public complaintsJPanel() {
 
@@ -53,6 +58,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
         this.temporaryDirectory = ecosystem.getTemporaryDirectory();
         this.permanentDirectory = ecosystem.getPermanentDirectory();
         this.purchaseDirectory = ecosystem.getPurchaseDirectory();
+        this.rentProductDirectory=ecosystem.getRentProductDirectory();
             initComponents();
         populateComplaintsTable();
         initPurchaseListerners();
@@ -125,6 +131,26 @@ public class complaintsJPanel extends javax.swing.JPanel {
         lblPermRent = new javax.swing.JLabel();
         lblPermContact = new javax.swing.JLabel();
         lblPermTotalPpl = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblRentComplaints = new javax.swing.JTable();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        txtRentProductName = new javax.swing.JLabel();
+        txtRentCategory = new javax.swing.JLabel();
+        txtRentCondition = new javax.swing.JLabel();
+        txtRentPeriod = new javax.swing.JLabel();
+        txtRentAddress = new javax.swing.JLabel();
+        txtRentImage = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        txtRentComment = new javax.swing.JTextField();
+        btnRentSendToAdmin = new javax.swing.JButton();
+        btnMarkAsOK = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(29, 34, 40));
 
@@ -240,7 +266,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtProductCategory, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -264,8 +290,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                                     .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
                                         .addComponent(jLabel27)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPurchaseComment, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(txtPurchaseComment, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
@@ -276,7 +301,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                                         .addGap(15, 15, 15)
                                         .addComponent(btnOKProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(25, 25, 25)))
-                        .addContainerGap(50, Short.MAX_VALUE))))
+                        .addContainerGap(161, Short.MAX_VALUE))))
         );
 
         buyingComplaintsJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtProductCategory, txtProductCondition, txtProductName});
@@ -289,7 +314,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSendtoAdminProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnOKProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3))
@@ -416,7 +441,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1091, Short.MAX_VALUE)
                     .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                         .addGroup(tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tempAccomodationsComplaintsJPanelLayout.createSequentialGroup()
@@ -454,7 +479,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                 .addComponent(tempSendToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTempOK, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(452, Short.MAX_VALUE))
         );
         tempAccomodationsComplaintsJPanelLayout.setVerticalGroup(
             tempAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,7 +601,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
             .addGroup(permAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(permAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1077, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, permAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(permAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -587,7 +612,7 @@ public class complaintsJPanel extends javax.swing.JPanel {
                         .addGroup(permAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPermFacilities, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblPermAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblPermRent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
+                            .addComponent(lblPermRent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
                         .addGroup(permAccomodationsComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(permAccomodationsComplaintsJPanelLayout.createSequentialGroup()
                                 .addGap(37, 37, 37)
@@ -658,6 +683,203 @@ public class complaintsJPanel extends javax.swing.JPanel {
         permAccomodationsComplaintsJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblPermAddress, lblPermContact, lblPermFacilities, lblPermRent, lblPermTotalPpl});
 
         ComplaintManagerTab.addTab("Permanent Accomodtion ", permAccomodationsComplaintsJPanel);
+
+        jPanel1.setBackground(new java.awt.Color(29, 34, 40));
+
+        tblRentComplaints.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Product Name", "Complaint Against", "Status", "Comment"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblRentComplaints);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Product Name:");
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Category:");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Condition:");
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Availability Period:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Address:");
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Product Image:");
+
+        txtRentProductName.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtRentProductName.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentCategory.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtRentCategory.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentCondition.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtRentCondition.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentPeriod.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtRentPeriod.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentAddress.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtRentAddress.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Comment:");
+
+        btnRentSendToAdmin.setBackground(new java.awt.Color(251, 129, 34));
+        btnRentSendToAdmin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRentSendToAdmin.setForeground(new java.awt.Color(255, 255, 255));
+        btnRentSendToAdmin.setText("Send To Admin");
+        btnRentSendToAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnRentSendToAdmin.setBorderPainted(false);
+        btnRentSendToAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRentSendToAdminActionPerformed(evt);
+            }
+        });
+
+        btnMarkAsOK.setBackground(new java.awt.Color(251, 129, 34));
+        btnMarkAsOK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnMarkAsOK.setForeground(new java.awt.Color(255, 255, 255));
+        btnMarkAsOK.setText("Mark as Ok");
+        btnMarkAsOK.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnMarkAsOK.setBorderPainted(false);
+        btnMarkAsOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarkAsOKActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Months");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(55, 55, 55)
+                                .addComponent(txtRentProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel23)
+                                    .addComponent(jLabel24))
+                                .addGap(74, 74, 74)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRentCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRentCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel25))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRentImage, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtRentAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRentPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel30)))
+                        .addGap(331, 331, 331))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(140, 140, 140)
+                                        .addComponent(txtRentComment, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel29))
+                                .addGap(73, 73, 73)
+                                .addComponent(btnRentSendToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(btnMarkAsOK, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(301, 301, 301))))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtRentAddress, txtRentCategory, txtRentCondition, txtRentPeriod, txtRentProductName});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(txtRentProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRentPeriod)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel22))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel30)))
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel26)
+                    .addComponent(txtRentCategory)
+                    .addComponent(txtRentAddress))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel28))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRentImage, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel24)
+                                .addComponent(txtRentCondition)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(txtRentComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRentSendToAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMarkAsOK, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(192, Short.MAX_VALUE))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtRentAddress, txtRentCategory, txtRentCondition, txtRentPeriod, txtRentProductName});
+
+        ComplaintManagerTab.addTab("Rental", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -738,6 +960,25 @@ private void populateComplaintsTable() {
             }
         }
     }
+     private void populateRentalComplaintsTable() {
+        DefaultTableModel model = (DefaultTableModel) tblRentComplaints.getModel();
+        model.setRowCount(0);
+        String contact = "";
+        Object[] row = new Object[4];
+        Map<String, ArrayList<RentProduct>> latestDirectory = rentProductDirectory.getRentProductDirectory();
+        for (String key : latestDirectory.keySet()) {
+            for (RentProduct value : latestDirectory.get(key)) {
+                if (value.getStatus().equals("Reported")) {
+                    contact = key;
+                    row[0] = value;
+                    row[1] = value.getContact();
+                    row[2] = value.getComment();
+                    row[3] = value.getStatus();
+                    model.addRow(row);
+                }
+            }
+        }
+    }
     private void ComplaintManagerTabStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ComplaintManagerTabStateChanged
         if (ComplaintManagerTab.getSelectedIndex() == 0) {
             populateComplaintsTable();
@@ -750,6 +991,10 @@ private void populateComplaintsTable() {
         if (ComplaintManagerTab.getSelectedIndex() == 2) {
             populatePermanentAccomodtionComplaintsTable();
             initPermListerners();
+        }
+        if (ComplaintManagerTab.getSelectedIndex() == 3) {
+            populateRentalComplaintsTable();
+            initRentListerners();
         }
     }//GEN-LAST:event_ComplaintManagerTabStateChanged
 
@@ -837,7 +1082,7 @@ private void populateComplaintsTable() {
             per = (Permanent) PermanentComplaintsTable.getValueAt(selectedRow, 0);
             per.setStatusOfPost("Ok");
             per.setComment("");
-            JOptionPane.showMessageDialog(null, "Admin will delete the post!");
+            JOptionPane.showMessageDialog(null, "Post will be kept in the list!");
             populateTemporaryAccomodtionComplaintsTable();
             lblPermAddress.setText(null);
             lblPermContact.setText(null);
@@ -883,7 +1128,7 @@ private void populateComplaintsTable() {
             pur = (Purchase) tblComplaintsPurchase.getValueAt(selectedRow, 0);
             pur.setStatus("Ok");
             pur.setComment("");
-            JOptionPane.showMessageDialog(null, "Admin will delete the post!");
+            JOptionPane.showMessageDialog(null, "Post will be kept in the list");
             populateComplaintsTable();
             txtProductAddress.setText(null);
             txtProductCategory.setText(null);
@@ -894,6 +1139,54 @@ private void populateComplaintsTable() {
             txtPurchaseComment.setText(null);
         }
     }//GEN-LAST:event_btnOKProductActionPerformed
+
+    private void btnMarkAsOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAsOKActionPerformed
+        int selectedRow = tblRentComplaints.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a post");
+            return;
+        } else {
+            txtRentComment.setText(null);
+            ren = (RentProduct) tblRentComplaints.getValueAt(selectedRow, 0);
+            ren.setStatus("Ok");
+            ren.setComment("");
+            JOptionPane.showMessageDialog(null, "Post will be kept in the list");
+             populateRentalComplaintsTable();
+            txtRentAddress.setText(null);
+                txtRentCategory.setText(null);
+                txtRentCondition.setText(null);
+                txtRentPeriod.setText(null);
+                txtRentProductName.setText(null);
+                txtRentImage.setIcon(null);
+                txtRentComment.setText(null);
+        }
+    }//GEN-LAST:event_btnMarkAsOKActionPerformed
+
+    private void btnRentSendToAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentSendToAdminActionPerformed
+     int selectedRow = tblRentComplaints.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a post to send");
+            return;
+        } else {
+            if (null != txtRentComment.getText().trim() && !txtRentComment.getText().trim().equals("")) {
+                ren = (RentProduct) tblRentComplaints.getValueAt(selectedRow, 0);
+                ren.setStatus("Delete");
+                ren.setComment("From Complaint Manager: " + txtPurchaseComment.getText().trim());
+                JOptionPane.showMessageDialog(null, "Admin will delete the post!");
+                populateRentalComplaintsTable();
+                txtRentAddress.setText(null);
+                txtRentCategory.setText(null);
+                txtRentCondition.setText(null);
+                txtRentPeriod.setText(null);
+                txtRentProductName.setText(null);
+                txtRentImage.setIcon(null);
+                txtRentComment.setText(null);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter the comments first");
+                return;
+            }
+        }
+    }//GEN-LAST:event_btnRentSendToAdminActionPerformed
     private void initTempListerners() {
         TempComplaintsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
@@ -938,6 +1231,29 @@ private void populateComplaintsTable() {
             }
         });
     }
+    private void initRentListerners() {
+        tblRentComplaints.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblRentComplaints.getSelectedRow();
+                if (selectedRow >= 0) {
+                    RentProduct rent = (RentProduct) tblRentComplaints.getValueAt(selectedRow, 0);
+                    if (null != rent) {
+                        txtRentAddress.setText(rent.getAddress());
+                        txtRentCategory.setText(rent.getCategory());
+                        txtRentCondition.setText(rent.getContidion());
+                        txtRentPeriod.setText(String.valueOf(rent.getAvailibilityPeriod()));
+                        txtRentProductName.setText(rent.getProductName());
+                        ImageIcon photo = new ImageIcon(rent.getProductImage());
+                        Image fitImage = photo.getImage();
+                        Image fitSize = fitImage.getScaledInstance(220, 170, Image.SCALE_SMOOTH);
+                        txtRentImage.setIcon(new ImageIcon(fitSize));
+
+                    }
+
+                }
+            }
+        });
+    }
 
     private void initPermListerners() {
         PermanentComplaintsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -963,8 +1279,10 @@ private void populateComplaintsTable() {
     private javax.swing.JButton PermSendToAdminbtn;
     private javax.swing.JTable PermanentComplaintsTable;
     private javax.swing.JTable TempComplaintsTable;
+    private javax.swing.JButton btnMarkAsOK;
     private javax.swing.JButton btnOKProduct;
     private javax.swing.JButton btnPermOk;
+    private javax.swing.JButton btnRentSendToAdmin;
     private javax.swing.JButton btnSendtoAdminProduct;
     private javax.swing.JButton btnTempOK;
     private javax.swing.JPanel buyingComplaintsJPanel;
@@ -982,14 +1300,24 @@ private void populateComplaintsTable() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1007,6 +1335,7 @@ private void populateComplaintsTable() {
     private javax.swing.JLabel lblTempPrice;
     private javax.swing.JPanel permAccomodationsComplaintsJPanel;
     private javax.swing.JTable tblComplaintsPurchase;
+    private javax.swing.JTable tblRentComplaints;
     private javax.swing.JPanel tempAccomodationsComplaintsJPanel;
     private javax.swing.JButton tempSendToAdmin;
     private javax.swing.JTextField txtPermComment;
@@ -1016,6 +1345,13 @@ private void populateComplaintsTable() {
     private javax.swing.JLabel txtProductName;
     private javax.swing.JLabel txtProductQuantity;
     private javax.swing.JTextField txtPurchaseComment;
+    private javax.swing.JLabel txtRentAddress;
+    private javax.swing.JLabel txtRentCategory;
+    private javax.swing.JTextField txtRentComment;
+    private javax.swing.JLabel txtRentCondition;
+    private javax.swing.JLabel txtRentImage;
+    private javax.swing.JLabel txtRentPeriod;
+    private javax.swing.JLabel txtRentProductName;
     private javax.swing.JTextField txtTempComment;
     // End of variables declaration//GEN-END:variables
 }

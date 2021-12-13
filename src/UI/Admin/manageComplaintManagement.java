@@ -8,6 +8,8 @@ package UI.Admin;
 import business.EcoSystem;
 import business.Purchase.Purchase;
 import business.Purchase.PurchaseDirectory;
+import business.Rent.RentProduct;
+import business.Rent.RentProductDirectory;
 import business.student.accomodation.Permanent;
 import business.student.accomodation.PermanentDirectory;
 import business.student.accomodation.Temporary;
@@ -39,6 +41,9 @@ public class manageComplaintManagement extends javax.swing.JPanel {
     TemporaryDirectory temporaryDirectory;
     PermanentDirectory permanentDirectory;
      PurchaseDirectory purchaseDirectory;
+      RentProductDirectory rentProductDirectory;
+      
+       RentProduct ren;
     Temporary temp;
     Permanent per;
     Purchase pur;
@@ -51,6 +56,7 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         this.temporaryDirectory = ecosystem.getTemporaryDirectory();
         this.permanentDirectory = ecosystem.getPermanentDirectory();
          this.purchaseDirectory = ecosystem.getPurchaseDirectory();
+          this.rentProductDirectory=ecosystem.getRentProductDirectory();
           initComponents();
         populateComplaintsTable();
         initPurchaseListerners();
@@ -113,6 +119,23 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         lblPermRent = new javax.swing.JLabel();
         lblPermContact = new javax.swing.JLabel();
         lblPermTotalPpl = new javax.swing.JLabel();
+        RentalPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblRentComplaints = new javax.swing.JTable();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        txtRentProductName = new javax.swing.JLabel();
+        txtRentCategory = new javax.swing.JLabel();
+        txtRentCondition = new javax.swing.JLabel();
+        txtRentPeriod = new javax.swing.JLabel();
+        txtRentAddress = new javax.swing.JLabel();
+        txtRentImage = new javax.swing.JLabel();
+        btnRentDelete = new javax.swing.JButton();
+        jLabel31 = new javax.swing.JLabel();
         btnBackComplaintManagementAdmin = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(29, 34, 40));
@@ -210,15 +233,12 @@ public class manageComplaintManagement extends javax.swing.JPanel {
                                     .addComponent(txtProductCondition)
                                     .addComponent(txtProductCategory)
                                     .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(34, 34, 34)
+                                .addGap(37, 37, 37)
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel22)
-                                        .addComponent(jLabel23))
-                                    .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel24)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel23)
+                                    .addComponent(jLabel22))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -228,7 +248,7 @@ public class manageComplaintManagement extends javax.swing.JPanel {
                     .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
                         .addGap(286, 286, 286)
                         .addComponent(btnDeletePurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         buyingComplaintsJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtProductCategory, txtProductCondition, txtProductName});
@@ -238,38 +258,38 @@ public class manageComplaintManagement extends javax.swing.JPanel {
             .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
-                        .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProductQuantity))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(txtProductAddress)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, buyingComplaintsJPanelLayout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                            .addGap(45, 45, 45)
                             .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel20)
                                 .addComponent(txtProductCategory))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                            .addGap(34, 34, 34)
                             .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel21)
                                 .addComponent(txtProductCondition)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, buyingComplaintsJPanelLayout.createSequentialGroup()
-                            .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel23))
-                                .addComponent(jLabel22))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel24))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addComponent(jLabel24))
+                    .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                        .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel22)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel23))
+                            .addGroup(buyingComplaintsJPanelLayout.createSequentialGroup()
+                                .addGroup(buyingComplaintsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel19)
+                                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtProductQuantity))
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(txtProductAddress)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(btnDeletePurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         buyingComplaintsJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtProductAddress, txtProductCategory, txtProductCondition, txtProductName, txtProductQuantity});
@@ -375,7 +395,6 @@ public class manageComplaintManagement extends javax.swing.JPanel {
             .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(TemporaryAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TemporaryAccomodationPanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -402,7 +421,7 @@ public class manageComplaintManagement extends javax.swing.JPanel {
                         .addComponent(jLabel7)))
                 .addGap(51, 51, 51)
                 .addComponent(btnAdminComplaintTempDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(438, Short.MAX_VALUE))
+                .addContainerGap(453, Short.MAX_VALUE))
         );
 
         TemporaryAccomodationPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblTempAddress, lblTempContact, lblTempDistance, lblTempFacilities, lblTempOccupancy, lblTempPrice});
@@ -472,7 +491,7 @@ public class manageComplaintManagement extends javax.swing.JPanel {
             .addGroup(PermanentAccomodationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
                     .addGroup(PermanentAccomodationPanelLayout.createSequentialGroup()
                         .addGroup(PermanentAccomodationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel18)
@@ -524,12 +543,175 @@ public class manageComplaintManagement extends javax.swing.JPanel {
                     .addComponent(lblPermTotalPpl))
                 .addGap(53, 53, 53)
                 .addComponent(btnAdminComplaintPermDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addContainerGap(453, Short.MAX_VALUE))
         );
 
         PermanentAccomodationPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdminComplaintPermDelete, lblPermAddress, lblPermContact, lblPermFacilities, lblPermRent, lblPermTotalPpl});
 
         adminComplaintManagementTab.addTab("Permanent Accomodation", PermanentAccomodationPanel);
+
+        RentalPanel.setBackground(new java.awt.Color(29, 34, 40));
+
+        tblRentComplaints.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Product Name", "Complaint Against", "Status", "Comment"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblRentComplaints);
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Product Name:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Category:");
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Condition:");
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Availability Period:");
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Address:");
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Product Image:");
+
+        txtRentProductName.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentCategory.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentCondition.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentPeriod.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentAddress.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtRentImage.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnRentDelete.setBackground(new java.awt.Color(251, 129, 34));
+        btnRentDelete.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnRentDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnRentDelete.setText("Delete Post");
+        btnRentDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnRentDelete.setBorderPainted(false);
+        btnRentDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRentDeleteActionPerformed(evt);
+            }
+        });
+
+        jLabel31.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Months");
+
+        javax.swing.GroupLayout RentalPanelLayout = new javax.swing.GroupLayout(RentalPanel);
+        RentalPanel.setLayout(RentalPanelLayout);
+        RentalPanelLayout.setHorizontalGroup(
+            RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RentalPanelLayout.createSequentialGroup()
+                .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(RentalPanelLayout.createSequentialGroup()
+                                .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                                        .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel26)
+                                            .addComponent(jLabel27))
+                                        .addGap(74, 74, 74)
+                                        .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtRentCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtRentCondition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jLabel25)
+                                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                                        .addGap(138, 138, 138)
+                                        .addComponent(txtRentProductName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(2, 2, 2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel30)
+                                    .addComponent(jLabel29)
+                                    .addComponent(jLabel28))
+                                .addGap(33, 33, 33)
+                                .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                                        .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtRentAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtRentPeriod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel31)
+                                        .addGap(94, 94, 94))
+                                    .addComponent(txtRentImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                        .addGap(308, 308, 308)
+                        .addComponent(btnRentDelete)))
+                .addGap(301, 301, 301))
+        );
+        RentalPanelLayout.setVerticalGroup(
+            RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RentalPanelLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel28)
+                            .addComponent(txtRentProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRentPeriod)))
+                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel31)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel29)
+                    .addComponent(txtRentCategory)
+                    .addComponent(txtRentAddress))
+                .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel30))
+                    .addGroup(RentalPanelLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRentImage, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(RentalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel27)
+                                .addComponent(txtRentCondition)))))
+                .addGap(13, 13, 13)
+                .addComponent(btnRentDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(232, Short.MAX_VALUE))
+        );
+
+        RentalPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtRentAddress, txtRentCategory, txtRentCondition, txtRentPeriod, txtRentProductName});
+
+        adminComplaintManagementTab.addTab("Rental", RentalPanel);
 
         btnBackComplaintManagementAdmin.setBackground(new java.awt.Color(251, 129, 34));
         btnBackComplaintManagementAdmin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -563,7 +745,7 @@ public class manageComplaintManagement extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addComponent(btnBackComplaintManagementAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -590,7 +772,25 @@ private void populateComplaintsTable() {
             }
         }
     }
-
+private void populateRentalComplaintsTable() {
+        DefaultTableModel model = (DefaultTableModel) tblRentComplaints.getModel();
+        model.setRowCount(0);
+        String contact = "";
+        Object[] row = new Object[4];
+        Map<String, ArrayList<RentProduct>> latestDirectory = rentProductDirectory.getRentProductDirectory();
+        for (String key : latestDirectory.keySet()) {
+            for (RentProduct value : latestDirectory.get(key)) {
+                if (value.getStatus().equals("Delete")) {
+                    contact = key;
+                    row[0] = value;
+                    row[1] = value.getContact();
+                    row[2] = value.getComment();
+                    row[3] = value.getStatus();
+                    model.addRow(row);
+                }
+            }
+        }
+    }
     private void adminComplaintManagementTabStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_adminComplaintManagementTabStateChanged
          if (adminComplaintManagementTab.getSelectedIndex() == 0) {
             populateComplaintsTable();
@@ -603,6 +803,10 @@ private void populateComplaintsTable() {
         if (adminComplaintManagementTab.getSelectedIndex() == 2) {
             populatePermanentAccomodtionComplaintsTable();
             initPermListerners();
+        }
+        if (adminComplaintManagementTab.getSelectedIndex() == 3) {
+            populateRentalComplaintsTable();
+            initRentListerners();
         }
     }//GEN-LAST:event_adminComplaintManagementTabStateChanged
 
@@ -670,6 +874,49 @@ private void populateComplaintsTable() {
 
         }
     }//GEN-LAST:event_btnDeletePurchaseActionPerformed
+    private void initRentListerners() {
+        tblRentComplaints.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                int selectedRow = tblRentComplaints.getSelectedRow();
+                if (selectedRow >= 0) {
+                    RentProduct rent = (RentProduct) tblRentComplaints.getValueAt(selectedRow, 0);
+                    if (null != rent) {
+                        txtRentAddress.setText(rent.getAddress());
+                        txtRentCategory.setText(rent.getCategory());
+                        txtRentCondition.setText(rent.getContidion());
+                        txtRentPeriod.setText(String.valueOf(rent.getAvailibilityPeriod()));
+                        txtRentProductName.setText(rent.getProductName());
+                        ImageIcon photo = new ImageIcon(rent.getProductImage());
+                        Image fitImage = photo.getImage();
+                        Image fitSize = fitImage.getScaledInstance(220, 170, Image.SCALE_SMOOTH);
+                        txtRentImage.setIcon(new ImageIcon(fitSize));
+
+                    }
+
+                }
+            }
+        });
+    }
+    private void btnRentDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentDeleteActionPerformed
+         int selectedRow = tblRentComplaints.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a post to delete");
+            return;
+        } else {
+            ren = (RentProduct) tblRentComplaints.getValueAt(selectedRow, 0);
+            rentProductDirectory.deleteObject(ren);
+            JOptionPane.showMessageDialog(null, "Post Deleted!");
+            populateRentalComplaintsTable();
+            txtRentAddress.setText(null);
+                txtRentCategory.setText(null);
+                txtRentCondition.setText(null);
+                txtRentPeriod.setText(null);
+                txtRentProductName.setText(null);
+                txtRentImage.setIcon(null);
+              
+
+        }
+    }//GEN-LAST:event_btnRentDeleteActionPerformed
     private void populateTemporaryAccomodtionComplaintsTable() {
         DefaultTableModel model = (DefaultTableModel) tblAdminComplaintTemp.getModel();
         model.setRowCount(0);
@@ -775,12 +1022,14 @@ private void initPurchaseListerners() {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PermanentAccomodationPanel;
+    private javax.swing.JPanel RentalPanel;
     private javax.swing.JPanel TemporaryAccomodationPanel;
     private javax.swing.JTabbedPane adminComplaintManagementTab;
     private javax.swing.JButton btnAdminComplaintPermDelete;
     private javax.swing.JButton btnAdminComplaintTempDelete;
     private javax.swing.JButton btnBackComplaintManagementAdmin;
     private javax.swing.JButton btnDeletePurchase;
+    private javax.swing.JButton btnRentDelete;
     private javax.swing.JPanel buyingComplaintsJPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
@@ -795,13 +1044,21 @@ private void initPurchaseListerners() {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblPermAddress;
     private javax.swing.JLabel lblPermContact;
@@ -818,10 +1075,17 @@ private void initPurchaseListerners() {
     private javax.swing.JTable tblAdminComplaintPer;
     private javax.swing.JTable tblAdminComplaintTemp;
     private javax.swing.JTable tblComplaintsPurchase;
+    private javax.swing.JTable tblRentComplaints;
     private javax.swing.JLabel txtProductAddress;
     private javax.swing.JLabel txtProductCategory;
     private javax.swing.JLabel txtProductCondition;
     private javax.swing.JLabel txtProductName;
     private javax.swing.JLabel txtProductQuantity;
+    private javax.swing.JLabel txtRentAddress;
+    private javax.swing.JLabel txtRentCategory;
+    private javax.swing.JLabel txtRentCondition;
+    private javax.swing.JLabel txtRentImage;
+    private javax.swing.JLabel txtRentPeriod;
+    private javax.swing.JLabel txtRentProductName;
     // End of variables declaration//GEN-END:variables
 }
