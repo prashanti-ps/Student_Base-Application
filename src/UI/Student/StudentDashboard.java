@@ -72,6 +72,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         btnBuyItems = new javax.swing.JButton();
         btnRentProducts = new javax.swing.JButton();
         btnCustomerRentProducts = new javax.swing.JButton();
+        btnFAQ = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(29, 34, 40));
 
@@ -220,6 +221,17 @@ public class StudentDashboard extends javax.swing.JPanel {
             }
         });
 
+        btnFAQ.setBackground(new java.awt.Color(251, 129, 34));
+        btnFAQ.setForeground(new java.awt.Color(255, 255, 255));
+        btnFAQ.setText("View FAQ");
+        btnFAQ.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnFAQ.setBorderPainted(false);
+        btnFAQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFAQActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,7 +267,10 @@ public class StudentDashboard extends javax.swing.JPanel {
                                     .addComponent(btnSellItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(325, 325, 325)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(426, 426, 426)
+                        .addComponent(btnFAQ, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(153, Short.MAX_VALUE))
         );
 
@@ -290,11 +305,13 @@ public class StudentDashboard extends javax.swing.JPanel {
                     .addComponent(btnCustomerRentProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHost)
                     .addComponent(btnFindEvent))
-                .addContainerGap(584, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(btnFAQ, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(517, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnFindEvent, btnHost, btnSellItems});
@@ -380,10 +397,20 @@ public class StudentDashboard extends javax.swing.JPanel {
                            layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCustomerRentProductsActionPerformed
 
+    private void btnFAQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFAQActionPerformed
+        // TODO add your handling code here:
+        StudentFAQ studentFAQ=new StudentFAQ( userProcessContainer, userAccount, ecosystem);
+        userProcessContainer.add("studentFAQ", studentFAQ);
+                           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                           layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_btnFAQActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyItems;
     private javax.swing.JButton btnCustomerRentProducts;
+    private javax.swing.JButton btnFAQ;
     private javax.swing.JButton btnFindEvent;
     private javax.swing.JButton btnFindPermanent;
     private javax.swing.JButton btnFindTemp;
