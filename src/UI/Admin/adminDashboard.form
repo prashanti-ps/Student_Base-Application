@@ -28,15 +28,25 @@
                       <Component id="jLabel1" min="-2" pref="677" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnManagePermanentAccomodation1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnManagePermanentAccomodation" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnManageTemporaryAccomodation" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnStudentRegistration" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnManageTemporaryAccomodation" max="32767" attributes="0"/>
-                          <Component id="btnManagePermanentAccomodation" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnManagePermanentAccomodation1" alignment="1" max="32767" attributes="0"/>
                           <Component id="btnManageRenting" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnManageFAQ" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnManageBuyingSelling" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="btnManageBuyingSelling" min="-2" pref="271" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="btnManageFAQ" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnStudentRegistration" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -49,21 +59,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="btnManageTemporaryAccomodation" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <Component id="btnManageTemporaryAccomodation" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnManagePermanentAccomodation" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="btnManagePermanentAccomodation" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnManagePermanentAccomodation1" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="btnManagePermanentAccomodation1" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnManageBuyingSelling" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="btnManageBuyingSelling" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnManageRenting" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="btnManageRenting" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnManageFAQ" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="btnManageFAQ" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnStudentRegistration" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace pref="501" max="32767" attributes="0"/>
+              <Component id="btnStudentRegistration" min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace pref="545" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
