@@ -40,7 +40,9 @@ public class manageRenting extends javax.swing.JPanel {
         this.ecosystem = ecosystem;
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;
-        this.rentProductDirectory = rentProductDirectory;
+        
+        this.rentProductDirectory = ecosystem.getRentProductDirectory();
+        this.studentDirectory = studentDirectory;
         
         populateTable();
         btnDelete.setEnabled(false);
@@ -390,8 +392,8 @@ public class manageRenting extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -403,7 +405,7 @@ public class manageRenting extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(comboStatusRequest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
@@ -565,14 +567,11 @@ private void populateTable() {
         //sync
         DefaultTableModel model = (DefaultTableModel) tblProductList.getModel();
         model.setRowCount(0);
-        Map<String, ArrayList<RentProduct>> directory = rentProductDirectory.getRentProductDirectory();
-        ArrayList<RentProduct> foundDirectory = new ArrayList<RentProduct>();
-        try {
-            //System.out.print(userAccount.getStudent().getEmailAddress());
-            foundDirectory = directory.get(userAccount.getStudent().getEmailAddress());
-            for (RentProduct p : foundDirectory) {
-                Object[] row = new Object[9];
+        Map<String, ArrayList<RentProduct>> directory = ecosystem.getRentProductDirectory().getRentProductDirectory();
 
+        for (ArrayList<RentProduct> perArr : directory.values()) {
+            for (RentProduct p : perArr) {
+                Object[] row = new Object[9];
                 row[0] = p;
                 row[1] = p.getAddress();
                 row[2] = p.getPrice();
@@ -583,11 +582,7 @@ private void populateTable() {
                 row[7] = p.getStatusOfProduct();
                 row[8] = p.getStatus();
                 model.addRow(row);
-        }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-
+            }
         }
  } 
 private void enableFields(boolean b) {
@@ -607,7 +602,7 @@ private void enableFields(boolean b) {
     }
 
 private void clearFields() {
-        txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
+//        txtContactEmail.setText(userAccount.getStudent().getEmailAddress());
         txtAreaAddress.setText("");
         
       //  txtComment.setText("");
