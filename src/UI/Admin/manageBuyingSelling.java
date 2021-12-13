@@ -110,6 +110,7 @@ public class manageBuyingSelling extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblProductList);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Byuing/ Selling Management");
 
@@ -222,6 +223,8 @@ public class manageBuyingSelling extends javax.swing.JPanel {
             }
         });
 
+        btnback.setBackground(new java.awt.Color(251, 129, 34));
+        btnback.setForeground(new java.awt.Color(255, 255, 255));
         btnback.setText("<<Back");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

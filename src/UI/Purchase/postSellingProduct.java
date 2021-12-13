@@ -445,21 +445,22 @@ public class postSellingProduct extends javax.swing.JPanel {
         
          if (validityCheck()){
             // Purchase p = new Purchase();
-        //Purchase p = new Purchase();
+        Purchase p1 = new Purchase();
         String email = userAccount.getStudent().getEmailAddress();
-        p.setProductName(txtProductName.getText());
-        p.setCategory(comboCategory.getSelectedItem().toString());
-        p.setQuantity(Integer.parseInt(txtQuantity.getText()));
-        p.setPrice(Integer.parseInt(txtPrice.getText()));
-        p.setComment(txtComment.getText());
-        p.setAddress(txtAreaAddress.getText());
+        p1.setProductImage(p.getProductImage());
+        p1.setProductName(txtProductName.getText());
+        p1.setCategory(comboCategory.getSelectedItem().toString());
+        p1.setQuantity(Integer.parseInt(txtQuantity.getText()));
+        p1.setPrice(Integer.parseInt(txtPrice.getText()));
+        p1.setComment(txtComment.getText());
+        p1.setAddress(txtAreaAddress.getText());
        // p.setContactEmail(email);
-        p.setContact(email);
-        p.setContidion(comboCondition.getSelectedItem().toString());
-        p.setStatus("OK");
+        p1.setContact(email);
+        p1.setContidion(comboCondition.getSelectedItem().toString());
+        p1.setStatus("OK");
 
-        p.setStatusOfProduct(comboStatus.getSelectedItem().toString());
-        p.setBuyRequests("");
+        p1.setStatusOfProduct(comboStatus.getSelectedItem().toString());
+        p1.setBuyRequests("");
         
         
         
@@ -473,7 +474,7 @@ public class postSellingProduct extends javax.swing.JPanel {
         
 
         
-        ecosystem.getPurchaseDirectory().addNewPurchaseProduct(email, p);
+        ecosystem.getPurchaseDirectory().addNewPurchaseProduct(email, p1);
          //purchaseDirectory.addNewPurchaseProduct(email, p);
        // p.setProductImage(productImage);
        JOptionPane.showMessageDialog(this, "Product Posted!");
