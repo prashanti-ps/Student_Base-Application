@@ -1,3 +1,5 @@
+STUDENT BASE (Northeastern University)
+
 ABOUT:
 The purpose of the this application is to make students feel welcomed into the student community before they arrive at the university and overcome the hurdles 
 they find setting up. The application allows students to search for their temporary or permanent accommodation, buying and selling goods for new home,
