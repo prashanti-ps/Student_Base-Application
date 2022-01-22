@@ -9,3 +9,11 @@ Being and Living as an alien is never easy and the situation is difficult whe
 Finding somewhere safe, legitimate, convenient and affordable to live as an international student is one of the main concerns of students. 
 This Application can be used by the universities as a system that offers authentication and security to international students in terms of finding their
 basic needs in a new country.
+
+
+BLOCK DIAGRAM:
+![image](https://user-images.githubusercontent.com/78148121/150641763-2d9f47d1-d75f-4924-a729-17263ce84b54.png)
+
+
+SEQUENCE DIAGRAM:
+![image](https://user-images.githubusercontent.com/78148121/150641778-74b2f49e-a232-4f00-a5ef-3126de5342ec.png)
